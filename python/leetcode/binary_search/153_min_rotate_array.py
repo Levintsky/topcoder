@@ -16,15 +16,15 @@ class Solution(object):
       return nums[0]
     st = 0
     end = len(nums)-1
-    while(st!=end):
-      mid = (st+end)/2
-      if nums[st]<= nums[mid] and nums[mid]<=nums[end]:
+    while st != end:
+      mid = (st + end) // 2
+      if nums[st]<= nums[mid] and nums[mid] <= nums[end]:
         return nums[st]
-      elif nums[st]>nums[mid]:
+      elif nums[st] > nums[mid]:
         end = mid
-      elif nums[st]<nums[mid] and nums[mid]>nums[end]:
+      elif nums[st] < nums[mid] and nums[mid] > nums[end]:
         st = mid+1
-      elif st==end-1:
+      elif st == end-1:
         return min(nums[st], nums[end])
     return nums[st]
 

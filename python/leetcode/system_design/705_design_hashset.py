@@ -28,6 +28,57 @@ The number of operations will be in the range of [1, 10000].
 Please do not use the built-in HashSet library.
 """
 
+"""
+Better memory solution:
+class MyHashSet {
+
+    private int buckets = 1000;
+    private int itemsPerBucket = 1001;
+    private boolean[][] table;
+    
+    /** Initialize your data structure here. */
+    public MyHashSet() {
+        table = new boolean[buckets][];
+    }
+
+    public int hash(int key) {
+        return key % buckets;
+    }
+
+    public int pos(int key) {
+        return key / buckets;
+    }
+    
+    public void add(int key) {
+        int hashkey = hash(key);
+        
+        if (table[hashkey] == null) {
+            table[hashkey] = new boolean[itemsPerBucket];
+        }
+        table[hashkey][pos(key)] = true;
+    }
+    
+    public void remove(int key) {
+        int hashkey = hash(key);
+
+        if (table[hashkey] != null)
+            table[hashkey][pos(key)] = false;
+    }
+    
+    /** Returns true if this set did not already contain the specified element */
+    public boolean contains(int key) {
+        int hashkey = hash(key);
+        return table[hashkey] != null && table[hashkey][pos(key)];
+    }
+}
+"""
+
+"""
+Real design:
+list of bucket + linkedlist
+> list of bucket, fast but memory wasting O(1)
+> linked list, slow but dynamic O(n)
+"""
 
 class MyHashSet(object):
 
@@ -35,21 +86,21 @@ class MyHashSet(object):
         """
         Initialize your data structure here.
         """
-
+        self.table = [False] * 1000001
 
     def add(self, key):
         """
         :type key: int
         :rtype: None
         """
-
+        self.table[key] = True
 
     def remove(self, key):
         """
         :type key: int
         :rtype: None
         """
-
+        self.table[key] = False
 
     def contains(self, key):
         """
@@ -57,7 +108,7 @@ class MyHashSet(object):
         :type key: int
         :rtype: bool
         """
-
+        return self.table[key]
 
 
 # Your MyHashSet object will be instantiated and called as such:

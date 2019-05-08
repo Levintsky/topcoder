@@ -26,76 +26,55 @@ Output: True
 Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
 '''
 
-class Solution(object):
-  def solution2(self, nums):
-        if len(nums) < 3:
-            return False
+"""
+new idea:
+# in a 132 pattern
+# find "3" first (suppose nums[i])
+# left pass: min until this number
+# right pass: max until nums[i] from right?
+  still need a stack to do that in linear time
+"""
 
-        stack = [[nums[0], nums[0]]]
-        # stack saves potential patterns like:
-        # [[3,5], [0,2]]
-        minimum = nums[0]
-        for num in nums[1:]:
-            if num <= minimum:
-                minimum = num
-            else:
-                while stack and num > stack[-1][0]:
-                    if num < stack[-1][1]:
-                        return True
-                    else:
-                        stack.pop()
-                stack.append([minimum, num])
-            print num, stack, minimum
+class Solution(object):
+    def find132pattern(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        nums = nums[::-1]
+        n = len(nums)
+        if n <= 2: return False
+        # find 231 pattern
+        n2 = []
+        n3 = min(nums) - 1
+    
+        i = 0
+        while(i<n):
+          if nums[i] < n3:
+            return True
+          else:
+            # pop too small things out
+            while(len(n2)>0 and nums[i]>n2[-1]):
+              n3 = n2[-1]
+              n2.pop()
+            n2.append(nums[i])
+          # print 'step: ', i, 'n2', n2, 'n3', n3, 'current', nums[i]
+          i += 1
         return False
 
-  def find132pattern2(self, nums):
-    """
-    :type nums: List[int]
-    :rtype: bool
-    """
-    n = len(nums)
-    if n<=2: return False
-
-    # stack to save num2
-    stack = [nums[-1]]
-    n3 = None
-
-    # dp
-    i = n-2
-    while(i>=0):
-      if nums[i] > stack[-1]:
-        n3 = nums[i]
-        while(len(stack)>1 and nums[i]>stack[-2]):
-          stack.pop()
-      elif nums[i] < stack[-1]:
-        if n3 is not None:
-          print 'step ', i, nums[i], n3, stack
-          return True
-        else: stack.append(nums[i])
-      print 'step ', i, nums[i], n3, stack
-      i -= 1
-    return False
-
-  def find132pattern(self, nums):
-    n = len(nums)
-    if n <= 2: return False
-    # find 132 pattern
-    n2 = []
-    n3 = min(nums) - 1
-    print nums
-    i = n-1
-    while(i>=0):
-      if nums[i] < n3:
-        return True
-      else:
-        # pop too small things out
-        while(len(n2)>0 and nums[i]>n2[-1]):
-          n3 = n2[-1]
-          n2.pop()
-        n2.append(nums[i])
-      print 'step: ', i, 'n2', n2, 'n3', n3, 'current', nums[i]
-      i -= 1
-    return False
+    def solution2(self, nums):
+        # s1, s2, s3 in order, s.t. s1 < s3 < s2
+        s3 = min(nums) - 1 # imagine there is super small s3 appended at the end
+        stack = [] # stack saves potential s3 in decreasing order
+        for i in range(len(nums)-1, -1, -1):
+            if nums[i] < s3:
+                return True
+            else:
+                while len(stack) > 0 and nums[i] > stack[-1]:
+                    s3 = stack.pop()
+            stack.append(nums[i])
+            print(i, nums, stack, s3)
+        return False
 
 
 if __name__ == '__main__':
@@ -109,4 +88,4 @@ if __name__ == '__main__':
   # print a.find132pattern([10,12,6,8,3,11]) # True
   # print a.find132pattern([-2, 1, 1, -2, 1, 1]) # False
   # print a.find132pattern([2, 4, 3, 1]) # True
-  print a.solution2([3,5,0,2,4])
+  print(a.solution2([3,5,0,2,4]))

@@ -26,6 +26,12 @@ The number of operations will be in the range of [1, 1000].
 Please do not use the built-in LinkedList library.
 """
 
+class ListNode(object):
+    def __init__(self, val):
+        self.val = val
+        self.prev = None
+        self.next = None
+
 
 class MyLinkedList(object):
 
@@ -33,7 +39,9 @@ class MyLinkedList(object):
         """
         Initialize your data structure here.
         """
-
+        self.head = None
+        self.tail = None
+        self.cnt = 0
 
     def get(self, index):
         """
@@ -41,7 +49,12 @@ class MyLinkedList(object):
         :type index: int
         :rtype: int
         """
-
+        if index >= self.cnt or index < 0:
+            return -1
+        curr = self.head
+        for i in range(index):
+            curr = curr.next
+        return curr.val
 
     def addAtHead(self, val):
         """
@@ -49,7 +62,15 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-
+        node = ListNode(val)
+        if self.head is None: # empty
+            self.head = node
+            self.tail = node
+        else:
+            self.head.prev = node
+            node.next = self.head
+            self.head = node
+        self.cnt += 1
 
     def addAtTail(self, val):
         """
@@ -57,7 +78,15 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-
+        node = ListNode(val)
+        if self.head is None: # empty
+            self.head = node
+            self.tail = node
+        else:
+            self.tail.next = node
+            node.prev = self.tail
+            self.tail = node
+        self.cnt += 1
 
     def addAtIndex(self, index, val):
         """
@@ -66,7 +95,22 @@ class MyLinkedList(object):
         :type val: int
         :rtype: None
         """
-
+        if index > self.cnt:
+            return
+        if index <= 0:
+            self.addAtHead(val)
+            return
+        elif index == self.cnt:
+            self.addAtTail(val)
+            return
+        else:
+            curr = self.head
+            for i in range(index):
+                curr = curr.next
+            node = ListNode(val)
+            node.prev, node.next = curr.prev, curr
+            curr.prev.next, curr.prev = node, node
+        self.cnt += 1
 
     def deleteAtIndex(self, index):
         """
@@ -74,6 +118,25 @@ class MyLinkedList(object):
         :type index: int
         :rtype: None
         """
+        if index >= self.cnt or index < 0:
+            return
+        # del curr
+        if self.cnt == 1:
+            self.head = None
+            self.tail = None
+        elif index == 0: # delete head
+            self.head = self.head.next
+            self.head.prev = None
+        elif index == self.cnt - 1: # delete tail
+            self.tail = self.tail.prev
+            self.tail.next = None
+        else:
+            curr = self.head
+            for i in range(index):
+                curr = curr.next
+            curr.prev.next = curr.next
+            curr.next.prev = curr.prev
+        self.cnt -= 1
 
 
 
@@ -84,3 +147,12 @@ class MyLinkedList(object):
 # obj.addAtTail(val)
 # obj.addAtIndex(index,val)
 # obj.deleteAtIndex(index)
+
+if __name__ == "__main__":
+    l = MyLinkedList()
+    l.addAtHead(1)
+    l.addAtTail(3)
+    l.addAtIndex(1, 2)
+    print(l.get(-1))
+    l.deleteAtIndex(1)
+    print(l.get(-3))

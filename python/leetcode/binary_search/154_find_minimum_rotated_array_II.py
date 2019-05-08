@@ -35,10 +35,9 @@ class Solution(object):
         i = mid
       else:
         i += 1
-    print 'here'
     return nums[mid]
 
 
 if __name__ == "__main__":
   a = Solution()
-  print a.findMin([4,5,6,7,0,1,2])
+  print(a.findMin([4,5,6,7,0,1,2]))
