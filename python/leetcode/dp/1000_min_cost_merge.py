@@ -74,6 +74,24 @@ class Solution(object):
             stones = stones_
         return cnt
 
+    def solve2(self, stones, K):
+        n = len(stones)
+        if (n - 1) % (K - 1) != 0:
+            return -1
+        dp = []
+        for i in range(n):
+            dp.append([0] * n)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i+1] = prefix[i] + stones[i]
+
+        for m in range(K, n+1): # distance
+            for i in range(n-m+1):
+                j = i + m - 1
+                dp[i][j] = min([dp[i][mid] + dp[mid + 1][j] for mid in range(i, j, K-1)])
+                if (j - i) % (K - 1) == 0:
+                    dp[i][j] += prefix[j + 1] - prefix[i]
+        return dp[0][n - 1]
 
 if __name__ == "__main__":
     a = Solution()
