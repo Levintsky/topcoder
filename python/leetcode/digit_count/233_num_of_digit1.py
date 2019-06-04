@@ -9,6 +9,16 @@ Return 6, because digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.
 '''
 
 class Solution(object):
+  def solve2(self, n):
+    cnt = 0
+    i = 1
+    while i <= n:
+      divider = i * 10
+      cnt += (n / divider) * i
+      cnt += min(max(n % divider - i + 1, 0), i)
+      i *= 10
+    return cnt
+    
   def countDigitOne(self, n):
     """
     :type n: int
