@@ -39,6 +39,7 @@ Note:
 
 import heapq
 
+
 class Solution(object):
     def largestValsFromLabels(self, values, labels, num_wanted, use_limit):
         """
@@ -66,7 +67,7 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.largestValsFromLabels([5,4,3,2,1], [1,1,2,2,3], 3, 1))
-    print(a.largestValsFromLabels([5,4,3,2,1], [1,3,3,3,2], 3, 2))
-    print(a.largestValsFromLabels([9,8,8,7,6], [0,0,0,1,1], 3, 1))
-    print(a.largestValsFromLabels([9,8,8,7,6], [0,0,0,1,1], 3, 2))
+    print(a.largestValsFromLabels([5, 4, 3, 2, 1], [1, 1, 2, 2, 3], 3, 1))
+    print(a.largestValsFromLabels([5, 4, 3, 2, 1], [1, 3, 3, 3, 2], 3, 2))
+    print(a.largestValsFromLabels([9, 8, 8, 7, 6], [0, 0, 0, 1, 1], 3, 1))
+    print(a.largestValsFromLabels([9, 8, 8, 7, 6], [0, 0, 0, 1, 1], 3, 2))

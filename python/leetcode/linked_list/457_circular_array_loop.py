@@ -38,7 +38,7 @@ class Solution(object):
             k = getIndex(i)
             # check same direction
             while nums[k] * nums[i] > 0 and nums[getIndex(k)] * nums[i] > 0:
-                if j == k: 
+                if j == k:
                     # check for loop with only one element
                     if j == getIndex(j):
                         break
@@ -53,7 +53,7 @@ class Solution(object):
                 nums[j] = 0
                 j = next_
         return False
-        
+
     def circularArrayLoop(self, nums):
         len_ = len(nums)
         if len_ <= 1:
@@ -160,7 +160,6 @@ class Solution(object):
     print nums
     return ret
   """
-
 
 
 if __name__ == "__main__":

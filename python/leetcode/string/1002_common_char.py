@@ -23,16 +23,18 @@ Note:
 A[i][j] is a lowercase letter
 """
 
+
 class Solution(object):
     def commonChars(self, A):
         """
         :type A: List[str]
         :rtype: List[str]
         """
+
         def word_to_dict(word):
             tmp_dict = [0] * 26
             for c in word:
-                idx = ord(c) - ord('a')
+                idx = ord(c) - ord("a")
                 tmp_dict[idx] += 1
             return tmp_dict
 
@@ -47,11 +49,11 @@ class Solution(object):
         for i in range(26):
             if stat[i] > 0:
                 for j in range(stat[i]):
-                    result.append(chr(i+ord('a')))
+                    result.append(chr(i + ord("a")))
         return result
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.commonChars(["bella","label","roller"]))
-	print(a.commonChars(["cool","lock","cook"]))
+    a = Solution()
+    print(a.commonChars(["bella", "label", "roller"]))
+    print(a.commonChars(["cool", "lock", "cook"]))

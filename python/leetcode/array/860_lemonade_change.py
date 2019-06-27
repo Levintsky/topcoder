@@ -47,6 +47,7 @@ Note:
 bills[i] will be either 5, 10, or 20.
 """
 
+
 class Solution(object):
     def lemonadeChange(self, bills):
         """
@@ -59,8 +60,8 @@ class Solution(object):
                 result[0] += 1
             elif item == 10:
                 if result[0] >= 1:
-                	result[1] += 1
-                	result[0] -= 1
+                    result[1] += 1
+                    result[0] -= 1
                 else:
                     return False
             else:
@@ -79,7 +80,7 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.lemonadeChange([5,5,5,10,20]))
-    print(a.lemonadeChange([5,5,10]))
-    print(a.lemonadeChange([10,10]))
-    print(a.lemonadeChange([5,5,10,10,20]))
+    print(a.lemonadeChange([5, 5, 5, 10, 20]))
+    print(a.lemonadeChange([5, 5, 10]))
+    print(a.lemonadeChange([10, 10]))
+    print(a.lemonadeChange([5, 5, 10, 10, 20]))

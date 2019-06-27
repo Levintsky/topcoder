@@ -28,6 +28,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
 class Solution(object):
     def bstToGst(self, root):
         """
@@ -36,28 +37,30 @@ class Solution(object):
         """
         # step 1: in-order traversal
         self.array = []
+
         def helper(node):
-        	if node is None:
-        		return
-        	if node.left is not None:
-        		helper(node.left)
-        	self.array.append(node)
-        	if node.right is not None:
-        		helper(node.right)
+            if node is None:
+                return
+            if node.left is not None:
+                helper(node.left)
+            self.array.append(node)
+            if node.right is not None:
+                helper(node.right)
+
         helper(root)
         # step 2: modify value
         accum = 0
-        for idx in range(len(self.array)-1, -1, -1):
-        	self.array[idx].val += accum
-        	accum = self.array[idx].val
+        for idx in range(len(self.array) - 1, -1, -1):
+            self.array[idx].val += accum
+            accum = self.array[idx].val
 
 
 if __name__ == "__main__":
-	n = TreeNode(4)
-	n1 = TreeNode(1)
-	n2 = TreeNode(10)
-	n.left, n.right = n1, n2
+    n = TreeNode(4)
+    n1 = TreeNode(1)
+    n2 = TreeNode(10)
+    n.left, n.right = n1, n2
 
-	a = Solution()
-	a.bstToGst(n)
-	print(n.val, n1.val, n2.val)
+    a = Solution()
+    a.bstToGst(n)
+    print(n.val, n1.val, n2.val)

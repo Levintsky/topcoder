@@ -42,12 +42,12 @@ from functools import reduce
 
 
 class TrieNode(object):
-	def __init__(self):
-		self.mapping = [None] * 26
-		self.is_word = False
+    def __init__(self):
+        self.mapping = [None] * 26
+        self.is_word = False
+
 
 class StreamChecker(object):
-
     def __init__(self, words):
         """
         :type words: List[str]
@@ -58,12 +58,12 @@ class StreamChecker(object):
             n = self.root
             word = word[::-1]
             for idx, c in enumerate(word):
-                cid = ord(c) - ord('a')
+                cid = ord(c) - ord("a")
                 if n.mapping[cid] is None:
                     n.mapping[cid] = TrieNode()
                 n = n.mapping[cid]
                 if idx == len(word) - 1:
-                	n.is_word = True
+                    n.is_word = True
         # step 2: keep a dict mapping active suffix to nodes:
         # self.active_list = {"": self.root}
         self.active_str = ""
@@ -76,12 +76,13 @@ class StreamChecker(object):
         self.active_str += letter
         n = self.root
         for c in self.active_str[::-1]:
-        	cid = ord(c) - ord('a')
-        	if n.mapping[cid] is not None:
-        		n = n.mapping[cid]
-        		if n.is_word: return True
-        	else:
-        		break
+            cid = ord(c) - ord("a")
+            if n.mapping[cid] is not None:
+                n = n.mapping[cid]
+                if n.is_word:
+                    return True
+            else:
+                break
         return False
 
         """
@@ -107,21 +108,23 @@ class StreamChecker(object):
 
 
 class StreamChecker2(object):
-
     def __init__(self, words):
         T = lambda: collections.defaultdict(T)
         self.trie = T()
-        for w in words: reduce(dict.__getitem__, w, self.trie)['#'] = True
+        for w in words:
+            reduce(dict.__getitem__, w, self.trie)["#"] = True
         self.waiting = []
 
     def query(self, letter):
-        self.waiting = [node[letter] for node in self.waiting + [self.trie] if letter in node]
+        self.waiting = [
+            node[letter] for node in self.waiting + [self.trie] if letter in node
+        ]
         return any("#" in node for node in self.waiting)
 
 
 if __name__ == "__main__":
-    streamChecker = StreamChecker(["cd","f","kl"])
-    query_list = 'abcdefghijkl'
+    streamChecker = StreamChecker(["cd", "f", "kl"])
+    query_list = "abcdefghijkl"
     for c in query_list:
         print(c, streamChecker.query(c))
     """

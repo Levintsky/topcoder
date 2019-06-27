@@ -32,21 +32,23 @@ class Solution(object):
         while i < len(A) and j < len(B):
             st_A, end_A = A[i]
             st_B, end_B = B[j]
-            if st_A > end_B: # case 1: no intersection
+            if st_A > end_B:  # case 1: no intersection
                 j += 1
-            elif st_B > end_A: # case 1: no intersection
+            elif st_B > end_A:  # case 1: no intersection
                 i += 1
             else:
                 start = max(st_A, st_B)
                 end = min(end_A, end_B)
                 result.append([start, end])
-                if end == end_A: i += 1
-                if end == end_B: j += 1
+                if end == end_A:
+                    i += 1
+                if end == end_B:
+                    j += 1
         return result
 
 
 if __name__ == "__main__":
     a = Solution()
-    A = [[0,2],[5,10],[13,23],[24,25]]
-    B = [[1,5],[8,12],[15,24],[25,26]]
+    A = [[0, 2], [5, 10], [13, 23], [24, 25]]
+    B = [[1, 5], [8, 12], [15, 24], [25, 26]]
     print(a.intervalIntersection(A, B))

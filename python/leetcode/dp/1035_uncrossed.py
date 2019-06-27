@@ -31,6 +31,7 @@ Note:
 1 <= A[i], B[i] <= 2000
 """
 
+
 class Solution(object):
     def maxUncrossedLines(self, A, B):
         """
@@ -40,10 +41,10 @@ class Solution(object):
         """
         B_dict = {}
         for idx, item in enumerate(B):
-        	if item not in B_dict:
-        		B_dict[item] = [idx]
-        	else:
-        		B_dict[item].append(idx)
+            if item not in B_dict:
+                B_dict[item] = [idx]
+            else:
+                B_dict[item].append(idx)
         # print(B_dict)
         curr = [0]
         for idx, item in enumerate(A):
@@ -58,24 +59,24 @@ class Solution(object):
                     flag = False
                     for idx in B_dict[item]:
                         if idx > curr_end:
-                            new_curr.append(idx+1)
+                            new_curr.append(idx + 1)
                             flag = True
                             break
-                    if not flag: # if found
+                    if not flag:  # if found
                         if len_ != len(curr) - 1:
-                            new_curr.append(curr[len_+1])
+                            new_curr.append(curr[len_ + 1])
                     else:
                         if len_ != len(curr) - 1:
-                            new_curr[-1] = min(new_curr[-1], curr[len_+1])
+                            new_curr[-1] = min(new_curr[-1], curr[len_ + 1])
                 elif len_ != len(curr) - 1:
-                	new_curr.append(curr[len_+1])
+                    new_curr.append(curr[len_ + 1])
             # print(curr, new_curr)
             curr = new_curr
         return len(curr) - 1
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.maxUncrossedLines([1,4,2], [1,2,4]))
-	print(a.maxUncrossedLines([2,5,1,2,5], [10,5,2,1,5,2]))
-	print(a.maxUncrossedLines([1,3,7,1,7,5], [1,9,2,5,1]))
+    a = Solution()
+    print(a.maxUncrossedLines([1, 4, 2], [1, 2, 4]))
+    print(a.maxUncrossedLines([2, 5, 1, 2, 5], [10, 5, 2, 1, 5, 2]))
+    print(a.maxUncrossedLines([1, 3, 7, 1, 7, 5], [1, 9, 2, 5, 1]))

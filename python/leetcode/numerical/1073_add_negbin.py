@@ -26,6 +26,7 @@ arr2[i] is 0 or 1
 Really similar to 1017.
 """
 
+
 class Solution(object):
     def addNegabinary(self, arr1, arr2):
         """
@@ -48,8 +49,8 @@ class Solution(object):
             for i in range(n):
                 if res[i] == 2:
                     res[i] = 0
-                    if i+1 != n:
-                        res[i+1] -= 1
+                    if i + 1 != n:
+                        res[i + 1] -= 1
                     else:
                         res.append(-1)
             # remove -1
@@ -57,8 +58,8 @@ class Solution(object):
             for i in range(n):
                 if res[i] == -1:
                     res[i] = 1
-                    if i+1 != n:
-                        res[i+1] += 1
+                    if i + 1 != n:
+                        res[i + 1] += 1
                     else:
                         res.append(1)
         while len(res) > 1 and res[-1] == 0:
@@ -77,7 +78,8 @@ class Solution(object):
             res.pop()
         return res[::-1]
 
+
 if __name__ == "__main__":
     a = Solution()
     # print(a.addNegabinary([1,1,0,1], [1,1,0,1,1]))
-    print(a.solve2([1,1,0,1], [1,1,0,1,1]))
+    print(a.solve2([1, 1, 0, 1], [1, 1, 0, 1, 1]))

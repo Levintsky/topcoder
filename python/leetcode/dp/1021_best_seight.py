@@ -20,22 +20,23 @@ Note:
 1 <= A[i] <= 1000
 """
 
+
 class Solution(object):
     def maxScoreSightseeingPair(self, A):
         """
         :type A: List[int]
         :rtype: int
         """
-        best1 = max(A[0]-1, A[1])
+        best1 = max(A[0] - 1, A[1])
         best2 = A[0] + A[1] - 1
 
         for item in A[2:]:
             # update best2:
-            best2 = max(best2, best1-1+item)
-            best1 = max(best1-1, item)
+            best2 = max(best2, best1 - 1 + item)
+            best1 = max(best1 - 1, item)
         return best2
 
 
 if __name__ == "__main__":
-	 a = Solution()
-	 print(a.maxScoreSightseeingPair([8,1,5,2,6]))
+    a = Solution()
+    print(a.maxScoreSightseeingPair([8, 1, 5, 2, 6]))

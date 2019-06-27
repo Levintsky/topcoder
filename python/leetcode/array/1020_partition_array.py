@@ -36,34 +36,34 @@ class Solution(object):
         sum_ = sum(A)
         len_ = len(A)
         if sum_ % 3 != 0:
-        	return False
+            return False
 
         # step 1: check first number
         target = sum_ // 3
 
         def check(start, end):
-        	curr = A[start]
-        	i = start + 1
-        	while curr != target and i <= end:
-        		curr = curr + A[i]
-        		i += 1
-        	if curr == target:
-        		return i-1
-        	else:
-        		return -1
+            curr = A[start]
+            i = start + 1
+            while curr != target and i <= end:
+                curr = curr + A[i]
+                i += 1
+            if curr == target:
+                return i - 1
+            else:
+                return -1
 
-        id1 = check(0, len_-3)
+        id1 = check(0, len_ - 3)
         if id1 == -1:
-        	return False
-        id2 = check(id1+1, len_-2)
+            return False
+        id2 = check(id1 + 1, len_ - 2)
         if id2 == -1:
-        	return False
+            return False
         else:
-        	return True
+            return True
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.canThreePartsEqualSum([0,2,1,-6,6,-7,9,1,2,0,1]))
-	print(a.canThreePartsEqualSum([0,2,1,-6,6,7,9,-1,2,0,1]))
-	print(a.canThreePartsEqualSum([6,3,3,5,-2,2,5,1,-9,4]))
+    a = Solution()
+    print(a.canThreePartsEqualSum([0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1]))
+    print(a.canThreePartsEqualSum([0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1]))
+    print(a.canThreePartsEqualSum([6, 3, 3, 5, -2, 2, 5, 1, -9, 4]))

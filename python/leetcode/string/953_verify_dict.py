@@ -41,40 +41,40 @@ class Solution(object):
         :rtype: bool
         """
         n = len(words)
-        order_set = {} # a char to all prevs
-        for i in range(n-1):
-        	word1 = words[i]
-        	word2 = words[i+1]
-        	j = 0
-        	prev, post = None, None
-        	while j < min(len(word1), len(word2)):
-        		if word1[j] != word2[j]:
-        			prev, post = word1[j], word2[j]
-        			break
-        		j += 1
-        	if j == len(word2):
-        		return False
-        	if j == len(word1):
-        		continue
-        	if post not in order_set:
-        		order_set[post] = set(prev)
-        	else:
-        		order_set[post].add(prev)
+        order_set = {}  # a char to all prevs
+        for i in range(n - 1):
+            word1 = words[i]
+            word2 = words[i + 1]
+            j = 0
+            prev, post = None, None
+            while j < min(len(word1), len(word2)):
+                if word1[j] != word2[j]:
+                    prev, post = word1[j], word2[j]
+                    break
+                j += 1
+            if j == len(word2):
+                return False
+            if j == len(word1):
+                continue
+            if post not in order_set:
+                order_set[post] = set(prev)
+            else:
+                order_set[post].add(prev)
 
         # go through
         prev_visit = set()
         for c in order:
-        	if c in order_set:
-        		# check all prev are visited
-        		for v in order_set[c]:
-        			if v not in prev_visit:
-        				return False
-        	prev_visit.add(c)
+            if c in order_set:
+                # check all prev are visited
+                for v in order_set[c]:
+                    if v not in prev_visit:
+                        return False
+            prev_visit.add(c)
         return True
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.isAlienSorted(["hello","leetcode"], "hlabcdefgijkmnopqrstuvwxyz"))
-	print(a.isAlienSorted(["word","world","row"], "worldabcefghijkmnpqstuvxyz"))
-	print(a.isAlienSorted(["apple","app"], "abcdefghijklmnopqrstuvwxyz"))
+    a = Solution()
+    print(a.isAlienSorted(["hello", "leetcode"], "hlabcdefgijkmnopqrstuvwxyz"))
+    print(a.isAlienSorted(["word", "world", "row"], "worldabcefghijkmnpqstuvxyz"))
+    print(a.isAlienSorted(["apple", "app"], "abcdefghijklmnopqrstuvwxyz"))

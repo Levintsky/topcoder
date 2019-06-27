@@ -80,8 +80,8 @@ list of bucket + linkedlist
 > linked list, slow but dynamic O(n)
 """
 
-class MyHashSet(object):
 
+class MyHashSet(object):
     def __init__(self):
         """
         Initialize your data structure here.

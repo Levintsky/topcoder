@@ -43,6 +43,7 @@ instructions[i] is in {'G', 'L', 'R'}
 
 """
 
+
 class Solution(object):
     def isRobotBounded(self, instructions):
         """
@@ -50,17 +51,20 @@ class Solution(object):
         :rtype: bool
         """
         instructions = instructions * 4
-        dir_ = 0 # 0, 1, 2, 3: north, left, south, right
+        dir_ = 0  # 0, 1, 2, 3: north, left, south, right
         x, y = 0, 0
         for c in instructions:
             if c == "G":
-                if dir_ == 0: y += 1
-                elif dir_ == 1: x -= 1
-                elif dir_ == 2: y -= 1
-                else: x += 1
+                if dir_ == 0:
+                    y += 1
+                elif dir_ == 1:
+                    x -= 1
+                elif dir_ == 2:
+                    y -= 1
+                else:
+                    x += 1
             elif c == "L":
                 dir_ = (dir_ + 1) % 4
             elif c == "R":
                 dir_ = (dir_ - 1) % 4
         return x == 0 and y == 0
-        

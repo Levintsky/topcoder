@@ -57,10 +57,10 @@ class Solution(object):
         while len(q) > 0:
             # pop and add new
             st, end, i, j = heapq.heappop(q)
-            if len(schedule[i]) > j+1:
-                st2, end2 = schedule[i][j+1]
-                heapq.heappush(q, (st2, -end2, i, j+1))
-            
+            if len(schedule[i]) > j + 1:
+                st2, end2 = schedule[i][j + 1]
+                heapq.heappush(q, (st2, -end2, i, j + 1))
+
             end = -end
             # case 1: end last, start new
             if st > result[-1][0]:
@@ -83,6 +83,6 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.employeeFreeTime([[[1,2],[5,6]],[[1,3]],[[4,10]]]))
-    print(a.solve2([[[1,2],[5,6]],[[1,3]],[[4,10]]]))
+    print(a.employeeFreeTime([[[1, 2], [5, 6]], [[1, 3]], [[4, 10]]]))
+    print(a.solve2([[[1, 2], [5, 6]], [[1, 3]], [[4, 10]]]))
     # print(a.employeeFreeTime([[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]]))

@@ -35,6 +35,7 @@ solution 2: optimization
 don't need to update i, since we want to get max
 """
 
+
 class Solution(object):
     def longestOnes(self, A, K):
         """
@@ -42,35 +43,35 @@ class Solution(object):
         :type K: int
         :rtype: int
         """
-        i = 0 # start
+        i = 0  # start
         result = 0
         for j in range(len(A)):
-        	if A[j] == 0:
-        		K -= 1
-        		if K == -1:
-        			while K < 0:
-        				if A[i] == 0:
-        					# i += 1
-        					K += 1
-        					# break
-        				i += 1
-        	result = max(result, j-i+1)
+            if A[j] == 0:
+                K -= 1
+                if K == -1:
+                    while K < 0:
+                        if A[i] == 0:
+                            # i += 1
+                            K += 1
+                            # break
+                        i += 1
+            result = max(result, j - i + 1)
         return result
 
     def longestOnes2(self, A, K):
-        i = 0 # start
+        i = 0  # start
         result = 0
         for j in range(len(A)):
-        	if A[j] == 0:
-        		K -= 1
-        	if K < 0:
-        		K += 1 - A[i]
-        		i += 1
-        	result = max(result, j-i+1)
+            if A[j] == 0:
+                K -= 1
+            if K < 0:
+                K += 1 - A[i]
+                i += 1
+            result = max(result, j - i + 1)
         return result
 
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.longestOnes2([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3))
-    print(a.longestOnes2([0,1,0,0,1,1,0], 0))
+    print(a.longestOnes2([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3))
+    print(a.longestOnes2([0, 1, 0, 0, 1, 1, 0], 0))

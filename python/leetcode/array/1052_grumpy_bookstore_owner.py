@@ -24,6 +24,7 @@ Note:
 0 <= grumpy[i] <= 1
 """
 
+
 class Solution(object):
     def maxSatisfied(self, customers, grumpy, X):
         """
@@ -48,11 +49,12 @@ class Solution(object):
         for i in range(X, n):
             if grumpy[i] == 1:
                 diff += customers[i]
-            if grumpy[i-X] == 1:
-                diff -= customers[i-X]
+            if grumpy[i - X] == 1:
+                diff -= customers[i - X]
             max_diff = max(diff, max_diff)
         return result + max_diff
 
+
 if __name__ == "__main__":
     a = Solution()
-    print(a.maxSatisfied([1,0,1,2,1,1,7,5], [0,1,0,1,0,1,0,1], 3))
+    print(a.maxSatisfied([1, 0, 1, 2, 1, 1, 7, 5], [0, 1, 0, 1, 0, 1, 0, 1], 3))

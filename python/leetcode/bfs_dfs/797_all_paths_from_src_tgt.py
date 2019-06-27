@@ -20,13 +20,14 @@ The number of nodes in the graph will be in the range [2, 15].
 You can print different paths in any order, but you should keep the order of nodes inside one path.
 """
 
+
 class Solution(object):
     def allPathsSourceTarget(self, graph):
         """
         :type graph: List[List[int]]
         :rtype: List[List[int]]
         """
-        self.memo = {} # node to parents
+        self.memo = {}  # node to parents
         n = len(graph)
         for i, items in enumerate(graph):
             if len(items) == 0:
@@ -36,7 +37,7 @@ class Solution(object):
                     if item not in self.memo:
                         self.memo[item] = [i]
                     else:
-                    	self.memo[item].append(i)
+                        self.memo[item].append(i)
         srcs = set()
         for i in range(n):
             if i not in self.memo:
@@ -55,10 +56,11 @@ class Solution(object):
                         tmp_list.append(par)
                         lists_bak.append(tmp_list)
                     bfs(par, lists_bak)
+
         bfs(target, [[target]])
         return self.result
 
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.allPathsSourceTarget([[1,2], [3], [3], []] ))
+    print(a.allPathsSourceTarget([[1, 2], [3], [3], []]))

@@ -27,6 +27,7 @@ The final answer is guaranteed to be less than 2^31.
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def rangeSumBST(self, root, L, R):
         """
@@ -38,14 +39,15 @@ class Solution(object):
         self.result = 0
 
         def traversal(node):
-        	if node is None:
-        		return
-        	if node.left is not None and node.val >= L:
-        		# if too small, no need to traverse left
-        		traversal(node.left)
-        	if node.val >= L and node.val <= R:
-        		self.result += node.val
-        	if node.right is not None and node.val <= R:
-        		traversal(node.right)
+            if node is None:
+                return
+            if node.left is not None and node.val >= L:
+                # if too small, no need to traverse left
+                traversal(node.left)
+            if node.val >= L and node.val <= R:
+                self.result += node.val
+            if node.right is not None and node.val <= R:
+                traversal(node.right)
+
         traversal(root)
         return self.result

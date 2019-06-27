@@ -40,6 +40,7 @@ This tree is also valid:
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def insertIntoBST(self, root, val):
         """

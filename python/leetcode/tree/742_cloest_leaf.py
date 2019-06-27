@@ -56,6 +56,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
 class Solution(object):
     def findClosestLeaf(self, root, k):
         """
@@ -64,43 +65,44 @@ class Solution(object):
         :rtype: int
         """
         # step 1: for each node, calculate closest leaf underself and distance
-        self.memo = {} # node to closest leaf under (val and distance)
+        self.memo = {}  # node to closest leaf under (val and distance)
         self.par = {}
+
         def find_closest(node):
             if node is None:
                 return None, None
-            
+
             if node.left is not None:
                 self.par[node.left.val] = node.val
             if node.right is not None:
                 self.par[node.right.val] = node.val
-                
+
             if node.left is None and node.right is None:
                 self.memo[node.val] = (node.val, 0)
                 return node.val, 0
             elif node.left is None:
                 v, d = find_closest(node.right)
-                self.memo[node.val] = (v, d+1)
-                return v, d+1
+                self.memo[node.val] = (v, d + 1)
+                return v, d + 1
             elif node.right is None:
                 v, d = find_closest(node.left)
-                self.memo[node.val] = (v, d+1)
-                return v, d+1
-            else: # both left and right
+                self.memo[node.val] = (v, d + 1)
+                return v, d + 1
+            else:  # both left and right
                 v1, d1 = find_closest(node.left)
                 v2, d2 = find_closest(node.right)
                 if d1 <= d2:
-                    self.memo[node.val] = (v1, d1+1)
-                    return v1, d1+1
+                    self.memo[node.val] = (v1, d1 + 1)
+                    return v1, d1 + 1
                 else:
-                    self.memo[node.val] = (v2, d2+1)
-                    return v2, d2+1
-        
+                    self.memo[node.val] = (v2, d2 + 1)
+                    return v2, d2 + 1
+
         find_closest(root)
         print(self.memo)
         print(self.par)
         v1, d1 = self.memo[k]
-        if k in self.par: # not root
+        if k in self.par:  # not root
             k2 = self.par[k]
             v2, d2 = self.memo[k2]
             d2 += 1
@@ -122,7 +124,3 @@ if __name__ == "__main__":
     n4.left = n5
     n5.left = n6
     print(a.findClosestLeaf(n1, 2))
-
-
-
-

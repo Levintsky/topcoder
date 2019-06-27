@@ -41,9 +41,9 @@ class Solution(object):
             v = int(v)
             for j in range(v):
                 if s.issubset(s2) and j in s2:
-                    res += 7**(len(N) - i - 1)
+                    res += 7 ** (len(N) - i - 1)
                 if s.issubset(s1) and j in s1:
-                    res -= 3**(len(N) - i - 1)
+                    res -= 3 ** (len(N) - i - 1)
             # this is magic #2
             if v not in s2:
                 return res
@@ -54,7 +54,7 @@ class Solution(object):
         # dp
         dp = [0] * (N + 1)
         count = 0
-        for i in range(N+1):
+        for i in range(N + 1):
             if i < 10:
                 if i == 0 or i == 1 or i == 8:
                     dp[i] = 1
@@ -63,19 +63,23 @@ class Solution(object):
                     count += 1
             else:
                 a, b = dp[i // 10], dp[i % 10]
-                if a == 1 and b == 1: dp[i] = 1
+                if a == 1 and b == 1:
+                    dp[i] = 1
                 elif a >= 1 and b >= 1:
-                    dp[i] = 2;
+                    dp[i] = 2
                     count += 1
         return count
 
     def solve3(self, N):
         s1 = set([1, 8, 0])
         s2 = set([1, 8, 0, 6, 9, 2, 5])
-        def isGood(x):    
+
+        def isGood(x):
             s = set([int(i) for i in str(x)])
             return s.issubset(s2) and not s.issubset(s1)
+
         return sum(isGood(i) for i in range(N + 1))
+
 
 if __name__ == "__main__":
     a = Solution()

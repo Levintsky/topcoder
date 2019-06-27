@@ -42,6 +42,7 @@ S is a valid parentheses string
 
 """
 
+
 class Solution(object):
     def removeOuterParentheses(self, S):
         """
@@ -52,32 +53,34 @@ class Solution(object):
         cnt = 0
         st = 0
 
-        if S == "": return S
+        if S == "":
+            return S
 
         # analysis
         if S[0] == "(":
-        	cnt = 1
+            cnt = 1
         else:
-        	cnt = -1
+            cnt = -1
         cnt = 1
         n = len(S)
         for i in range(1, n):
-        	# make statistics
-        	if S[i] == "(":
-        		cnt += 1
-        	else:
-        		cnt -= 1
-        	if cnt == 0:
-        		# append
-        		in_list.append(S[st:i+1])
-        		st = i + 1
+            # make statistics
+            if S[i] == "(":
+                cnt += 1
+            else:
+                cnt -= 1
+            if cnt == 0:
+                # append
+                in_list.append(S[st : i + 1])
+                st = i + 1
         result = ""
         for item in in_list:
-        	result += item[1:-1]
+            result += item[1:-1]
         return result
 
+
 if __name__ == "__main__":
-	a = Solution()
-	print(a.removeOuterParentheses("(()())(())"))
-	print(a.removeOuterParentheses("(()())(())(()(()))"))
-	print(a.removeOuterParentheses("()()"))
+    a = Solution()
+    print(a.removeOuterParentheses("(()())(())"))
+    print(a.removeOuterParentheses("(()())(())(()(()))"))
+    print(a.removeOuterParentheses("()()"))

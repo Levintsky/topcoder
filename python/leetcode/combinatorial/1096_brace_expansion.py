@@ -64,6 +64,7 @@ sort and return
 note that itertools.product(*group) returns an iterator of tuples of characters, so we use''.join() to convert them to strings
 """
 
+
 class Solution(object):
     def braceExpansionII(self, expression):
         """
@@ -82,20 +83,21 @@ class Solution(object):
                 if c == "{":
                     tmp += c
                     cnt += 1
-                elif c == "}": # or i == n-1:
+                elif c == "}":  # or i == n-1:
                     tmp += c
                     cnt -= 1
-                    if cnt == 0 and (i == n-1 or exp[i+1]!=','):
+                    if cnt == 0 and (i == n - 1 or exp[i + 1] != ","):
                         if tmp[0] == "{":
                             tmp = tmp[1:-1]
                         expl.append(tmp)
                         tmp = ""
                 else:
                     tmp += c
-                    if i == n-1 or (cnt == 0 and exp[i+1] == "{"):
+                    if i == n - 1 or (cnt == 0 and exp[i + 1] == "{"):
                         expl.append(tmp)
                         tmp = ""
             return expl
+
         # expl = split(expression)
         # print(expl)
 
@@ -107,7 +109,8 @@ class Solution(object):
             cnt = 0
             tmp = ""
             for i in range(n):
-                if tmp != "": tmp += ","
+                if tmp != "":
+                    tmp += ","
                 tmp += expl[i]
                 cnt = tmp.count("{") - tmp.count("}")
                 if cnt == 0:
@@ -116,6 +119,7 @@ class Solution(object):
                     result.append(tmp)
                     tmp = ""
             return result
+
         # step 2: for each split, generate most
         def generate(exp):
             if "{" not in exp:
@@ -129,11 +133,13 @@ class Solution(object):
                     result.append(subres)
                 full_result = result[0]
                 for i in range(1, len(result)):
-                    full_result = [item1+item2 for item1 in full_result for item2 in result[i]]
+                    full_result = [
+                        item1 + item2 for item1 in full_result for item2 in result[i]
+                    ]
                     full_result = list(set(full_result))
                 return full_result
-        
-        def generate2(exp):        
+
+        def generate2(exp):
             expl = split2(exp)
             result = set()
             for item in expl:
@@ -142,6 +148,7 @@ class Solution(object):
                     result.add(item)
             result = list(result)
             return result
+
         result = generate(expression)
         result.sort()
         return result
@@ -150,22 +157,23 @@ class Solution(object):
         groups = [[]]
         level = 0
         for i, c in enumerate(expression):
-            if c == '{':
+            if c == "{":
                 if level == 0:
-                    start = i+1
+                    start = i + 1
                 level += 1
-            elif c == '}':
+            elif c == "}":
                 level -= 1
                 if level == 0:
                     groups[-1].append(self.braceExpansionII(expression[start:i]))
-            elif c == ',' and level == 0:
+            elif c == "," and level == 0:
                 groups.append([])
             elif level == 0:
                 groups[-1].append([c])
         word_set = set()
         for group in groups:
-            word_set |= set(map(''.join, itertools.product(*group)))
+            word_set |= set(map("".join, itertools.product(*group)))
         return sorted(word_set)
+
 
 if __name__ == "__main__":
     a = Solution()

@@ -23,6 +23,7 @@ text consists of space separated words, where each word consists of lowercase En
 first and second consist of lowercase English letters.
 """
 
+
 class Solution(object):
     def findOcurrences(self, text, first, second):
         """
@@ -34,8 +35,7 @@ class Solution(object):
         text_list = text.split()
         n = len(text_list)
         result = []
-        for i in range(n-2):
-            if text_list[i] == first and text_list[i+1] == second:
-                result.append(text_list[i+2])
+        for i in range(n - 2):
+            if text_list[i] == first and text_list[i + 1] == second:
+                result.append(text_list[i + 2])
         return result
-

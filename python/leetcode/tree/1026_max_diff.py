@@ -30,6 +30,7 @@ Each node will have value between 0 and 100000.
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def maxAncestorDiff(self, root):
         """
@@ -54,10 +55,10 @@ class Solution(object):
         if root.right is not None:
             b2, min2, max2 = self.helper(root.right)
             best = max(b2, max(max_, max2) - min(min_, min2))
-            
+
         if b1 is not None:
-        	min_, max_ = min(min_, min1), max(max_, max1)
+            min_, max_ = min(min_, min1), max(max_, max1)
         if b2 is not None:
-        	min_, max_ = min(min_, min2), max(max_, max2)
+            min_, max_ = min(min_, min2), max(max_, max2)
 
         return best, min_, max_

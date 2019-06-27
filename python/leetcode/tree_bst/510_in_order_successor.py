@@ -59,6 +59,8 @@ class Node(object):
         self.right = right
         self.parent = parent
 """
+
+
 class Solution(object):
     def inorderSuccessor(self, node):
         """

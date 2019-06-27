@@ -22,6 +22,7 @@ tiles consists of uppercase English letters.
 
 from collections import Counter
 
+
 class Solution(object):
     def numTilePossibilities(self, tiles):
         """
@@ -32,11 +33,13 @@ class Solution(object):
         mytc = list(tc.values())
         self.total = 0
         self.memo = {}
-        self.memo_factor = {0:1, 1:1, 2:2, 3:6, 4:24, 5:120, 6:720, 7:5040}
+        self.memo_factor = {0: 1, 1: 1, 2: 2, 3: 6, 4: 24, 5: 120, 6: 720, 7: 5040}
+
         def comb(ttc):
-            if max(ttc) == 0: return
+            if max(ttc) == 0:
+                return
             # ttc.sort()
-            if tuple(ttc) not in self.memo:   
+            if tuple(ttc) not in self.memo:
                 tmp = self.memo_factor[sum(ttc)]
                 for item in ttc:
                     tmp //= self.memo_factor[item]
@@ -51,12 +54,13 @@ class Solution(object):
                 new_ttc = [item for item in ttc]
                 new_ttc[i] -= 1
                 comb(new_ttc)
+
         comb(mytc)
         print(self.memo)
         return self.total
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.numTilePossibilities("AAB"))
-	print(a.numTilePossibilities("AAABBC"))
+    a = Solution()
+    print(a.numTilePossibilities("AAB"))
+    print(a.numTilePossibilities("AAABBC"))

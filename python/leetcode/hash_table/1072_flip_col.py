@@ -34,6 +34,7 @@ matrix[i][j] is 0 or 1
 
 import collections
 
+
 class Solution(object):
     def maxEqualRowsAfterFlips(self, matrix):
         """
@@ -42,7 +43,7 @@ class Solution(object):
         """
         m = len(matrix)
         n = len(matrix[0])
-        init = [item[0] for item in matrix] # m-dim
+        init = [item[0] for item in matrix]  # m-dim
 
         def dfs(ii, curr):
             if ii == n:
@@ -59,15 +60,16 @@ class Solution(object):
             for i in range(m):
                 if tmp[i] != curr[i]:
                     result[i] = None
-            f1 = dfs(ii+1, result)
+            f1 = dfs(ii + 1, result)
 
-            tmp = [1-item[ii] for item in matrix]
+            tmp = [1 - item[ii] for item in matrix]
             result = [item for item in curr]
             for i in range(m):
                 if tmp[i] != curr[i]:
                     result[i] = None
-            f2 = dfs(ii+1, result)
+            f2 = dfs(ii + 1, result)
             return max(f1, f2)
+
         result = dfs(1, init)
         return result
 
@@ -80,7 +82,8 @@ class Solution(object):
         memo = collections.Counter(results)
         return max(memo.values())
 
+
 if __name__ == "__main__":
     a = Solution()
     # print(a.maxEqualRowsAfterFlips([[0,1],[1,1]]))
-    print(a.solve2([[0,1],[1,0]]))
+    print(a.solve2([[0, 1], [1, 0]]))

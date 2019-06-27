@@ -122,6 +122,7 @@ Don't over-think.
 3. height[index] += 1
 """
 
+
 class Solution(object):
     def pourWater(self, heights, V, K):
         """
@@ -134,13 +135,13 @@ class Solution(object):
         for i in range(V):
             curr = K
             # 1. move left
-            while curr > 0 and heights[curr] >= heights[curr-1]:
+            while curr > 0 and heights[curr] >= heights[curr - 1]:
                 curr -= 1
             # 2. move right
-            while curr < n - 1 and heights[curr] >= heights[curr+1]:
+            while curr < n - 1 and heights[curr] >= heights[curr + 1]:
                 curr += 1
             # 3. move left again before reaching K
-            while curr > K and heights[curr] >= heights[curr-1]:
+            while curr > K and heights[curr] >= heights[curr - 1]:
                 curr -= 1
             heights[curr] += 1
         return heights
@@ -148,6 +149,6 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.pourWater([2,1,1,2,1,2,2], 4, 3))
-    print(a.pourWater([1,2,3,4], 2, 2))
-    print(a.pourWater([3,1,3], 5, 1))
+    print(a.pourWater([2, 1, 1, 2, 1, 2, 2], 4, 3))
+    print(a.pourWater([1, 2, 3, 4], 2, 2))
+    print(a.pourWater([3, 1, 3], 5, 1))

@@ -31,6 +31,7 @@ Note:
 A[i] is 0 or 1
 """
 
+
 class Solution:
     def prefixesDivBy5(self, A: List[int]) -> List[bool]:
         n = len(A)

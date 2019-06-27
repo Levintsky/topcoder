@@ -18,6 +18,7 @@ Note:
 0 <= A[i] <= 5000
 """
 
+
 class Solution(object):
     def sortArrayByParity(self, A):
         """
@@ -27,15 +28,15 @@ class Solution(object):
         even = []
         odd = []
         for item in A:
-        	if item % 2 == 0:
-        		even.append(item)
-        	else:
-        		odd.append(item)
+            if item % 2 == 0:
+                even.append(item)
+            else:
+                odd.append(item)
         for item in odd:
-        	even.append(item)
+            even.append(item)
         return even
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.sortArrayByParity([3,1,2,4]))
+    a = Solution()
+    print(a.sortArrayByParity([3, 1, 2, 4]))

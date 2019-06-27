@@ -29,8 +29,8 @@ The input is two lists: the subroutines called and their arguments. Solution's c
 import math
 import random
 
-class Solution(object):
 
+class Solution(object):
     def __init__(self, radius, x_center, y_center):
         """
         :type radius: float
@@ -49,13 +49,14 @@ class Solution(object):
             # angle = random.uniform(0, 2 * math.pi)
             # x = self.x + self.radius * math.cos(angle)
             # y = self.y + self.radius * math.sin(angle)
-            x = random.uniform(-1., 1.)
-            y = random.uniform(-1., 1.)
+            x = random.uniform(-1.0, 1.0)
+            y = random.uniform(-1.0, 1.0)
             if x ** 2 + y ** 2 <= 1:
                 break
         x = self.x + x * self.radius
         y = self.y + y * self.radius
         return [x, y]
+
 
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(radius, x_center, y_center)

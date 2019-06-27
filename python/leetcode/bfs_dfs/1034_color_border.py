@@ -34,6 +34,7 @@ Note:
 1 <= color <= 1000
 """
 
+
 class Solution(object):
     def colorBorder(self, grid, r0, c0, color):
         """
@@ -47,43 +48,61 @@ class Solution(object):
         border = set()
         m = len(grid)
         n = len(grid[0])
+
         def check(i, j):
-        	if i == 0 or i == m-1:
-        		return True
-        	if j == 0 or j == n-1:
-        		return True
-        	if i > 0 and grid[i-1][j] != grid[i][j]:
-        		return True
-        	if j > 0 and grid[i][j-1] != grid[i][j]:
-        		return True
-        	if i < m-1 and grid[i+1][j] != grid[i][j]:
-        		return True
-        	if j < n-1 and grid[i][j+1] != grid[i][j]:
-        		return True
-        	return False
+            if i == 0 or i == m - 1:
+                return True
+            if j == 0 or j == n - 1:
+                return True
+            if i > 0 and grid[i - 1][j] != grid[i][j]:
+                return True
+            if j > 0 and grid[i][j - 1] != grid[i][j]:
+                return True
+            if i < m - 1 and grid[i + 1][j] != grid[i][j]:
+                return True
+            if j < n - 1 and grid[i][j + 1] != grid[i][j]:
+                return True
+            return False
+
         stack = [(r0, c0)]
         while len(stack) > 0:
-        	ii, jj = stack.pop()
-        	visited.add((ii, jj))
-        	if check(ii, jj):
-        		border.add((ii, jj))
-        	if ii > 0 and grid[ii-1][jj] == grid[ii][jj] and (ii-1, jj) not in visited:
-        		stack.append((ii-1, jj))
-        	if ii < m-1 and grid[ii+1][jj] == grid[ii][jj] and (ii+1, jj) not in visited:
-        		stack.append((ii+1, jj))
-        	if jj > 0 and grid[ii][jj-1] == grid[ii][jj] and (ii, jj-1) not in visited:
-        		stack.append((ii, jj-1))
-        	if jj < n-1 and grid[ii][jj+1] == grid[ii][jj] and (ii, jj+1) not in visited:
-        		stack.append((ii, jj+1))
+            ii, jj = stack.pop()
+            visited.add((ii, jj))
+            if check(ii, jj):
+                border.add((ii, jj))
+            if (
+                ii > 0
+                and grid[ii - 1][jj] == grid[ii][jj]
+                and (ii - 1, jj) not in visited
+            ):
+                stack.append((ii - 1, jj))
+            if (
+                ii < m - 1
+                and grid[ii + 1][jj] == grid[ii][jj]
+                and (ii + 1, jj) not in visited
+            ):
+                stack.append((ii + 1, jj))
+            if (
+                jj > 0
+                and grid[ii][jj - 1] == grid[ii][jj]
+                and (ii, jj - 1) not in visited
+            ):
+                stack.append((ii, jj - 1))
+            if (
+                jj < n - 1
+                and grid[ii][jj + 1] == grid[ii][jj]
+                and (ii, jj + 1) not in visited
+            ):
+                stack.append((ii, jj + 1))
         # print(border)
         for i, j in border:
-        	grid[i][j] = color
+            grid[i][j] = color
         return grid
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.colorBorder([[1,1],[1,2]], 0, 0, 3))
-	print(a.colorBorder([[1,2,2],[2,3,2]], 0, 1, 3))
-	print(a.colorBorder([[1,1,1],[1,1,1],[1,1,1]], 1, 1, 2))
-	print(a.colorBorder([[3,2,2,2],[2,3,3,3],[1,3,1,2]],0,1,1))
+    a = Solution()
+    print(a.colorBorder([[1, 1], [1, 2]], 0, 0, 3))
+    print(a.colorBorder([[1, 2, 2], [2, 3, 2]], 0, 1, 3))
+    print(a.colorBorder([[1, 1, 1], [1, 1, 1], [1, 1, 1]], 1, 1, 2))
+    print(a.colorBorder([[3, 2, 2, 2], [2, 3, 3, 3], [1, 3, 1, 2]], 0, 1, 1))

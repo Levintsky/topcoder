@@ -16,6 +16,7 @@ Elements of the given array will be in range [-10,000, 10,000].
 The answer with the calculation error less than 10-5 will be accepted.
 """
 
+
 class Solution(object):
     def findMaxAverage(self, nums, k):
         """
@@ -27,30 +28,29 @@ class Solution(object):
         r = float(max(nums))
         if k == 1:
             return r
-        
-        while r-l >= 1e-5:
-            mid = (l+r) / 2.
-            
+
+        while r - l >= 1e-5:
+            mid = (l + r) / 2.0
+
             if self.check_valid(nums, mid, k):
                 l = mid
             else:
                 r = mid
-                
+
         return l
 
-    
     def check_valid(self, nums, mid, k):
         n = len(nums)
         min_pre = 0
-        sums = [0] * (n+1)
-        for i in range(1, n+1):
-            sums[i] = sums[i-1] + nums[i-1] - mid
+        sums = [0] * (n + 1)
+        for i in range(1, n + 1):
+            sums[i] = sums[i - 1] + nums[i - 1] - mid
             if i >= k and sums[i] - min_pre >= 0:
                 return True
             if i >= k:
-                min_pre = min(min_pre, sums[i-k+1])
+                min_pre = min(min_pre, sums[i - k + 1])
         return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = Solution()

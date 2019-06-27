@@ -28,6 +28,7 @@ Note:
 logs[i] is guaranteed to have an identifier, and a word after the identifier.
 """
 
+
 class Solution(object):
     def reorderLogFiles(self, logs):
         """
@@ -45,7 +46,7 @@ class Solution(object):
                 letters.append(data)
         # sort the letters alphabetically
         print(letters)
-        letters = [tuple(item[1:]+[item[0]]) for item in letters]
+        letters = [tuple(item[1:] + [item[0]]) for item in letters]
         letters.sort()
         letters = [list(item) for item in letters]
         letters = [" ".join([item[-1]] + item[:-1]) for item in letters]
@@ -56,4 +57,8 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.reorderLogFiles(["a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo"]))
+    print(
+        a.reorderLogFiles(
+            ["a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo"]
+        )
+    )

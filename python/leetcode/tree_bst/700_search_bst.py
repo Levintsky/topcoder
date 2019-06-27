@@ -30,6 +30,7 @@ Note that an empty tree is represented by NULL, therefore you would see the expe
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def searchBST(self, root, val):
         """
@@ -37,12 +38,14 @@ class Solution(object):
         :type val: int
         :rtype: TreeNode
         """
-        if root is None: return None
+        if root is None:
+            return None
 
         # divide and conquer
         n = root
         while True:
-            if n.val == val: return n
+            if n.val == val:
+                return n
             elif val < n.val and n.left is not None:
                 n = n.left
             elif val > n.val and n.right is not None:
@@ -50,4 +53,3 @@ class Solution(object):
             else:
                 break
         return None
-

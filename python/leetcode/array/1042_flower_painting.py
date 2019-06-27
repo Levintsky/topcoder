@@ -51,28 +51,32 @@ class Solution(object):
             if i in memo:
                 memo[i].append(j)
             else:
-                memo[i]=[j]
+                memo[i] = [j]
             if j in memo:
                 memo[j].append(i)
             else:
-                memo[j]=[i]
+                memo[j] = [i]
         # dfs
         result = [-1] * N
         flag = False
+
         def dfs(idx):
-            avail = set([1,2,3,4])
+            avail = set([1, 2, 3, 4])
             if idx in memo:
                 for idx2 in memo[idx]:
-                    color = result[idx2-1]
+                    color = result[idx2 - 1]
                     if color in avail:
                         avail.remove(color)
             for c in avail:
-                result[idx-1] = c
-                if idx == N: return True
+                result[idx - 1] = c
+                if idx == N:
+                    return True
                 else:
-                    flag = dfs(idx+1)
-                    if flag: return True
+                    flag = dfs(idx + 1)
+                    if flag:
+                        return True
             return False
+
         dfs(1)
         return result
 
@@ -89,4 +93,4 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.solve2(4, [[1,2],[2,3],[3,4],[4,1],[1,3],[2,4]]))
+    print(a.solve2(4, [[1, 2], [2, 3], [3, 4], [4, 1], [1, 3], [2, 4]]))

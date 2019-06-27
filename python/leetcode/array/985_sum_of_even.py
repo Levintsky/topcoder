@@ -65,4 +65,4 @@ class Solution(object):
 if __name__ == "__main__":
     a = Solution()
     # print(a.sumEvenAfterQueries([1,2,3,4], [[1,0],[-3,1],[-4,0],[2,3]]))
-    print(a.sumEvenAfterQueries([1], [[4,0]]))
+    print(a.sumEvenAfterQueries([1], [[4, 0]]))

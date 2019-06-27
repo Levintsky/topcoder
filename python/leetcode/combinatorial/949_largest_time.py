@@ -34,35 +34,40 @@ class Solution(object):
         # step 0: generate all permutation
         Aaug = [item for item in A]
         result_set = set()
+
         def permute(i):
-        	if i == 3:
-        		h = Aaug[0]*10+Aaug[1]
-        		m = Aaug[2]*10+Aaug[3]
-        		if h < 24 and m < 60:
-        			result_set.add((h, m))
-        		return
-        	for j in range(i, 4):
-        		Aaug[i], Aaug[j] = Aaug[j], Aaug[i]
-        		permute(i+1)
-        		Aaug[i], Aaug[j] = Aaug[j], Aaug[i]
+            if i == 3:
+                h = Aaug[0] * 10 + Aaug[1]
+                m = Aaug[2] * 10 + Aaug[3]
+                if h < 24 and m < 60:
+                    result_set.add((h, m))
+                return
+            for j in range(i, 4):
+                Aaug[i], Aaug[j] = Aaug[j], Aaug[i]
+                permute(i + 1)
+                Aaug[i], Aaug[j] = Aaug[j], Aaug[i]
+
         permute(0)
         result_set = list(result_set)
         result_set.sort()
-        if len(result_set) == 0: return ""
+        if len(result_set) == 0:
+            return ""
         result = result_set[-1]
-        result = [str(result[0]),str(result[1])]
-        if len(result[0]) == 1: result[0] = "0"+result[0]
-        if len(result[1]) == 1: result[1] = "0"+result[1]
+        result = [str(result[0]), str(result[1])]
+        if len(result[0]) == 1:
+            result[0] = "0" + result[0]
+        if len(result[1]) == 1:
+            result[1] = "0" + result[1]
         result = ":".join(result)
         return result
 
     def solve2(self, A):
-    	for t in itertools.permutations(A):
-    		print(t)
+        for t in itertools.permutations(A):
+            print(t)
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.largestTimeFromDigits([1,2,3,4]))
-	# print(a.largestTimeFromDigits([5,5,5,5]))
-	print(a.solve2([1,2,3,4]))
+    a = Solution()
+    print(a.largestTimeFromDigits([1, 2, 3, 4]))
+    # print(a.largestTimeFromDigits([5,5,5,5]))
+    print(a.solve2([1, 2, 3, 4]))

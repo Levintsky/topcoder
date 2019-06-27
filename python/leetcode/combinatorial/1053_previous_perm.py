@@ -32,6 +32,7 @@ Note:
 
 """
 
+
 class Solution(object):
     def prevPermOpt1(self, A):
         """
@@ -39,9 +40,10 @@ class Solution(object):
         :rtype: List[int]
         """
         i = len(A) - 1
-        while i > 0 and A[i] >= A[i-1]:
+        while i > 0 and A[i] >= A[i - 1]:
             i -= 1
-        if i == 0: return A
+        if i == 0:
+            return A
 
         i -= 1
         j = len(A) - 1
@@ -53,7 +55,7 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.prevPermOpt1([3,2,1]))
-    print(a.prevPermOpt1([1,1,5]))
-    print(a.prevPermOpt1([1,7,4,6,9]))
-    print(a.prevPermOpt1([3,1,1,3]))
+    print(a.prevPermOpt1([3, 2, 1]))
+    print(a.prevPermOpt1([1, 1, 5]))
+    print(a.prevPermOpt1([1, 7, 4, 6, 9]))
+    print(a.prevPermOpt1([3, 1, 1, 3]))

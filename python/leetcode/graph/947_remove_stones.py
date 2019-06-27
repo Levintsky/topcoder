@@ -136,6 +136,7 @@ If you have any doubts on time complexity,
 please refer to wikipedia first.
 """
 
+
 class Solution(object):
     def removeStones(self, stones):
         """
@@ -144,7 +145,7 @@ class Solution(object):
         """
         row_memo = {}
         col_memo = {}
-        class_list = [] # class_id to parent
+        class_list = []  # class_id to parent
         for i, j in stones:
             # print(i, j)
             row_cls = row_memo.get(i, len(class_list))
@@ -174,10 +175,12 @@ class Solution(object):
 
     def solve2(self, points):
         UF = {}
+
         def find(x):
             if x != UF[x]:
                 UF[x] = find(UF[x])
             return UF[x]
+
         def union(x, y):
             UF.setdefault(x, x)
             UF.setdefault(y, y)
@@ -198,4 +201,4 @@ if __name__ == "__main__":
     print(a.removeStones([[0,1],[1,2],[1,3],[3,3],[2,3],[0,2]]))
     print(a.removeStones([[3,2],[0,0],[3,3],[2,1],[2,3],[2,2],[0,2]]))
     """
-    print(a.solve2([[1,0],[0,1],[1,1]]))
+    print(a.solve2([[1, 0], [0, 1], [1, 1]]))

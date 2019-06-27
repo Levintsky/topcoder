@@ -45,6 +45,7 @@ Note:
 0 <= T <= 100
 """
 
+
 class Solution(object):
     def videoStitching(self, clips, T):
         """
@@ -53,32 +54,65 @@ class Solution(object):
         :rtype: int
         """
         nclips = len(clips)
-        if nclips == 0 and T > 0: return False
-        if nclips == 0 and T == 0: return nclips
-        if T == 0: return 0
-        clips.sort(key=lambda item:(item[0], -item[1]))
+        if nclips == 0 and T > 0:
+            return False
+        if nclips == 0 and T == 0:
+            return nclips
+        if T == 0:
+            return 0
+        clips.sort(key=lambda item: (item[0], -item[1]))
         result = []
         result.append([clips[0][0], clips[0][1], 0])
         if clips[0][0] > 0:
             return -1
         if clips[0][1] >= T:
-        	return 1
+            return 1
 
         for i in range(1, nclips):
-            if clips[i][1] <= result[-1][1]: continue
-            if clips[i][0] > result[-1][1]: return -1
+            if clips[i][1] <= result[-1][1]:
+                continue
+            if clips[i][0] > result[-1][1]:
+                return -1
             # evict un-necessary
             if clips[i][1] > result[-1][2]:
                 while result[-1][-1] >= clips[i][0]:
                     _ = result.pop()
                 result.append([clips[i][0], clips[i][1], result[-1][1]])
             print(result)
-            if result[-1][1] >= T: return len(result)
+            if result[-1][1] >= T:
+                return len(result)
         return -1
 
+
 if __name__ == "__main__":
-	a = Solution()
-	print(a.videoStitching([[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], 10))
-	print(a.videoStitching([[0,1],[1,2]], 5))
-	print(a.videoStitching([[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], 9))
-	print(a.videoStitching([[5,7],[1,8],[0,0],[2,3],[4,5],[0,6],[5,10],[7,10]], 5))
+    a = Solution()
+    print(a.videoStitching([[0, 2], [4, 6], [8, 10], [1, 9], [1, 5], [5, 9]], 10))
+    print(a.videoStitching([[0, 1], [1, 2]], 5))
+    print(
+        a.videoStitching(
+            [
+                [0, 1],
+                [6, 8],
+                [0, 2],
+                [5, 6],
+                [0, 4],
+                [0, 3],
+                [6, 7],
+                [1, 3],
+                [4, 7],
+                [1, 4],
+                [2, 5],
+                [2, 6],
+                [3, 4],
+                [4, 5],
+                [5, 7],
+                [6, 9],
+            ],
+            9,
+        )
+    )
+    print(
+        a.videoStitching(
+            [[5, 7], [1, 8], [0, 0], [2, 3], [4, 5], [0, 6], [5, 10], [7, 10]], 5
+        )
+    )

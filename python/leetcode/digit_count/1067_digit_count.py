@@ -48,6 +48,7 @@ count by digit:
 2. xxxdx: (high // 100) * 10 + 
 """
 
+
 class Solution(object):
     def digitsCount(self, d, low, high):
         """
@@ -56,9 +57,12 @@ class Solution(object):
         :type high: int
         :rtype: int
         """
+
         def count(N):
-            if N == 0: return 0
-            if d == 0 and N <= 10: return 0
+            if N == 0:
+                return 0
+            if d == 0 and N <= 10:
+                return 0
             res = 0
             # xxxd
             if N % 10 > d:
@@ -72,7 +76,8 @@ class Solution(object):
             # xxdx
             res += count(N // 10) * 10
             return res
-        return count(high+1) - count(low)
+
+        return count(high + 1) - count(low)
 
     def solve2(self, d, low, high):
         def count(n, d):
@@ -94,7 +99,8 @@ class Solution(object):
                                 print("diff!")
                 i *= 10
             return cnt
-        return count(high, d) - count(low-1, d)
+
+        return count(high, d) - count(low - 1, d)
 
 
 if __name__ == "__main__":

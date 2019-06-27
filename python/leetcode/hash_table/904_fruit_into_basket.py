@@ -65,14 +65,13 @@ class Solution(object):
                 if stat[type_] == 0:
                     del stat[type_]
                 i += 1
-            result = max(result, j-i+1)
+            result = max(result, j - i + 1)
         return result
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.totalFruit([1,2,1]))
-	print(a.totalFruit([0,1,2,2]))
-	print(a.totalFruit([1,2,3,2,2]))
-	print(a.totalFruit([3,3,3,1,2,1,1,2,3,3,4]))
-
+    a = Solution()
+    print(a.totalFruit([1, 2, 1]))
+    print(a.totalFruit([0, 1, 2, 2]))
+    print(a.totalFruit([1, 2, 3, 2, 2]))
+    print(a.totalFruit([3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]))

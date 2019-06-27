@@ -38,19 +38,19 @@ class Solution(object):
         :type A: List[int]
         :rtype: bool
         """
-        
-
 
     def solve2(self, A):
         i, j, n = 0, len(A) - 1, len(A)
-        while i + 1 < n and A[i] < A[i + 1]: i += 1
-        while j > 0 and A[j - 1] > A[j]: j -= 1
+        while i + 1 < n and A[i] < A[i + 1]:
+            i += 1
+        while j > 0 and A[j - 1] > A[j]:
+            j -= 1
         return 0 < i == j < n - 1
 
-if __name__ == "__main__":
-	a = Solution()
-	print(a.validMountainArray([2, 1]))
-	print(a.validMountainArray([3, 5, 5]))
-	print(a.validMountainArray([0, 3, 2, 1]))
-	print(a.validMountainArray([1, 2, 3, 2]))
 
+if __name__ == "__main__":
+    a = Solution()
+    print(a.validMountainArray([2, 1]))
+    print(a.validMountainArray([3, 5, 5]))
+    print(a.validMountainArray([0, 3, 2, 1]))
+    print(a.validMountainArray([1, 2, 3, 2]))

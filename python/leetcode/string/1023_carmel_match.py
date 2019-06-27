@@ -47,40 +47,41 @@ class Solution(object):
         :type pattern: str
         :rtype: List[bool]
         """
+
         def match(q, pattern):
-        	i = 0
-        	j = 0
-        	lq = len(q)
-        	lp = len(pattern)
-        	print(q, pattern, lq, lp)
-        	while i < lq and j < lp:
-        		print(i, j, q[i], pattern[j])
-        		if q[i] == pattern[j]:
-        			i += 1
-        			j += 1
-        		elif ord(q[i]) >= ord('a') and ord(q[i]) <= ord('z'):
-        			i += 1
-        		else:
-        			return False
-        	if j != lp:
-        		return False
-        	# q not ending
-        	while i < lq:
-        		if ord(q[i]) >= ord('a') and ord(q[i]) <= ord('z'):
-        			i += 1
-        		else:
-        			return False
-        	return True
+            i = 0
+            j = 0
+            lq = len(q)
+            lp = len(pattern)
+            print(q, pattern, lq, lp)
+            while i < lq and j < lp:
+                print(i, j, q[i], pattern[j])
+                if q[i] == pattern[j]:
+                    i += 1
+                    j += 1
+                elif ord(q[i]) >= ord("a") and ord(q[i]) <= ord("z"):
+                    i += 1
+                else:
+                    return False
+            if j != lp:
+                return False
+            # q not ending
+            while i < lq:
+                if ord(q[i]) >= ord("a") and ord(q[i]) <= ord("z"):
+                    i += 1
+                else:
+                    return False
+            return True
 
         result = []
         for item in queries:
-        	result.append(match(item, pattern))
+            result.append(match(item, pattern))
         return result
 
 
 if __name__ == "__main__":
-	a = Solution()
-	# print(a.camelMatch(["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], "FB"))
-	# print(a.camelMatch(["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], "FoBa"))
-	# print(a.camelMatch(["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], "FoBaT"))
-	print(a.camelMatch(["ksvjLiurknTzzqbn"], "ksvjLiknTzqn"))
+    a = Solution()
+    # print(a.camelMatch(["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], "FB"))
+    # print(a.camelMatch(["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], "FoBa"))
+    # print(a.camelMatch(["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], "FoBaT"))
+    print(a.camelMatch(["ksvjLiurknTzzqbn"], "ksvjLiknTzqn"))

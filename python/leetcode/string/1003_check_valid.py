@@ -40,6 +40,7 @@ Note:
 S[i] is 'a', 'b', or 'c'
 """
 
+
 class Solution(object):
     def isValid(self, S):
         """
@@ -48,20 +49,20 @@ class Solution(object):
         """
         stack = ""
         for c in S:
-        	if c == "c":
-        		if len(stack) >= 2 and stack[-2:] == "ab":
-        			stack = stack[:-2]
-        		else:
-        			return False
-        	else:
-        		stack += c
-        	# print(c, stack)
+            if c == "c":
+                if len(stack) >= 2 and stack[-2:] == "ab":
+                    stack = stack[:-2]
+                else:
+                    return False
+            else:
+                stack += c
+            # print(c, stack)
         return stack == ""
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.isValid("aabcbc"))
-	print(a.isValid("abcabcababcc"))
-	print(a.isValid("abccba"))
-	print(a.isValid("cababc"))
+    a = Solution()
+    print(a.isValid("aabcbc"))
+    print(a.isValid("abcabcababcc"))
+    print(a.isValid("abccba"))
+    print(a.isValid("cababc"))

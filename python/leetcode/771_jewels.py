@@ -38,6 +38,7 @@ class Solution(object):
             result += memo_S.get(k, 0)
         return result
 
+
 if __name__ == "__main__":
     a = Solution()
     print(a.numJewelsInStones("aA", "aAAbbbb"))

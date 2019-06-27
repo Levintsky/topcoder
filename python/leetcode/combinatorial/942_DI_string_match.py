@@ -29,6 +29,7 @@ Note:
 S only contains characters "I" or "D".
 """
 
+
 class Solution(object):
     def diStringMatch(self, S):
         """
@@ -38,22 +39,22 @@ class Solution(object):
         if S[0] == "I":
             result = [0, 1]
         else:
-        	result = [1, 0]
+            result = [1, 0]
 
         min_, max_ = -1, 2
         for idx, c in enumerate(S[1:]):
-        	if c == "I":
-        		result.append(max_)
-        		max_ += 1
-        	else:
-        		result.append(min_)
-        		min_ -= 1
-        result = [item-min_-1 for item in result]
+            if c == "I":
+                result.append(max_)
+                max_ += 1
+            else:
+                result.append(min_)
+                min_ -= 1
+        result = [item - min_ - 1 for item in result]
         return result
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.diStringMatch("IDID"))
-	print(a.diStringMatch("III"))
-	print(a.diStringMatch("DDI"))
+    a = Solution()
+    print(a.diStringMatch("IDID"))
+    print(a.diStringMatch("III"))
+    print(a.diStringMatch("DDI"))

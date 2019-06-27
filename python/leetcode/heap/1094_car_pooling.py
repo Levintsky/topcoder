@@ -39,6 +39,7 @@ trips[i].length == 3
 
 import heapq
 
+
 class Solution(object):
     def carPooling(self, trips, capacity):
         """
@@ -59,13 +60,14 @@ class Solution(object):
                 cnt -= n2
             heapq.heappush(q2, (end, n))
             cnt += n
-            if cnt > capacity: return False
+            if cnt > capacity:
+                return False
         return True
 
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.carPooling([[2,1,5],[3,3,7]], 4))
-    print(a.carPooling([[2,1,5],[3,3,7]], 5))
-    print(a.carPooling([[2,1,5],[3,5,7]], 3))
-    print(a.carPooling([[3,2,7],[3,7,9],[8,3,9]], 11))
+    print(a.carPooling([[2, 1, 5], [3, 3, 7]], 4))
+    print(a.carPooling([[2, 1, 5], [3, 3, 7]], 5))
+    print(a.carPooling([[2, 1, 5], [3, 5, 7]], 3))
+    print(a.carPooling([[3, 2, 7], [3, 7, 9], [8, 3, 9]], 11))

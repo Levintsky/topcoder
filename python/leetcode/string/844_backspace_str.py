@@ -135,6 +135,7 @@ Python:
             i, j = i - 1, j - 1
 """
 
+
 class Solution(object):
     def backspaceCompare(self, S, T):
         """
@@ -142,14 +143,17 @@ class Solution(object):
         :type T: str
         :rtype: bool
         """
+
         def convert(str_):
             s_ = ""
             for c in str_:
-        	    if c == "#":
-        		    if s_ != "": s_ = s_[:-1]
-        	    else:
-        		    s_ = s_ + c
+                if c == "#":
+                    if s_ != "":
+                        s_ = s_[:-1]
+                else:
+                    s_ = s_ + c
             return s_
+
         s_ = convert(S)
         t_ = convert(T)
         return s_ == t_

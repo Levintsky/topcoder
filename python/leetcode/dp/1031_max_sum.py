@@ -34,6 +34,7 @@ L + M <= A.length <= 1000
 0 <= A[i] <= 1000
 """
 
+
 class Solution(object):
     def maxSumTwoNoOverlap(self, A, L, M):
         """
@@ -51,8 +52,8 @@ class Solution(object):
         curr = result1[0] + result2[L]
         i = 0
         while i < len(result1) and i + L < len(result2):
-        	curr = max(curr, result1[i]+result2[L+i])
-        	i += 1
+            curr = max(curr, result1[i] + result2[L + i])
+            i += 1
         print(curr)
         result1 = self.helper(A, M)
         result2 = self.helper_right(A, L)
@@ -60,38 +61,39 @@ class Solution(object):
         print(result2)
         i = 0
         while i < len(result1) and i + M < len(result2):
-        	print(i, result1[i], result2[M+i])
-        	curr = max(curr, result1[i]+result2[M+i])
-        	i += 1
+            print(i, result1[i], result2[M + i])
+            curr = max(curr, result1[i] + result2[M + i])
+            i += 1
         return curr
 
     def helper(self, A, l):
-    	n = len(A)
-    	result = [sum(A[:l])]
-    	curr = result[-1]
-    	for i in range(l, n):
-    		curr = curr + A[i] - A[i-l]
-    		if curr > result[-1]:
-    			result.append(curr)
-    		else:
-    			result.append(result[-1])
-    	return result
+        n = len(A)
+        result = [sum(A[:l])]
+        curr = result[-1]
+        for i in range(l, n):
+            curr = curr + A[i] - A[i - l]
+            if curr > result[-1]:
+                result.append(curr)
+            else:
+                result.append(result[-1])
+        return result
 
     def helper_right(self, A, l):
-    	n = len(A)
-    	result = [sum(A[n-l:])]
-    	curr = result[-1]
-    	for i in range(n-l-1, -1, -1):
-    		curr = curr + A[i] - A[i+l]
-    		if curr > result[-1]:
-    			result.append(curr)
-    		else:
-    			result.append(result[-1])
-    	result = result[::-1]
-    	return result
+        n = len(A)
+        result = [sum(A[n - l :])]
+        curr = result[-1]
+        for i in range(n - l - 1, -1, -1):
+            curr = curr + A[i] - A[i + l]
+            if curr > result[-1]:
+                result.append(curr)
+            else:
+                result.append(result[-1])
+        result = result[::-1]
+        return result
+
 
 if __name__ == "__main__":
-	a = Solution()
-	# print(a.maxSumTwoNoOverlap([0,6,5,2,2,5,1,9,4], 1, 2))
-	# print(a.maxSumTwoNoOverlap([3,8,1,3,2,1,8,9,0], 3, 2))
-	print(a.maxSumTwoNoOverlap([2,1,5,6,0,9,5,0,3,8], 4, 3))
+    a = Solution()
+    # print(a.maxSumTwoNoOverlap([0,6,5,2,2,5,1,9,4], 1, 2))
+    # print(a.maxSumTwoNoOverlap([3,8,1,3,2,1,8,9,0], 3, 2))
+    print(a.maxSumTwoNoOverlap([2, 1, 5, 6, 0, 9, 5, 0, 3, 8], 4, 3))

@@ -30,14 +30,17 @@ grid[r][c] is 0 or 1
 
 from collections import deque
 
+
 class Solution(object):
     def shortestPathBinaryMatrix(self, grid):
         """
         :type grid: List[List[int]]
         :rtype: int
         """
-        if grid[0][0] == 1: return -1
-        if grid[-1][-1] == 1: return -1
+        if grid[0][0] == 1:
+            return -1
+        if grid[-1][-1] == 1:
+            return -1
         k = len(grid[0])
         grid[0][0] = -1
         q = deque()
@@ -47,8 +50,8 @@ class Solution(object):
             q2 = deque()
             while len(q) > 0:
                 i, j = q.popleft()
-                for ii in range(max(0, i-1), min(i+2,k)):# [i-1, i, i+1]:
-                    for jj in range(max(0, j-1), min(j+2,k)):
+                for ii in range(max(0, i - 1), min(i + 2, k)):  # [i-1, i, i+1]:
+                    for jj in range(max(0, j - 1), min(j + 2, k)):
                         if ii != i or jj != j:
                             if grid[ii][jj] == 0:
                                 grid[ii][jj] = curr
@@ -64,5 +67,5 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.shortestPathBinaryMatrix([[0,1],[1,0]]))
-    print(a.shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]]))
+    print(a.shortestPathBinaryMatrix([[0, 1], [1, 0]]))
+    print(a.shortestPathBinaryMatrix([[0, 0, 0], [1, 1, 0], [1, 1, 0]]))

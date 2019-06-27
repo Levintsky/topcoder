@@ -39,7 +39,7 @@ Constraints:
 # This is MountainArray's API interface.
 # You should not implement it, or speculate about its implementation
 # """
-#class MountainArray(object):
+# class MountainArray(object):
 #    def get(self, index):
 #        """
 #        :type index: int
@@ -50,6 +50,7 @@ Constraints:
 #        """
 #        :rtype int
 #        """
+
 
 class MountainArray(object):
     def __init__(self, arr):
@@ -80,51 +81,53 @@ class Solution(object):
         """
         # step 1: find the peak
         n = mountain_arr.length()
-        i, j = 0, n-1
+        i, j = 0, n - 1
         peak = None
         while i <= j:
             mid = (i + j) // 2
             # print(mid)
             num = mountain_arr.get(mid)
             if mid > 0:
-                left = mountain_arr.get(mid-1)
+                left = mountain_arr.get(mid - 1)
             else:
-            	left = None
-            if mid != n-1:
-                right = mountain_arr.get(mid+1)
+                left = None
+            if mid != n - 1:
+                right = mountain_arr.get(mid + 1)
             else:
-            	right = None
+                right = None
             if left is not None and num > left and right is not None and num > right:
                 peak = mid
                 break
             elif left is None or (num > left and right > num):
                 i = mid + 1
             else:
-            	j = mid - 1
+                j = mid - 1
         # step 2: search in [0..peak]
         i, j = 0, peak
-        if target == mountain_arr.get(peak): return peak
+        if target == mountain_arr.get(peak):
+            return peak
         while i <= j:
             mid = (i + j) // 2
             num = mountain_arr.get(mid)
             if num == target:
                 return mid
             elif num > target:
-            	j = mid - 1
+                j = mid - 1
             else:
-            	i = mid + 1
+                i = mid + 1
         # step 3: search in [peak..end-1]
-        i, j = peak, n-1
-        if target == mountain_arr.get(peak): return peak
+        i, j = peak, n - 1
+        if target == mountain_arr.get(peak):
+            return peak
         while i <= j:
             mid = (i + j) // 2
             num = mountain_arr.get(mid)
             if num == target:
                 return mid
             elif num < target:
-            	j = mid - 1
+                j = mid - 1
             else:
-            	i = mid + 1
+                i = mid + 1
         return -1
 
 
@@ -134,5 +137,5 @@ if __name__ == "__main__":
     # mountain_arr = MountainArray([3,5,3,2,0])
     mountain_arr = MountainArray([0, 2, 3, 5, 3])
     print(a.findInMountainArray(3, mountain_arr))
-    mountain_arr = MountainArray([0,1,2,4,2,1])
+    mountain_arr = MountainArray([0, 1, 2, 4, 2, 1])
     print(a.findInMountainArray(3, mountain_arr))

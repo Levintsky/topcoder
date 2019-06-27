@@ -67,37 +67,45 @@ class Solution(object):
 
         # step 1: preprocessing
         for i, j in lamps:
-        	if (i, j) not in light_set:
-        		light_set.add((i, j))
-        		row[i] = row.get(i, 0) + 1
-        		col[j] = col.get(j, 0) + 1
-        		diag1[j-i+N-1] = diag1.get(j-i+N-1, 0) + 1
-        		diag2[j+i] = diag2.get(j+i, 0) + 1
+            if (i, j) not in light_set:
+                light_set.add((i, j))
+                row[i] = row.get(i, 0) + 1
+                col[j] = col.get(j, 0) + 1
+                diag1[j - i + N - 1] = diag1.get(j - i + N - 1, 0) + 1
+                diag2[j + i] = diag2.get(j + i, 0) + 1
         print(row, col, diag1, diag2)
 
         result = []
         for i, j in queries:
-        	tmp = 0
-        	if i in row: tmp = 1
-        	if j in col: tmp = 1
-        	if j-i+N-1 in diag1: tmp = 1
-        	if j+i in diag2: tmp = 1
-        	result.append(tmp)
-        	for ii in range(max(0,i-1), min(i+2, N)):
-        		for jj in range(max(0,j-1), min(j+2, N)):
-        			if (ii, jj) in light_set:
-        				light_set.remove((ii, jj))
-        				row[ii] -= 1
-        				col[jj] -= 1
-        				diag1[jj-ii+N-1] -= 1
-        				diag2[jj+ii] -= 1
-        				if row[ii] == 0: del row[ii]
-        				if col[jj] == 0: del col[jj]
-        				if diag1[jj-ii+N-1] == 0: del diag1[jj-ii+N-1]
-        				if diag2[jj+ii] == 0: del diag2[jj+ii]
+            tmp = 0
+            if i in row:
+                tmp = 1
+            if j in col:
+                tmp = 1
+            if j - i + N - 1 in diag1:
+                tmp = 1
+            if j + i in diag2:
+                tmp = 1
+            result.append(tmp)
+            for ii in range(max(0, i - 1), min(i + 2, N)):
+                for jj in range(max(0, j - 1), min(j + 2, N)):
+                    if (ii, jj) in light_set:
+                        light_set.remove((ii, jj))
+                        row[ii] -= 1
+                        col[jj] -= 1
+                        diag1[jj - ii + N - 1] -= 1
+                        diag2[jj + ii] -= 1
+                        if row[ii] == 0:
+                            del row[ii]
+                        if col[jj] == 0:
+                            del col[jj]
+                        if diag1[jj - ii + N - 1] == 0:
+                            del diag1[jj - ii + N - 1]
+                        if diag2[jj + ii] == 0:
+                            del diag2[jj + ii]
         return result
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.gridIllumination(5, [[0,0],[4,4]], [[1,1],[1,0]]))
+    a = Solution()
+    print(a.gridIllumination(5, [[0, 0], [4, 4]], [[1, 1], [1, 0]]))

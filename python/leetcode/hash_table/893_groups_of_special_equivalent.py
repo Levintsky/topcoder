@@ -43,6 +43,7 @@ All A[i] have the same length.
 All A[i] consist of only lowercase letters.
 """
 
+
 class Solution(object):
     def numSpecialEquivGroups(self, A):
         """
@@ -50,9 +51,11 @@ class Solution(object):
         :rtype: int
         """
         memo = set()
+
         def word_cnt(word, cnt):
             for c in word:
-                cnt[ord(c)-ord('a')] += 1
+                cnt[ord(c) - ord("a")] += 1
+
         for word in A:
             odd = word[::2]
             even = word[1::2]
@@ -66,8 +69,8 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.numSpecialEquivGroups(["a","b","c","a","c","c"]))
-	print(a.numSpecialEquivGroups(["aa","bb","ab","ba"]))
-	print(a.numSpecialEquivGroups(["abc","acb","bac","bca","cab","cba"]))
-	print(a.numSpecialEquivGroups(["abcd","cdab","adcb","cbad"]))
+    a = Solution()
+    print(a.numSpecialEquivGroups(["a", "b", "c", "a", "c", "c"]))
+    print(a.numSpecialEquivGroups(["aa", "bb", "ab", "ba"]))
+    print(a.numSpecialEquivGroups(["abc", "acb", "bac", "bca", "cab", "cba"]))
+    print(a.numSpecialEquivGroups(["abcd", "cdab", "adcb", "cbad"]))

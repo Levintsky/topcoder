@@ -31,6 +31,7 @@ Note that an empty tree is represented by NULL, therefore you would see the expe
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def searchBST(self, root, val):
         """
@@ -38,4 +39,3 @@ class Solution(object):
         :type val: int
         :rtype: TreeNode
         """
-

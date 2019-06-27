@@ -47,12 +47,12 @@ class Solution(object):
             heapq.heappush(heap, -stone)
 
         while len(heap) > 1:
-            s1 = - heapq.heappop(heap)
-            s2 = - heapq.heappop(heap)
+            s1 = -heapq.heappop(heap)
+            s2 = -heapq.heappop(heap)
             if s1 > s2:
                 heapq.heappush(heap, -(s1 - s2))
-        
+
         if len(heap) == 1:
             return -heap[0]
         else:
-        	return 0
+            return 0

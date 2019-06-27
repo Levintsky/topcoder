@@ -64,6 +64,7 @@ Runtime: O(N * (S + log N)), where S is the string size. We search N times, and 
 Memory: O(1).
 """
 
+
 class Solution(object):
     def queryString(self, S, N):
         """
@@ -71,6 +72,7 @@ class Solution(object):
         :type N: int
         :rtype: bool
         """
+
         def helper(k):
             # binarize
             result = []
@@ -82,7 +84,7 @@ class Solution(object):
             result = "".join(result)
             return result
 
-        for i in range(1, N+1):
+        for i in range(1, N + 1):
             if i % 2 == 1:
                 str_ = helper(i)
                 curr = i

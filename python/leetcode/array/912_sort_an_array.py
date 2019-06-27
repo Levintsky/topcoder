@@ -41,8 +41,9 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
+
         def quicksort(left, right):
-            print('working on:', left, right, nums[left:right+1])
+            print("working on:", left, right, nums[left : right + 1])
             # print('before', left, right, nums[left:right+1])
             if left >= right:
                 return
@@ -59,15 +60,15 @@ class Solution(object):
                     r -= 1
                 if nums[l] >= pivot and nums[r] <= pivot and l < r:
                     nums[l], nums[r] = nums[r], nums[l]
-                l, r = l+1, r-1
+                l, r = l + 1, r - 1
             # now l == r
             # print('b', left, right, nums[left:l], nums[l], nums[l+1:right+1])
-            if nums[l] >= pivot: # pivot not the largest
+            if nums[l] >= pivot:  # pivot not the largest
                 nums[l], nums[right] = nums[right], nums[l]
-                quicksort(left, l-1)
-                quicksort(l+1, right)
+                quicksort(left, l - 1)
+                quicksort(l + 1, right)
             else:
-            	quicksort(left, l)
+                quicksort(left, l)
             # print('after', left, right, nums[left:right+1])
             # print(left, right, nums[left:l], nums[l], nums[l+1:right+1])
 
@@ -79,23 +80,24 @@ class Solution(object):
             nums[ind], nums[right] = nums[right], nums[ind]
             pivot = nums[right]
             for j in range(left, right):
-            	if nums[j] <= pivot:
-            		i += 1
-            		nums[i], nums[j] = nums[j], nums[i]
-            nums[i+1], nums[right] = nums[right], nums[i+1]
+                if nums[j] <= pivot:
+                    i += 1
+                    nums[i], nums[j] = nums[j], nums[i]
+            nums[i + 1], nums[right] = nums[right], nums[i + 1]
             quicksort2(left, i)
-            quicksort2(i+2, right)
+            quicksort2(i + 2, right)
 
-        quicksort2(0, len(nums)-1)
+        quicksort2(0, len(nums) - 1)
         return nums
+
 
 if __name__ == "__main__":
     a = Solution()
-    array = [5,2,3,1]
+    array = [5, 2, 3, 1]
     print(a.sortArray(array))
-    array = [5,1,1,2,0,0]
+    array = [5, 1, 1, 2, 0, 0]
     print(a.sortArray(array))
-    array = [1,3,5,7,2,8,6,4]
+    array = [1, 3, 5, 7, 2, 8, 6, 4]
     print(a.sortArray(array))
     # array = [-19945, -19989, -19983, -19979, -19958, -19956, -19995, -19979, -19945, -19951, -19979, -19956, -19987, -19984]
     # print(a.sortArray(array))

@@ -51,7 +51,7 @@ class Solution(object):
         :rtype: int
         """
         n = len(stones)
-        if K > 2 and n % (K-1) != 1:
+        if K > 2 and n % (K - 1) != 1:
             return -1
 
         cnt = 0
@@ -59,7 +59,7 @@ class Solution(object):
             stones_new = [sum(stones[:K])]
             n = len(stones)
             for i in range(n - K):
-                tmp = stones_new[-1] - stones[i] + stones[K+i]
+                tmp = stones_new[-1] - stones[i] + stones[K + i]
                 stones_new.append(tmp)
             # find minimum
             min_sum, min_id = stones_new[0], 0
@@ -69,7 +69,7 @@ class Solution(object):
             # merge the minimum
             stones_ = stones[:min_id]
             stones_.append(min_sum)
-            stones_ += stones[min_id+K:]
+            stones_ += stones[min_id + K :]
             cnt += min_sum
             stones = stones_
         return cnt
@@ -83,18 +83,21 @@ class Solution(object):
             dp.append([0] * n)
         prefix = [0] * (n + 1)
         for i in range(n):
-            prefix[i+1] = prefix[i] + stones[i]
+            prefix[i + 1] = prefix[i] + stones[i]
 
-        for m in range(K, n+1): # distance
-            for i in range(n-m+1):
+        for m in range(K, n + 1):  # distance
+            for i in range(n - m + 1):
                 j = i + m - 1
-                dp[i][j] = min([dp[i][mid] + dp[mid + 1][j] for mid in range(i, j, K-1)])
+                dp[i][j] = min(
+                    [dp[i][mid] + dp[mid + 1][j] for mid in range(i, j, K - 1)]
+                )
                 if (j - i) % (K - 1) == 0:
                     dp[i][j] += prefix[j + 1] - prefix[i]
         return dp[0][n - 1]
 
+
 if __name__ == "__main__":
     a = Solution()
-    print(a.mergeStones([3,2,4,1], 2))
-    print(a.mergeStones([3,2,4,1], 3))
-    print(a.mergeStones([3,5,1,2,6], 3))
+    print(a.mergeStones([3, 2, 4, 1], 2))
+    print(a.mergeStones([3, 2, 4, 1], 3))
+    print(a.mergeStones([3, 5, 1, 2, 6], 3))

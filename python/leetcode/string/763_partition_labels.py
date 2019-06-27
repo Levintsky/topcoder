@@ -16,6 +16,7 @@ S will have length in range [1, 500].
 S will consist of lowercase letters ('a' to 'z') only.
 """
 
+
 class Solution(object):
     def partitionLabels(self, S):
         """
@@ -24,19 +25,19 @@ class Solution(object):
         """
         memo = [-1] * 26
         for i, c in enumerate(S):
-            idx = ord(c) - ord('a')
+            idx = ord(c) - ord("a")
             memo[idx] = i
         st = 0
         n = len(S)
         result = [0]
         while st < n:
             c = S[st]
-            end = memo[ord(c)-ord('a')]
+            end = memo[ord(c) - ord("a")]
             end_max = end
             while True:
-                for i in range(st+1, end+1):
+                for i in range(st + 1, end + 1):
                     c2 = S[i]
-                    end2 = memo[ord(c2)-ord('a')]
+                    end2 = memo[ord(c2) - ord("a")]
                     end_max = max(end_max, end2)
                 if end_max == end:
                     result.append(end - sum(result) + 1)
@@ -52,19 +53,19 @@ class Solution(object):
         """
         memo = [-1] * 26
         for i, c in enumerate(S):
-            idx = ord(c) - ord('a')
+            idx = ord(c) - ord("a")
             memo[idx] = i
-        end = memo[ord(S[0])-ord('a')]
+        end = memo[ord(S[0]) - ord("a")]
         n = len(S)
         result = [-1]
         # while st < n:
         for i in range(n):
-        	# case 1: < end
-        	c = S[i]
-        	end = max(end, memo[ord(c)-ord('a')])
-        	if end == i:
-        		result.append(end)
-        result = [result[i+1]-result[i] for i in range(len(result)-1)]
+            # case 1: < end
+            c = S[i]
+            end = max(end, memo[ord(c) - ord("a")])
+            if end == i:
+                result.append(end)
+        result = [result[i + 1] - result[i] for i in range(len(result) - 1)]
         return result
 
 

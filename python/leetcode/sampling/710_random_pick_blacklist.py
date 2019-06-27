@@ -41,8 +41,8 @@ The input is two lists: the subroutines called and their arguments. Solution's c
 
 import random
 
-class Solution(object):
 
+class Solution(object):
     def __init__(self, N, blacklist):
         """
         :type N: int
@@ -56,9 +56,9 @@ class Solution(object):
         self.M = N - len(self.memo)
         for b in blacklist:
             if b < self.M:
-                while N-1 in self.memo:
+                while N - 1 in self.memo:
                     N -= 1
-                self.memo[b] = N-1
+                self.memo[b] = N - 1
                 N -= 1
 
     def pick(self):
@@ -71,14 +71,14 @@ class Solution(object):
             if k not in self.blacklist:
                 return k
         """
-        p = random.randint(0, self.M-1)
+        p = random.randint(0, self.M - 1)
         if p in self.memo:
             return self.memo[p]
         return p
 
 
 if __name__ == "__main__":
-    a = Solution(10, [3,5,8,9])
+    a = Solution(10, [3, 5, 8, 9])
     for i in range(20):
         print(a.pick())
 # Your Solution object will be instantiated and called as such:

@@ -31,45 +31,64 @@ Note:
 All rows have the same size.
 """
 
+
 class Solution:
     # def numEnclaves(self, A: List[List[int]]) -> int:
     def numEnclaves(self, A):
         m = len(A)
-        if m == 0: return 0
+        if m == 0:
+            return 0
         n = len(A[0])
-        if n == 0: return 0
+        if n == 0:
+            return 0
 
         # go through 4 sides
         new_set = []
         visited = set()
         for i in range(n):
-            if A[0][i] == 1: new_set.append((0, i))
-            if A[m-1][i] == 1: new_set.append((m-1, 1))
-        for i in range(1, m-1):
-        	if A[i][0] == 1: new_set.append((i, 0))
-        	if A[i][n-1] == 1: new_set.append((i, n-1))
+            if A[0][i] == 1:
+                new_set.append((0, i))
+            if A[m - 1][i] == 1:
+                new_set.append((m - 1, 1))
+        for i in range(1, m - 1):
+            if A[i][0] == 1:
+                new_set.append((i, 0))
+            if A[i][n - 1] == 1:
+                new_set.append((i, n - 1))
 
         # travserse
         while len(new_set) > 0:
-        	i, j = new_set.pop()
-        	A[i][j] = 0
-        	if (i, j) not in visited:
-        		visited.add((i, j))
-        		if i > 0 and A[i-1][j] == 1 and (i-1, j) not in visited:
-        			new_set.append((i-1, j))
-        		if i < m-1 and A[i+1][j] == 1 and (i+1, j) not in visited:
-        			new_set.append((i+1, j))
-        		if j > 0 and A[i][j-1] == 1 and (i, j-1) not in visited:
-        			new_set.append((i, j-1))
-        		if j < n-1 and A[i][j+1] == 1 and (i, j+1) not in visited:
-        			new_set.append((i, j+1))
+            i, j = new_set.pop()
+            A[i][j] = 0
+            if (i, j) not in visited:
+                visited.add((i, j))
+                if i > 0 and A[i - 1][j] == 1 and (i - 1, j) not in visited:
+                    new_set.append((i - 1, j))
+                if i < m - 1 and A[i + 1][j] == 1 and (i + 1, j) not in visited:
+                    new_set.append((i + 1, j))
+                if j > 0 and A[i][j - 1] == 1 and (i, j - 1) not in visited:
+                    new_set.append((i, j - 1))
+                if j < n - 1 and A[i][j + 1] == 1 and (i, j + 1) not in visited:
+                    new_set.append((i, j + 1))
         result = [sum(item) for item in A]
         return sum(result)
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.numEnclaves([[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]))
-	print(a.numEnclaves([[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]))
-	array = [[0,0,1,1,0,0,0,0,0,1],[1,1,0,1,0,0,1,0,0,1],[1,1,0,0,1,0,1,1,0,0],[1,0,0,1,0,0,0,0,0,1],[0,0,1,1,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0],[1,0,1,0,1,1,1,0,1,0],[0,1,1,1,0,0,1,0,0,1],[0,1,1,0,0,1,0,1,1,0],[1,0,1,1,0,0,1,1,0,0],[1,0,1,0,1,1,1,0,0,1]]
-	print(a.numEnclaves(array))
+    a = Solution()
+    print(a.numEnclaves([[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]))
+    print(a.numEnclaves([[0, 1, 1, 0], [0, 0, 1, 0], [0, 0, 1, 0], [0, 0, 0, 0]]))
+    array = [
+        [0, 0, 1, 1, 0, 0, 0, 0, 0, 1],
+        [1, 1, 0, 1, 0, 0, 1, 0, 0, 1],
+        [1, 1, 0, 0, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+        [0, 1, 1, 1, 0, 0, 1, 0, 0, 1],
+        [0, 1, 1, 0, 0, 1, 0, 1, 1, 0],
+        [1, 0, 1, 1, 0, 0, 1, 1, 0, 0],
+        [1, 0, 1, 0, 1, 1, 1, 0, 0, 1],
+    ]
+    print(a.numEnclaves(array))

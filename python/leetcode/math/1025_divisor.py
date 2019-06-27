@@ -43,6 +43,7 @@ all even number(2,4) smaller than 5 will leads Alice win, so Alice will lose for
 Therefore, Alice will always win for even number, lose for odd number.
 """
 
+
 class Solution(object):
     def divisorGame(self, N):
         """
@@ -54,10 +55,10 @@ class Solution(object):
         def helper(m):
             for i in range(1, m // 2 + 1):
                 if m % i == 0:
-                    if (m-i) in self.stat and self.stat[m-i] == False:
+                    if (m - i) in self.stat and self.stat[m - i] == False:
                         self.stat[m] = True
                         return True
-                    if (m-i) not in self.stat and helper(m-i) == False:
+                    if (m - i) not in self.stat and helper(m - i) == False:
                         self.stat[m] = True
                         return True
             self.stat[m] = False

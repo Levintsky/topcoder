@@ -37,6 +37,7 @@ board will be a 2 x 3 array as described above.
 board[i][j] will be a permutation of [0, 1, 2, 3, 4, 5].
 """
 
+
 class Solution(object):
     def slidingPuzzle(self, board):
         """
@@ -44,7 +45,7 @@ class Solution(object):
         :rtype: int
         """
         # bfs
-        target = ((1,2,3),(4,5,0))
+        target = ((1, 2, 3), (4, 5, 0))
         curr_ = [board]
         dis = 0
         visited = set()
@@ -72,26 +73,27 @@ class Solution(object):
             # left right
             if j0 != 0:
                 tmp2 = copy_(table)
-                tmp2[i0][j0] = tmp2[i0][j0-1]
-                tmp2[i0][j0-1] = 0
+                tmp2[i0][j0] = tmp2[i0][j0 - 1]
+                tmp2[i0][j0 - 1] = 0
                 result.append(tmp2)
             if j0 != 2:
                 tmp3 = copy_(table)
-                tmp3[i0][j0] = tmp3[i0][j0+1]
-                tmp3[i0][j0+1] = 0
+                tmp3[i0][j0] = tmp3[i0][j0 + 1]
+                tmp3[i0][j0 + 1] = 0
                 result.append(tmp3)
             return result
 
         # bfs
         while len(curr_) > 0:
             # visit everyone and mark visited
-            new_ = set() # one step away
+            new_ = set()  # one step away
             while len(curr_) > 0:
                 curr = curr_.pop()
                 # if visited
                 curr_key = tuple([tuple(item) for item in curr])
                 visited.add(curr_key)
-                if curr_key == target: return dis
+                if curr_key == target:
+                    return dis
                 # add new new_.add()
                 result = generate(curr)
                 for tmp in result:

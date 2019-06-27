@@ -28,6 +28,7 @@ Note:
 S consists only of English lowercase letters.
 """
 
+
 class Solution(object):
     def removeDuplicates(self, S):
         """
@@ -37,10 +38,10 @@ class Solution(object):
         stack = []
         for i, c in enumerate(S):
             if len(stack) == 0:
-            	stack.append(c)
+                stack.append(c)
             elif c == stack[-1]:
-            	stack.pop()
+                stack.pop()
             else:
-            	stack.append(c)
+                stack.append(c)
 
         return "".join(stack)

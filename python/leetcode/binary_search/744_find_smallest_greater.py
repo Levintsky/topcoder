@@ -64,9 +64,8 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    array = ["b", 'b', 'd', 'd', 'e', 'h']
+    array = ["b", "b", "d", "d", "e", "h"]
     print(array)
     a = Solution()
-    for target in ['a', 'b', 'c', 'd', 'e','f','g','h','i']:
+    for target in ["a", "b", "c", "d", "e", "f", "g", "h", "i"]:
         print(target, a.nextGreatestLetter(array, target))
-

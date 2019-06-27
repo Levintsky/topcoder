@@ -29,6 +29,7 @@ Note:
 2 <= B <= 40000
 """
 
+
 class Solution(object):
     def nthMagicalNumber(self, N, A, B):
         """
@@ -44,45 +45,55 @@ class Solution(object):
             if a % b == 0:
                 return b
             else:
-            	return common(b, a % b)
+                return common(b, a % b)
+
         cdg = common(A, B)
         factor = A * B // cdg
-        w1 = int(N / (1+A/B-A/factor))
-        w2 = int(N / (1+B/A-B/factor))
+        w1 = int(N / (1 + A / B - A / factor))
+        w2 = int(N / (1 + B / A - B / factor))
         res1 = w1 * A
         res2 = w2 * B
 
         def find(n, a, b, f, res):
             w = res // a
             cnt = w + res // b - res // f
-            if cnt == N: return res % MOD
+            if cnt == N:
+                return res % MOD
             elif cnt > n:
                 while cnt > n:
                     res -= a
                     w -= 1
                     cnt = w + res // b - res // f
-                if cnt == n: return res % MOD
+                if cnt == n:
+                    return res % MOD
             else:
                 while cnt < n:
                     res += a
                     w += 1
                     cnt = w + res // b - res // f
-                if cnt == n: return res % MOD
+                if cnt == n:
+                    return res % MOD
             return -1
+
         res1 = find(N, A, B, factor, res1)
-        if res1 != -1: return res1
+        if res1 != -1:
+            return res1
         res2 = find(N, B, A, factor, res2)
         return res2
 
     def solve2(self, N, A, B):
         a, b = A, B
-        while b: a, b = b, a % b
-        l, r, lcm = 2, 10**14, A * B / a
+        while b:
+            a, b = b, a % b
+        l, r, lcm = 2, 10 ** 14, A * B / a
         while l < r:
             m = (l + r) / 2
-            if m / A + m / B - m / lcm < N: l = m + 1
-            else: r = m
-        return l % (10**9 + 7)
+            if m / A + m / B - m / lcm < N:
+                l = m + 1
+            else:
+                r = m
+        return l % (10 ** 9 + 7)
+
 
 if __name__ == "__main__":
     a = Solution()

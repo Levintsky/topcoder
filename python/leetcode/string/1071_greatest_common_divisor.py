@@ -28,6 +28,7 @@ Note:
 str1[i] and str2[i] are English uppercase letters.
 """
 
+
 class Solution(object):
     def gcdOfStrings(self, str1, str2):
         """
@@ -41,7 +42,7 @@ class Solution(object):
         for i in range(n, 0, -1):
             if n1 % i == 0 and n2 % i == 0:
                 sub = str1[:i]
-                if str1 == sub * (n1//i) and str2 == sub * (n2//i):
+                if str1 == sub * (n1 // i) and str2 == sub * (n2 // i):
                     return sub
         return ""
 

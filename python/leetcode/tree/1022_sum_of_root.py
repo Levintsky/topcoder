@@ -31,6 +31,7 @@ The answer will not exceed 2^31 - 1.
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def sumRootToLeaf(self, root):
         """
@@ -52,4 +53,3 @@ class Solution(object):
                 helper(prefix, node.left)
             if node.right is not None:
                 helper(prefix, node.right)
-

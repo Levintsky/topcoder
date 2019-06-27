@@ -42,15 +42,15 @@ class Solution(object):
         """
         # TLE
         cnt = 0
-        for i in range(len(A)-K+1):
-        	if A[i] == 0:
-        		cnt += 1
-        		for j in range(i, i+K):
-        			A[j] = 1 - A[j]
+        for i in range(len(A) - K + 1):
+            if A[i] == 0:
+                cnt += 1
+                for j in range(i, i + K):
+                    A[j] = 1 - A[j]
         if sum(A) == len(A):
-        	return cnt
+            return cnt
         else:
-        	return -1
+            return -1
 
     def solution2(self, A, K):
         n = len(A)
@@ -70,7 +70,7 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-	a = Solution()
-	# print(a.minKBitFlips([0,1,0], 1))
-	# print(a.minKBitFlips([1,1,0], 2))
-	print(a.solution2([0,0,0,1,0,1,1,0], 3))
+    a = Solution()
+    # print(a.minKBitFlips([0,1,0], 1))
+    # print(a.minKBitFlips([1,1,0], 2))
+    print(a.solution2([0, 0, 0, 1, 0, 1, 1, 0], 3))

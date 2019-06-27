@@ -36,7 +36,8 @@ class Solution(object):
         :rtype: int
         """
         len_ = len(nums)
-        if len_ == 1: return 0
+        if len_ == 1:
+            return 0
 
         # init
         max1, max2 = None, None
@@ -55,4 +56,3 @@ class Solution(object):
             return max1
         else:
             return -1
-

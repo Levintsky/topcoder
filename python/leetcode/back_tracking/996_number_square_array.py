@@ -70,7 +70,7 @@ class Solution(object):
 
         A.sort()
         for i, item in enumerate(A):
-            if i > 0 and item == A[i-1]:
+            if i > 0 and item == A[i - 1]:
                 continue
             list_ = [item]
             counter[item] -= 1
@@ -83,4 +83,4 @@ if __name__ == "__main__":
     a = Solution()
     print(a.numSquarefulPerms([1, 17, 8]))
     print(a.numSquarefulPerms([2, 2, 2]))
-    print(a.numSquarefulPerms([1,1]))
+    print(a.numSquarefulPerms([1, 1]))

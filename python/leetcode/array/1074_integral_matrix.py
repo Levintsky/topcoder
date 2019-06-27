@@ -37,6 +37,7 @@ Solution:
 
 import collections
 
+
 class Solution(object):
     def numSubmatrixSumTarget(self, matrix, target):
         """
@@ -55,11 +56,16 @@ class Solution(object):
                 if i == 0 and j == 0:
                     inte[i][j] = matrix[i][j]
                 elif i == 0:
-                    inte[i][j] = inte[i][j-1] + matrix[i][j]
+                    inte[i][j] = inte[i][j - 1] + matrix[i][j]
                 elif j == 0:
-                    inte[i][j] = inte[i-1][j] + matrix[i][j]
+                    inte[i][j] = inte[i - 1][j] + matrix[i][j]
                 else:
-                    inte[i][j] = inte[i-1][j] + inte[i][j-1] - inte[i-1][j-1] + matrix[i][j]
+                    inte[i][j] = (
+                        inte[i - 1][j]
+                        + inte[i][j - 1]
+                        - inte[i - 1][j - 1]
+                        + matrix[i][j]
+                    )
 
         res = 0
         for i in range(m):
@@ -67,16 +73,21 @@ class Solution(object):
             for j in range(n):
                 # if inte[i][j] == target:
                 #     res += 1
-                for ii in range(i+1):
-                    for jj in range(j+1):
+                for ii in range(i + 1):
+                    for jj in range(j + 1):
                         if ii == 0 and jj == 0:
                             tmp = inte[i][j]
                         elif ii == 0:
-                            tmp = inte[i][j] - inte[i][jj-1]
+                            tmp = inte[i][j] - inte[i][jj - 1]
                         elif jj == 0:
-                            tmp = inte[i][j] - inte[ii-1][j]
+                            tmp = inte[i][j] - inte[ii - 1][j]
                         else:
-                            tmp = inte[i][j] - inte[ii-1][j] - inte[i][jj-1] + inte[ii-1][jj-1]
+                            tmp = (
+                                inte[i][j]
+                                - inte[ii - 1][j]
+                                - inte[i][jj - 1]
+                                + inte[ii - 1][jj - 1]
+                            )
                         if tmp == target:
                             res += 1
                 print(i, j, res)
@@ -107,7 +118,8 @@ class Solution(object):
                     c[cur] += 1
         return res
 
+
 if __name__ == "__main__":
     a = Solution()
     # print(a.numSubmatrixSumTarget([[0,1,0],[1,1,1],[0,1,0]], 0))
-    print(a.solve2([[0,1,0],[1,1,1],[0,1,0]], 0))
+    print(a.solve2([[0, 1, 0], [1, 1, 1], [0, 1, 0]], 0))

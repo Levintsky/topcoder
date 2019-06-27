@@ -40,12 +40,13 @@ class Solution(object):
         :rtype: bool
         """
         # edge case
-        if len(A) != len(B): return False
+        if len(A) != len(B):
+            return False
 
         def cnt(s):
             result = [0] * 26
             for c in s:
-                result[ord(c)-ord('a')] += 1
+                result[ord(c) - ord("a")] += 1
             return result
 
         if A == B:
@@ -55,8 +56,10 @@ class Solution(object):
 
         idx = []
         for i in range(len(A)):
-            if A[i] != B[i]: idx.append(i)
-        if len(idx) != 2: return False
+            if A[i] != B[i]:
+                idx.append(i)
+        if len(idx) != 2:
+            return False
         i1, i2 = idx[0], idx[1]
         return A[i1] == B[i2] and B[i1] == A[i2]
 

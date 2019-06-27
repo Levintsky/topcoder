@@ -26,8 +26,10 @@ class Solution(object):
         :rtype: int
         """
         len_ = len(cost)
-        if len_ == 0: return 0
-        if len_ == 1: return cost[0]
+        if len_ == 0:
+            return 0
+        if len_ == 1:
+            return cost[0]
 
         result = [cost[0], cost[1]]
         for i, item in enumerate(cost[2:]):

@@ -33,6 +33,7 @@ grid[i][j] is only 0, 1, or 2.
 
 from collections import deque
 
+
 class Solution(object):
     def orangesRotting(self, grid):
         """
@@ -48,41 +49,41 @@ class Solution(object):
                 if grid[i][j] == 2:
                     rot_set.append((i, j))
                 elif grid[i][j] == 1:
-                	clean_set.add((i, j))
+                    clean_set.add((i, j))
         if len(clean_set) == 0:
             return 0
-        
+
         # bfs
         while len(rot_set) > 0:
             tmp_set = deque()
             while len(rot_set) > 0:
-            	i, j = rot_set.pop()
-            	grid[i][j] = 2
-            	if i > 0 and grid[i-1][j] == 1 and (i-1, j) in clean_set:
-            		tmp_set.append((i-1, j))
-            		clean_set.remove((i-1, j))
-            	if i < m-1 and grid[i+1][j] == 1 and (i+1, j) in clean_set:
-            		tmp_set.append((i+1, j))
-            		clean_set.remove((i+1, j))
-            	if j > 0 and grid[i][j-1] == 1 and (i, j-1) in clean_set:
-            		tmp_set.append((i, j-1))
-            		clean_set.remove((i, j-1))
-            	if j < n-1 and grid[i][j+1] == 1 and (i, j+1) in clean_set:
-            		tmp_set.append((i, j+1))
-            		clean_set.remove((i, j+1))
+                i, j = rot_set.pop()
+                grid[i][j] = 2
+                if i > 0 and grid[i - 1][j] == 1 and (i - 1, j) in clean_set:
+                    tmp_set.append((i - 1, j))
+                    clean_set.remove((i - 1, j))
+                if i < m - 1 and grid[i + 1][j] == 1 and (i + 1, j) in clean_set:
+                    tmp_set.append((i + 1, j))
+                    clean_set.remove((i + 1, j))
+                if j > 0 and grid[i][j - 1] == 1 and (i, j - 1) in clean_set:
+                    tmp_set.append((i, j - 1))
+                    clean_set.remove((i, j - 1))
+                if j < n - 1 and grid[i][j + 1] == 1 and (i, j + 1) in clean_set:
+                    tmp_set.append((i, j + 1))
+                    clean_set.remove((i, j + 1))
             result += 1
             rot_set = tmp_set
         if len(clean_set) == 0:
-        	return result-1
+            return result - 1
         else:
-        	return -1
+            return -1
 
 
 if __name__ == "__main__":
     a = Solution()
-    array = [[2,1,1],[1,1,0],[0,1,1]]
+    array = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]
     print(a.orangesRotting(array))
-    array = [[2,1,1],[0,1,1],[1,0,1]]
+    array = [[2, 1, 1], [0, 1, 1], [1, 0, 1]]
     print(a.orangesRotting(array))
-    array = [[0,2]]
+    array = [[0, 2]]
     print(a.orangesRotting(array))

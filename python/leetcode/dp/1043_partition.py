@@ -19,6 +19,7 @@ Note:
 
 import bisect
 
+
 class Solution(object):
     def maxSumAfterPartitioning(self, A, K):
         """
@@ -40,19 +41,19 @@ class Solution(object):
             if curr == 0:
                 left = 0
             else:
-                left = idx[curr-1]+1
-                if left-1 in proc:
+                left = idx[curr - 1] + 1
+                if left - 1 in proc:
                     left = id_
             if curr == len(idx) - 1:
-                right = len(A)-1
+                right = len(A) - 1
             else:
-                right = idx[curr+1]-1
-                if right+1 in proc:
+                right = idx[curr + 1] - 1
+                if right + 1 in proc:
                     right = id_
             val = A[id_]
-            for i in range(left, right+1):
+            for i in range(left, right + 1):
                 A[i] = val
-            result += (right-left+1) * A[id_]
+            result += (right - left + 1) * A[id_]
             proc.add(id_)
         print(A, sum(A))
         return result
@@ -71,8 +72,9 @@ class Solution(object):
                 dp[i] = max(dp[i], dp[i - k] + curMax * k)
         return dp[N - 1]
 
+
 if __name__ == "__main__":
     a = Solution()
     # print(a.maxSumAfterPartitioning([1,15,7,9,2,5,10], 3))
-    print(a.solve2([1,15,7,9,2,5,10], 3))
+    print(a.solve2([1, 15, 7, 9, 2, 5, 10], 3))
     # print(a.maxSumAfterPartitioning([1,4,1,5,7,3,6,1,9,9,3], 4))

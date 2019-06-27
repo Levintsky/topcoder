@@ -56,6 +56,7 @@ class Solution {
 }
 """
 
+
 class Solution(object):
     def isToeplitzMatrix(self, matrix):
         """
@@ -63,29 +64,33 @@ class Solution(object):
         :rtype: bool
         """
         m = len(matrix)
-        if m == 0: return True
+        if m == 0:
+            return True
         n = len(matrix[0])
-        if n == 0: return True
+        if n == 0:
+            return True
         # from left-bottom, [m-1][0]
         # to right-top, [0][n-1]
         diff = m - 1
-        while diff >= 1-n:
+        while diff >= 1 - n:
             if diff >= 0:
-                max_ = min(m-diff, n)
-                data = [matrix[diff+idx][idx] for idx in range(0, max_)]
+                max_ = min(m - diff, n)
+                data = [matrix[diff + idx][idx] for idx in range(0, max_)]
             else:
                 diff2 = -diff
-                max_ = min(m, n+diff)
+                max_ = min(m, n + diff)
                 # print(-diff, max_)
-                data = [matrix[idx][idx+diff2] for idx in range(0, max_)]
+                data = [matrix[idx][idx + diff2] for idx in range(0, max_)]
             # print(diff, -diff, data)
             dataset = set(data)
-            if len(dataset) >= 2: return False
+            if len(dataset) >= 2:
+                return False
             diff -= 1
         return True
+
 
 if __name__ == "__main__":
     a = Solution()
     # matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]
-    matrix = [[97,97],[80,97],[10,80]]
+    matrix = [[97, 97], [80, 97], [10, 80]]
     print(a.isToeplitzMatrix(matrix))

@@ -24,13 +24,15 @@ Output: "100"
 Explantion: (-2) ^ 2 = 4
 """
 
+
 def fastcheck(n_list):
     curr = 0
     base = 1
     for item in n_list:
         curr += item * base
-        base *= (-2)
+        base *= -2
     return curr
+
 
 class Solution:
     def baseNeg2(self, N: int) -> str:
@@ -41,31 +43,33 @@ class Solution:
         while N > 0:
             result.append(N % 2)
             N //= 2
-        
+
         # step 2: one time convert to base -2
         n = len(result)
         for i in range(1, n, 2):
             if result[i] == 1:
-                if i + 1 < n: result[i+1] += 1
-                else: result.append(1)
+                if i + 1 < n:
+                    result[i + 1] += 1
+                else:
+                    result.append(1)
 
         flag = False
-        while not flag: # 1 on (2*i+1)-th digit
+        while not flag:  # 1 on (2*i+1)-th digit
             # check no 2 in data
             flag = True
             for idx, item in enumerate(result):
                 if item >= 2:
                     result[idx] -= 2
-                    if idx+1 < len(result) and result[idx+1] > 0:
-                        result[idx+1] -= 1
+                    if idx + 1 < len(result) and result[idx + 1] > 0:
+                        result[idx + 1] -= 1
                     else:
                         # append 2 1s
                         if idx == len(result) - 1:
                             result.append(0)
                         if idx + 1 == len(result) - 1:
                             result.append(0)
-                        result[idx+1] += 1    
-                        result[idx+2] += 1
+                        result[idx + 1] += 1
+                        result[idx + 2] += 1
                     flag = False
         print(fastcheck(result))
         result = [str(item) for item in result]

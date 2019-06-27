@@ -32,6 +32,7 @@ All worker and bike locations are distinct.
 
 import heapq
 
+
 class Solution(object):
     def assignBikes(self, workers, bikes):
         """
@@ -44,7 +45,7 @@ class Solution(object):
         q = []
         for i in range(m):
             for j in range(n):
-                dis = sum([abs(workers[i][k]-bikes[j][k]) for k in [0, 1]])
+                dis = sum([abs(workers[i][k] - bikes[j][k]) for k in [0, 1]])
                 heapq.heappush(q, (dis, i, j))
         visited_w = set()
         visited_b = set()
@@ -69,7 +70,7 @@ class Solution(object):
             dis.append([])
         for i in range(m):
             for j in range(n):
-                tmp = sum([abs(workers[i][k]-bikes[j][k]) for k in [0,1]])
+                tmp = sum([abs(workers[i][k] - bikes[j][k]) for k in [0, 1]])
                 dis[tmp].append((i, j))
         visited_w = set()
         visited_b = set()
@@ -87,6 +88,6 @@ class Solution(object):
 if __name__ == "__main__":
     a = Solution()
     # print(a.assignBikes([[0,0],[2,1]], [[1,2],[3,3]]))
-    print(a.solve2([[0,0],[2,1]], [[1,2],[3,3]]))
+    print(a.solve2([[0, 0], [2, 1]], [[1, 2], [3, 3]]))
     # print(a.assignBikes([[0,0],[1,1],[2,0]], [[1,0],[2,2],[2,1]]))
-    print(a.solve2([[0,0],[1,1],[2,0]], [[1,0],[2,2],[2,1]]))
+    print(a.solve2([[0, 0], [1, 1], [2, 0]], [[1, 0], [2, 2], [2, 1]]))

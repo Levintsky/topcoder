@@ -36,6 +36,7 @@ Solution 2:
 
 import heapq
 
+
 class Solution(object):
     def validSubarrays(self, nums):
         """
@@ -68,4 +69,4 @@ if __name__ == "__main__":
     # print(a.validSubarrays([1,4,2,5,3]))
     # print(a.validSubarrays([3,2,1]))
     # print(a.validSubarrays([2,2,2]))
-    print(a.solve2([1,4,2,5,3]))
+    print(a.solve2([1, 4, 2, 5, 3]))

@@ -43,18 +43,20 @@ class Solution(object):
         :rtype: float
         """
         workers = sorted([float(w) / q, q] for w, q in zip(wage, quality))
-        res = float('inf')
+        res = float("inf")
         qsum = 0
         heap = []
         for r, q in workers:
             heapq.heappush(heap, -q)
             qsum += q
-            if len(heap) > K: qsum += heapq.heappop(heap)
-            if len(heap) == K: res = min(res, qsum * r)
+            if len(heap) > K:
+                qsum += heapq.heappop(heap)
+            if len(heap) == K:
+                res = min(res, qsum * r)
         return res
 
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.mincostToHireWorkers([10,20,5], [70,50,30], 2))
+    print(a.mincostToHireWorkers([10, 20, 5], [70, 50, 30], 2))
     # print(a.mincostToHireWorkers([3,1,10,10,1], [4,8,2,2,7], 3))

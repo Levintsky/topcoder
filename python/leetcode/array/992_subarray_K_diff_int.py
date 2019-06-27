@@ -63,11 +63,13 @@ class Solution(object):
         count = collections.Counter()
         res = i = 0
         for j in range(len(A)):
-            if count[A[j]] == 0: K -= 1
+            if count[A[j]] == 0:
+                K -= 1
             count[A[j]] += 1
             while K < 0:
                 count[A[i]] -= 1
-                if count[A[i]] == 0: K += 1
+                if count[A[i]] == 0:
+                    K += 1
                 i += 1
             res += j - i + 1
         return res
@@ -78,18 +80,18 @@ class Solution(object):
         begin = 0
         for j in range(len(A)):
             memo[A[j]] = j
-            if len(memo) == K+1:
+            if len(memo) == K + 1:
                 min_index = min(memo.values())
                 begin = min_index + 1
                 del memo[A[min_index]]
-            if len(memo) == K: # case
+            if len(memo) == K:  # case
                 # find minimum in values()
                 min_index = min(memo.values())
                 result += min_index - begin + 1
         return result
- 
+
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.subarraysWithKDistinct([1,2,1,2,3], 2))
-    print(a.solve2([1,2,1,2,3], 2))
+    print(a.subarraysWithKDistinct([1, 2, 1, 2, 3], 2))
+    print(a.solve2([1, 2, 1, 2, 3], 2))

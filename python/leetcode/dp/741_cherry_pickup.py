@@ -76,39 +76,42 @@ class Solution(object):
 
         curr[0][0] = grid[0][0]
 
-        for k in range(1, 2*(n-1)+1): # k-steps
+        for k in range(1, 2 * (n - 1) + 1):  # k-steps
             new = [[-1] * n for _ in range(n)]
-            for i in range(min(n, k+1)):
-                if k - i >= n: continue
-                for j in range(min(n, k+1)):
-                    if k -j >= n: continue
+            for i in range(min(n, k + 1)):
+                if k - i >= n:
+                    continue
+                for j in range(min(n, k + 1)):
+                    if k - j >= n:
+                        continue
                     # if it is thorn, always -1
-                    if grid[i][k-i] == -1 or grid[j][k-j] == -1:
+                    if grid[i][k - i] == -1 or grid[j][k - j] == -1:
                         continue
 
                     result = curr[i][j]
                     if i > 0:
-                        result = max(result, curr[i-1][j])
+                        result = max(result, curr[i - 1][j])
                     if j > 0:
-                        result = max(result, curr[i][j-1])
+                        result = max(result, curr[i][j - 1])
                     if i > 0 and j > 0:
-                        result = max(result, curr[i-1][j-1])
+                        result = max(result, curr[i - 1][j - 1])
 
                     # very important!
                     # otherwise the result will be wrong
-                    if result < 0: continue
+                    if result < 0:
+                        continue
 
-                    result += grid[i][k-i]
-                    result += grid[j][k-j]
-                    if i == j and grid[i][k-i] == 1:
+                    result += grid[i][k - i]
+                    result += grid[j][k - j]
+                    if i == j and grid[i][k - i] == 1:
                         result -= 1
                     new[i][j] = result
             curr = new
-        return max(curr[n-1][n-1], 0)
+        return max(curr[n - 1][n - 1], 0)
 
 
 if __name__ == "__main__":
     a = Solution()
     # array = [[0, 1, -1], [1, 0, -1], [1, 1,  1]]
-    array = [[1,1,-1],[1,-1,1],[-1,1,1]]
+    array = [[1, 1, -1], [1, -1, 1], [-1, 1, 1]]
     print(a.cherryPickup(array))

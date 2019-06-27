@@ -37,6 +37,7 @@ knapsack problem:
 solution: dp
 """
 
+
 class Solution(object):
     def lastStoneWeightII(self, stones):
         """
@@ -49,9 +50,9 @@ class Solution(object):
         for s in stones:
             new_do = set()
             for k in do_:
-            	new_do.add(k)
-            	if k + s <= sum_:
-            	    new_do.add(k+s)
+                new_do.add(k)
+                if k + s <= sum_:
+                    new_do.add(k + s)
             do_ = new_do
         result = sum(stones) - 2 * max(do_)
         return result

@@ -35,6 +35,7 @@ i.e. memo['a'] = ["ab", "ba", ...]
 Then do a one-by-one back trace
 """
 
+
 class Solution(object):
     def longestStrChain(self, words):
         """
@@ -44,7 +45,8 @@ class Solution(object):
         self.global_info = {}
 
         def longest_helper(word, memo):
-            if word not in memo: return 1
+            if word not in memo:
+                return 1
             if word in self.global_info:
                 return self.global_info[word]
             result = 0
@@ -57,7 +59,7 @@ class Solution(object):
             i = 0
             while i < len(w2) and w1[i] == w2[i]:
                 i += 1
-            return w1[i+1:] == w2[i:]
+            return w1[i + 1 :] == w2[i:]
 
         # step 0: group words according to len
         words_dic = {}
@@ -69,18 +71,18 @@ class Solution(object):
 
         n = len(words)
         par_memo = {}
-    
+
         # for i in range(n):
         for len_ in words_dic:
             if len_ + 1 in words_dic:
                 for word2 in words_dic[len_]:
-                    for word1 in words_dic[len_+1]:
+                    for word1 in words_dic[len_ + 1]:
                         if check_removal(word1, word2):
                             if word2 not in par_memo:
                                 par_memo[word2] = [word1]
                             else:
                                 par_memo[word2].append(word1)
-    
+
         # step 2: check longest
         result = 0
         for word in words:
@@ -90,10 +92,10 @@ class Solution(object):
     def solve2(self, words):
         dp = {}
         for w in sorted(words, key=len):
-            dp[w] = max(dp.get(w[:i] + w[i + 1:], 0) + 1 for i in range(len(w)))
+            dp[w] = max(dp.get(w[:i] + w[i + 1 :], 0) + 1 for i in range(len(w)))
         return max(dp.values())
 
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.solve2(["a","b","ba","bca","bda","bdca"]))
+    print(a.solve2(["a", "b", "ba", "bca", "bda", "bdca"]))

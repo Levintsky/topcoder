@@ -26,6 +26,7 @@ The number of operations will be in the range of [1, 1000].
 Please do not use the built-in LinkedList library.
 """
 
+
 class ListNode(object):
     def __init__(self, val):
         self.val = val
@@ -34,7 +35,6 @@ class ListNode(object):
 
 
 class MyLinkedList(object):
-
     def __init__(self):
         """
         Initialize your data structure here.
@@ -63,7 +63,7 @@ class MyLinkedList(object):
         :rtype: None
         """
         node = ListNode(val)
-        if self.head is None: # empty
+        if self.head is None:  # empty
             self.head = node
             self.tail = node
         else:
@@ -79,7 +79,7 @@ class MyLinkedList(object):
         :rtype: None
         """
         node = ListNode(val)
-        if self.head is None: # empty
+        if self.head is None:  # empty
             self.head = node
             self.tail = node
         else:
@@ -124,10 +124,10 @@ class MyLinkedList(object):
         if self.cnt == 1:
             self.head = None
             self.tail = None
-        elif index == 0: # delete head
+        elif index == 0:  # delete head
             self.head = self.head.next
             self.head.prev = None
-        elif index == self.cnt - 1: # delete tail
+        elif index == self.cnt - 1:  # delete tail
             self.tail = self.tail.prev
             self.tail.next = None
         else:
@@ -137,7 +137,6 @@ class MyLinkedList(object):
             curr.prev.next = curr.next
             curr.next.prev = curr.prev
         self.cnt -= 1
-
 
 
 # Your MyLinkedList object will be instantiated and called as such:

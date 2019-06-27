@@ -127,7 +127,8 @@ class Solution(object):
         """
         N = len(A)
         B = [0] * (N + 1)
-        for i in range(N): B[i + 1] = B[i] + A[i]
+        for i in range(N):
+            B[i + 1] = B[i] + A[i]
         # an increasing value
         d = collections.deque()
         res = N + 1
@@ -144,13 +145,13 @@ class Solution(object):
 
     def solve2(self, A, K):
         n = len(A)
-        B = [0] * (n+1)
+        B = [0] * (n + 1)
         for i in range(n):
-            B[i+1] = B[i] + A[i]
+            B[i + 1] = B[i] + A[i]
         res = n + 1
         d = collections.deque()
         # find min(j-i), s.t. i < j and B[j]-B[i] >= K
-        for i in range(n+1):
+        for i in range(n + 1):
             # there is a subarray satisfying
             while d and B[i] - B[d[0]] >= K:
                 res = min(res, i - d.popleft())
@@ -162,7 +163,8 @@ class Solution(object):
         else:
             return res
 
+
 if __name__ == "__main__":
     a = Solution()
     # print(a.shortestSubarray([2,-1,2], 3))
-    print(a.solve2([2,-1,2], 3))
+    print(a.solve2([2, -1, 2], 3))

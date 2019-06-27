@@ -21,20 +21,17 @@ You may assume that nums' length ≥ k-1 and k ≥ 1.
 
 
 class KthLargest(object):
-
     def __init__(self, k, nums):
         """
         :type k: int
         :type nums: List[int]
         """
 
-
     def add(self, val):
         """
         :type val: int
         :rtype: int
         """
-
 
 
 # Your KthLargest object will be instantiated and called as such:

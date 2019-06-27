@@ -46,28 +46,28 @@ class Solution(object):
         carry = False
         i = 0
         while i < len(A) or K > 0:
-        	if i == len(A): A.append(0)
-        	A[i] += K % 10
-        	K = K // 10
-        	if carry:
-        		A[i] += 1
-        	if A[i] >= 10:
-        		A[i] -= 10
-        		carry = True
-        	else:
-        		carry = False
-        	i += 1
+            if i == len(A):
+                A.append(0)
+            A[i] += K % 10
+            K = K // 10
+            if carry:
+                A[i] += 1
+            if A[i] >= 10:
+                A[i] -= 10
+                carry = True
+            else:
+                carry = False
+            i += 1
         if carry:
-        	A.append(1)
+            A.append(1)
         A = A[::-1]
         return A
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.addToArrayForm([1,2,0,0], 34))
-	print(a.addToArrayForm([2,7,4], 181))
-	print(a.addToArrayForm([2,1,5], 806))
-	print(a.addToArrayForm([9,9,9,9,9,9,9,9,9,9], 1))
-	print(a.addToArrayForm([0], 23))
-
+    a = Solution()
+    print(a.addToArrayForm([1, 2, 0, 0], 34))
+    print(a.addToArrayForm([2, 7, 4], 181))
+    print(a.addToArrayForm([2, 1, 5], 806))
+    print(a.addToArrayForm([9, 9, 9, 9, 9, 9, 9, 9, 9, 9], 1))
+    print(a.addToArrayForm([0], 23))

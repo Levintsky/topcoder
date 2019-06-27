@@ -24,6 +24,7 @@ Note:
 
 import collections
 
+
 class Solution(object):
     def rearrangeBarcodes(self, barcodes):
         """
@@ -36,22 +37,21 @@ class Solution(object):
         memo.sort(reverse=True)
         result = []
         for i in range(memo[0][0]):
-        	result.append([memo[0][1]])
+            result.append([memo[0][1]])
         i = 0
         print(result)
         for idx in range(1, len(memo)):
             n, val = memo[idx]
             for j in range(n):
                 result[i].append(val)
-                i = (i+1) % len(result)
+                i = (i + 1) % len(result)
         final = []
         for item in result:
             final += item
         return final
 
 
-
 if __name__ == "__main__":
     a = Solution()
-    print(a.rearrangeBarcodes([1,1,1,2,2,2]))
-    print(a.rearrangeBarcodes([1,1,1,1,2,2,3,3]))
+    print(a.rearrangeBarcodes([1, 1, 1, 2, 2, 2]))
+    print(a.rearrangeBarcodes([1, 1, 1, 1, 2, 2, 3, 3]))

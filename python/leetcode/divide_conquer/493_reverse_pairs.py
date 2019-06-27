@@ -247,86 +247,90 @@ For leetcode 327, applying the sequential recurrence relation (with j fixed) on 
 Anyway, hope these ideas can sharpen your skills for solving array-related problems.
 """
 
+
 class Solution(object):
-  def reversePairs(self, nums):
-    """
+    def reversePairs(self, nums):
+        """
     :type nums: List[int]
     :rtype: int
     """
-    self.cnt = 0
-    self.mergesort(nums, 0, len(nums)-1)
-    return self.cnt
+        self.cnt = 0
+        self.mergesort(nums, 0, len(nums) - 1)
+        return self.cnt
 
-  def mergesort(self, nums, i, j):
-    if i >= j: return
-    if i+1 == j:
-      if nums[i] > nums[j]*2: self.cnt += 1
-      nums[i], nums[j] = min(nums[i],nums[j]), max(nums[i], nums[j])
-      return
-    print(nums, 'tackling', nums[i:j+1])
-    mid = (i+j)/2
-    self.mergesort(nums, i, mid)
-    self.mergesort(nums, mid+1, j)
-    # statistics of reverse pairs
-    nums1 = nums[i:mid+1]
-    nums2 = nums[mid+1:j+1]
-    print(nums1, nums2)
-    i1, i2 = 0, 0
-    n1, n2 = len(nums1), len(nums2)
-    while i1 < n1 and i2 < n2:
-      if nums1[i1] > 2*nums2[i2]:
-        self.cnt += n1-i1
-        i2 += 1
-      else:
-        i1 += 1
-    nums3 = []
-    i1, i2 = 0, 0
-    while i1 < n1 or i2 < n2:
-      if i1 == n1 or (i2!=n2 and nums2[i2]<nums1[i1]):
-        nums3.append(nums2[i2])
-        i2 += 1
-      else:
-        nums3.append(nums1[i1])
-        i1 += 1
-    print('nums3', nums3)
-    nums[i:j+1] = nums3
+    def mergesort(self, nums, i, j):
+        if i >= j:
+            return
+        if i + 1 == j:
+            if nums[i] > nums[j] * 2:
+                self.cnt += 1
+            nums[i], nums[j] = min(nums[i], nums[j]), max(nums[i], nums[j])
+            return
+        print(nums, "tackling", nums[i : j + 1])
+        mid = (i + j) / 2
+        self.mergesort(nums, i, mid)
+        self.mergesort(nums, mid + 1, j)
+        # statistics of reverse pairs
+        nums1 = nums[i : mid + 1]
+        nums2 = nums[mid + 1 : j + 1]
+        print(nums1, nums2)
+        i1, i2 = 0, 0
+        n1, n2 = len(nums1), len(nums2)
+        while i1 < n1 and i2 < n2:
+            if nums1[i1] > 2 * nums2[i2]:
+                self.cnt += n1 - i1
+                i2 += 1
+            else:
+                i1 += 1
+        nums3 = []
+        i1, i2 = 0, 0
+        while i1 < n1 or i2 < n2:
+            if i1 == n1 or (i2 != n2 and nums2[i2] < nums1[i1]):
+                nums3.append(nums2[i2])
+                i2 += 1
+            else:
+                nums3.append(nums1[i1])
+                i1 += 1
+        print("nums3", nums3)
+        nums[i : j + 1] = nums3
 
-  def solution2(self, nums):
-    res = 0
-    copy = [item for item in nums]
-    n = len(nums)
-    bit = [0] * (n + 1)
-    copy.sort()
+    def solution2(self, nums):
+        res = 0
+        copy = [item for item in nums]
+        n = len(nums)
+        bit = [0] * (n + 1)
+        copy.sort()
 
-    def search(i):
-      sum_ = 0
-      while i < n + 1:
-        sum_ += bit[i]
-        i += i & (-i)
-      return sum_
+        def search(i):
+            sum_ = 0
+            while i < n + 1:
+                sum_ += bit[i]
+                i += i & (-i)
+            return sum_
 
-    def insert(i):
-      while i > 0:
-        bit[i] += 1
-        i -= i & -i
+        def insert(i):
+            while i > 0:
+                bit[i] += 1
+                i -= i & -i
 
-    def index(val):
-      l, r, m = 0, n - 1, 0
-      while l <= r:
-        m = l + (r - l) // 2
-        if copy[m] >= val:
-          r = m - 1
-        else:
-          l = m + 1
-      return l + 1
+        def index(val):
+            l, r, m = 0, n - 1, 0
+            while l <= r:
+                m = l + (r - l) // 2
+                if copy[m] >= val:
+                    r = m - 1
+                else:
+                    l = m + 1
+            return l + 1
 
-    for item in nums:
-      res += search(index(2 * item + 1))
-      insert(index(item))
-    return res
+        for item in nums:
+            res += search(index(2 * item + 1))
+            insert(index(item))
+        return res
 
-if __name__ == '__main__':
-  a = Solution()
-  # print(a.reversePairs([1, 3, 2, 3, 1]))
-  # print(a.reversePairs([2, 4, 3, 5, 1]))
-  print(a.solution2([2, 4, 3, 5, 1]))
+
+if __name__ == "__main__":
+    a = Solution()
+    # print(a.reversePairs([1, 3, 2, 3, 1]))
+    # print(a.reversePairs([2, 4, 3, 5, 1]))
+    print(a.solution2([2, 4, 3, 5, 1]))

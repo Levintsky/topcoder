@@ -28,6 +28,7 @@ Note:
 -10^9 <= A[i] <= 10^9
 """
 
+
 class Solution(object):
     def fixedPoint(self, A):
         """
@@ -35,7 +36,8 @@ class Solution(object):
         :rtype: int
         """
         n = len(A)
-        if n == 0: return -1
+        if n == 0:
+            return -1
         l, r = 0, n - 1
         while l < r:
             mid = (l + r) // 2
@@ -53,6 +55,6 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.fixedPoint([-10,-5,0,3,7]))
-    print(a.fixedPoint([0,2,5,8,17]))
-    print(a.fixedPoint([-10,-5,3,4,7,9]))
+    print(a.fixedPoint([-10, -5, 0, 3, 7]))
+    print(a.fixedPoint([0, 2, 5, 8, 17]))
+    print(a.fixedPoint([-10, -5, 3, 4, 7, 9]))

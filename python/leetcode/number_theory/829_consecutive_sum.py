@@ -21,6 +21,7 @@ Explanation: 15 = 15 = 8 + 7 = 4 + 5 + 6 = 1 + 2 + 3 + 4 + 5
 Note: 1 <= N <= 10 ^ 9.
 """
 
+
 class Solution(object):
     def consecutiveNumbersSum(self, N):
         """
@@ -43,8 +44,8 @@ class Solution(object):
             # case 2: 2i
             j = 2 * i
             if N % j != 0:
-                if N // j - (j // 2 -1) > 0:
-                    print(j, N/j)
+                if N // j - (j // 2 - 1) > 0:
+                    print(j, N / j)
                     result += 1
 
             # tackle j = N/i numbers
@@ -60,8 +61,8 @@ class Solution(object):
             # 2j numbers
             j = j * 2
             if N % j != 0:
-                if N // j - (j // 2 -1) > 0:
-                    print(j, N/j)
+                if N // j - (j // 2 - 1) > 0:
+                    print(j, N / j)
                     result += 1
             i += 1
         return result
@@ -74,6 +75,7 @@ class Solution(object):
                 count += 1
             k += 1
         return count
+
 
 if __name__ == "__main__":
     a = Solution()

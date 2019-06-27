@@ -32,6 +32,7 @@ seats contains only 0s or 1s, at least one 0, and at least one 1.
 
 """
 
+
 class Solution(object):
     def maxDistToClosest(self, seats):
         """
@@ -41,22 +42,23 @@ class Solution(object):
         i = 0
         result = 0
         for j, item in enumerate(seats):
-        	if item == 1:
-        		i = j+1
-        	else:
-        		if j == len(seats) - 1 or seats[j+1] == 1:
-        			# case 1: left right both have people
-        			if i == 0: # left-most
-        				result = max(result, j+1)
-        			elif j == len(seats) - 1:
-        				result = max(result, j-i+1)
-        			else:
-        				result = max(result, (j-i)//2+1)
+            if item == 1:
+                i = j + 1
+            else:
+                if j == len(seats) - 1 or seats[j + 1] == 1:
+                    # case 1: left right both have people
+                    if i == 0:  # left-most
+                        result = max(result, j + 1)
+                    elif j == len(seats) - 1:
+                        result = max(result, j - i + 1)
+                    else:
+                        result = max(result, (j - i) // 2 + 1)
         return result
 
+
 if __name__ == "__main__":
-	a = Solution()
-	print(a.maxDistToClosest([1,0,0,0,1,0,1]))
-	print(a.maxDistToClosest([1,0,0,0]))
-	print(a.maxDistToClosest([0,0,0,1]))
-	print(a.maxDistToClosest([1,0,0,0,0,0,1,0,1]))
+    a = Solution()
+    print(a.maxDistToClosest([1, 0, 0, 0, 1, 0, 1]))
+    print(a.maxDistToClosest([1, 0, 0, 0]))
+    print(a.maxDistToClosest([0, 0, 0, 1]))
+    print(a.maxDistToClosest([1, 0, 0, 0, 0, 0, 1, 0, 1]))

@@ -18,6 +18,7 @@ The fourth person goes to city B for a cost of 20.
 The total minimum cost is 10 + 30 + 50 + 20 = 110 to have half the people interviewing in each city.
 """
 
+
 class Solution(object):
     def twoCitySchedCost(self, costs):
         """
@@ -27,15 +28,15 @@ class Solution(object):
         pure1 = []
 
         for a, b in costs:
-        	pure1.append(a-b)
+            pure1.append(a - b)
         pure1.sort()
         N = len(pure1)
-        pure1 = pure1[:N//2]
+        pure1 = pure1[: N // 2]
         res1 = sum(pure1)
         res2 = sum([item[1] for item in costs])
         return res1 + res2
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.twoCitySchedCost([[10,20],[30,200],[400,50],[30,20]]))
+    a = Solution()
+    print(a.twoCitySchedCost([[10, 20], [30, 200], [400, 50], [30, 20]]))

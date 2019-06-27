@@ -31,6 +31,7 @@ Note:
 
 import heapq
 
+
 class Solution(object):
     def kClosest(self, points, K):
         """
@@ -50,5 +51,5 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.kClosest([[1,3],[-2,2]], 1))
-    print(a.kClosest([[3,3],[5,-1],[-2,4]], 2))
+    print(a.kClosest([[1, 3], [-2, 2]], 1))
+    print(a.kClosest([[3, 3], [5, -1], [-2, 4]], 2))

@@ -47,6 +47,7 @@ class Master(object):
                 res += 1
         return res
 
+
 from collections import Counter
 
 
@@ -57,18 +58,20 @@ class Solution(object):
         :type master: Master
         :rtype: None
         """
+
         def distance(word1, word2):
             res = 0
             for i in range(6):
                 if word1[i] == word2[i]:
                     res += 1
             return res
+
         n = len(wordlist)
         dis = []
         for i in range(n):
             dis.append([-1] * n)
         for i in range(n):
-            for j in range(i+1, n):
+            for j in range(i + 1, n):
                 tmpd = distance(wordlist[i], wordlist[j])
                 dis[i][j] = tmpd
                 dis[j][i] = tmpd
@@ -85,7 +88,8 @@ class Solution(object):
                     minmax_ = tmp_max
             tmp_w = wordlist[minidx]
             res = master.guess(tmp_w)
-            if res == 6: return
+            if res == 6:
+                return
             new_candidates = []
             for idx in candidates:
                 if dis[minidx][idx] == res:
@@ -98,4 +102,4 @@ class Solution(object):
 if __name__ == "__main__":
     a = Solution()
     master = Master("acckzz")
-    a.findSecretWord(["acckzz","ccbazz","eiowzz","abcczz"], master)
+    a.findSecretWord(["acckzz", "ccbazz", "eiowzz", "abcczz"], master)

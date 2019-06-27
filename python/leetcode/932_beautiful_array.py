@@ -124,6 +124,7 @@ Python:
 
 """
 
+
 class Solution(object):
     def beautifulArray(self, N):
         """

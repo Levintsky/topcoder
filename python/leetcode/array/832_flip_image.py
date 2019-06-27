@@ -27,6 +27,7 @@ Notes:
 0 <= A[i][j] <= 1
 """
 
+
 class Solution(object):
     def flipAndInvertImage(self, A):
         """
@@ -35,13 +36,15 @@ class Solution(object):
         """
         B = []
         for row in A:
-        	row = [1-item for item in row]
-        	row = row[::-1]
-        	B.append(row)
+            row = [1 - item for item in row]
+            row = row[::-1]
+            B.append(row)
         return B
 
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.flipAndInvertImage([[1,1,0],[1,0,1],[0,0,0]]))
-    print(a.flipAndInvertImage([[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]))
+    print(a.flipAndInvertImage([[1, 1, 0], [1, 0, 1], [0, 0, 0]]))
+    print(
+        a.flipAndInvertImage([[1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 1, 1], [1, 0, 1, 0]])
+    )

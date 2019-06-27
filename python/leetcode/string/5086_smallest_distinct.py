@@ -26,14 +26,16 @@ Note:
 text consists of lowercase English letters.
 """
 
+
 class Solution(object):
     def smallestSubsequence(self, text):
         """
         :type text: str
         :rtype: str
         """
-        if len(text) == 0: return ""
-        memo = {} # c to earliest and latest
+        if len(text) == 0:
+            return ""
+        memo = {}  # c to earliest and latest
         for i, c in enumerate(text):
             if c not in memo:
                 memo[c] = [i, i]
@@ -43,14 +45,15 @@ class Solution(object):
         latest = [item[1] for item in latest]
         mlatest = min(latest)
         for i in range(26):
-            c = chr(ord('a')+i)
+            c = chr(ord("a") + i)
             if c in memo and memo[c][0] <= mlatest:
                 tmp = c
                 # substring: text[i+1]..
                 substr = ""
-                start = memo[c][0]+1
+                start = memo[c][0] + 1
                 for cc in text[start:]:
-                    if cc != c: substr += cc
+                    if cc != c:
+                        substr += cc
                 return c + self.smallestSubsequence(substr)
 
 

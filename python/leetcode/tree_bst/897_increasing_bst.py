@@ -55,9 +55,12 @@ class Solution(object):
         """
         self.last = None
         self.root = None
+
         def in_order(node):
-            if node is None: return
-            if node.left is not None: in_order(node.left)
+            if node is None:
+                return
+            if node.left is not None:
+                in_order(node.left)
             # visit self
             if self.last is not None:
                 self.last.right = node
@@ -68,6 +71,7 @@ class Solution(object):
             # visit right
             if node.right is not None:
                 in_order(node.right)
+
         in_order(root)
         return self.root
 

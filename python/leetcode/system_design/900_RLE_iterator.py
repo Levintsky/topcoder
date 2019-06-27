@@ -49,14 +49,13 @@ Each call to RLEIterator.next(int n) will have 1 <= n <= 10^9.
 
 
 class RLEIterator(object):
-
     def __init__(self, A):
         """
         :type A: List[int]
         """
         self.nums = []
         for i in range(0, len(A), 2):
-            cnt, val = A[i], A[i+1]
+            cnt, val = A[i], A[i + 1]
             if cnt > 0:
                 self.nums.append([cnt, val])
         self.nums = self.nums[::-1]

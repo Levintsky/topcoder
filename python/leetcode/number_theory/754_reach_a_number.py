@@ -24,6 +24,7 @@ Note:
 target will be a non-zero integer in the range [-10^9, 10^9].
 """
 
+
 class Solution(object):
     def reachNumber(self, target):
         """

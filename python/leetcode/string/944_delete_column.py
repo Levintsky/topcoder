@@ -12,6 +12,7 @@ Suppose we chose a set of deletion indices D such that after deletions, each rem
 Return the minimum possible value of D.length.
 """
 
+
 class Solution(object):
     def minDeletionSize(self, A):
         """
@@ -20,18 +21,18 @@ class Solution(object):
         """
         result = 0
         for i in range(len(A[0])):
-        	c = A[0][i]
-        	for j in range(1, len(A)):
-        		if A[j][i] >= c:
-        			c = A[j][i]
-        		else:
-        			result += 1
-        			break
+            c = A[0][i]
+            for j in range(1, len(A)):
+                if A[j][i] >= c:
+                    c = A[j][i]
+                else:
+                    result += 1
+                    break
         return result
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.minDeletionSize(["cba","daf","ghi"]))
-	print(a.minDeletionSize(["a","b"]))
-	print(a.minDeletionSize(["zyx","wvu","tsr"]))
+    a = Solution()
+    print(a.minDeletionSize(["cba", "daf", "ghi"]))
+    print(a.minDeletionSize(["a", "b"]))
+    print(a.minDeletionSize(["zyx", "wvu", "tsr"]))

@@ -52,6 +52,7 @@ Python, top-down:
         return dp(0, len(A) - 1)
 """
 
+
 class Solution(object):
     def minScoreTriangulation(self, A):
         """
@@ -61,26 +62,27 @@ class Solution(object):
         self.memo = {}
 
         def dp(list_):
-        	# base cases:
-        	if len(list_) < 3:
-        		self.memo[tuple(list_)] = 0
-        		return 0
-        	# check if appeared?
-        	for i in range(len(list_)):
-        		tmplist = list_[i:] + list_[:i]
-        		if tuple(tmplist) in self.memo:
-        			return self.memo[tuple(tmplist)]
-        	if len(list_) == 3:
-        		self.memo[tuple(list_)] = list_[0] * list_[1] * list_[2]
-        		return self.memo[tuple(list_)]
-        	min_result = dp([list_[-1], list_[0], list_[1]])
-        	min_result += dp(list_[1:])
-        	for i in range(2, len(list_)-1):
-        		curr_result = dp(list_[:i+1])
-        		curr_result += dp(list_[i:] + [list_[0]])
-        		min_result = min(min_result, curr_result)
-        	self.memo[tuple(list_)] = min_result
-        	return min_result
+            # base cases:
+            if len(list_) < 3:
+                self.memo[tuple(list_)] = 0
+                return 0
+            # check if appeared?
+            for i in range(len(list_)):
+                tmplist = list_[i:] + list_[:i]
+                if tuple(tmplist) in self.memo:
+                    return self.memo[tuple(tmplist)]
+            if len(list_) == 3:
+                self.memo[tuple(list_)] = list_[0] * list_[1] * list_[2]
+                return self.memo[tuple(list_)]
+            min_result = dp([list_[-1], list_[0], list_[1]])
+            min_result += dp(list_[1:])
+            for i in range(2, len(list_) - 1):
+                curr_result = dp(list_[: i + 1])
+                curr_result += dp(list_[i:] + [list_[0]])
+                min_result = min(min_result, curr_result)
+            self.memo[tuple(list_)] = min_result
+            return min_result
+
         result = dp(A)
         print(self.memo)
         return result
@@ -89,40 +91,47 @@ class Solution(object):
         n = len(A)
         full_result = []
         result = []
-        for i in range(n-2):
-            result.append(A[i]*A[i+1]*A[i+2])
+        for i in range(n - 2):
+            result.append(A[i] * A[i + 1] * A[i + 2])
         full_result.append(result)
 
-        for i in range(1, n-2): #
+        for i in range(1, n - 2):  #
             new_result = []
             # full_result[0]: 3 points, 0..2, 1..3, j..j+2
             # full_result[1]: 4 points, 0..3, 1..4, j..j+3
             #  ...
             # full_result[i]: 3+i points, 0..2+i, 1..3+i
-            for j in range(n-i-2):
-    		    # starting point
+            for j in range(n - i - 2):
+                # starting point
 
-    			# new_result[j]: j..2+i+j
-    			# new3: j..k, k..2+i+j, (j, k, 2+i+j)
+                # new_result[j]: j..2+i+j
+                # new3: j..k, k..2+i+j, (j, k, 2+i+j)
                 min_result = None
-                for k in range(j+1, 2+i+j):
-                    if k-j > 1: tmp1 = full_result[k-j-2][j]
-                    else: tmp1 = 0
+                for k in range(j + 1, 2 + i + j):
+                    if k - j > 1:
+                        tmp1 = full_result[k - j - 2][j]
+                    else:
+                        tmp1 = 0
                     # print(j,k,3+i+j,"||",A[j], A[k], A[3+i+j])
-                    tmp2 = A[j] * A[k] * A[2+i+j]
-                    if i+j-k >= 0: tmp3 = full_result[i+j-k][k]
-                    else: tmp3 = 0
-                    if min_result is None: min_result = tmp1+tmp2+tmp3
-                    else: min_result = min(min_result, tmp1+tmp2+tmp3)
+                    tmp2 = A[j] * A[k] * A[2 + i + j]
+                    if i + j - k >= 0:
+                        tmp3 = full_result[i + j - k][k]
+                    else:
+                        tmp3 = 0
+                    if min_result is None:
+                        min_result = tmp1 + tmp2 + tmp3
+                    else:
+                        min_result = min(min_result, tmp1 + tmp2 + tmp3)
                 new_result.append(min_result)
             full_result.append(new_result)
         return full_result[-1][0]
 
+
 if __name__ == "__main__":
-	a = Solution()
-	# print(a.minScoreTriangulation([1,2,3]))
-	print(a.solve2([1,2,3]))
-	# print(a.minScoreTriangulation([3,7,4,5]))
-	print(a.solve2([3,7,4,5]))
-	# print(a.minScoreTriangulation([1,3,1,4,1,5]))
-	print(a.solve2([1,3,1,4,1,5]))
+    a = Solution()
+    # print(a.minScoreTriangulation([1,2,3]))
+    print(a.solve2([1, 2, 3]))
+    # print(a.minScoreTriangulation([3,7,4,5]))
+    print(a.solve2([3, 7, 4, 5]))
+    # print(a.minScoreTriangulation([1,3,1,4,1,5]))
+    print(a.solve2([1, 3, 1, 4, 1, 5]))

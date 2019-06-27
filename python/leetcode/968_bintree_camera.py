@@ -45,6 +45,7 @@ Idea 2: (top-down)
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def minCameraCover(self, root):
         """
@@ -53,7 +54,6 @@ class Solution(object):
         """
         self.memo = {}
 
-
     def solve2(self, root):
         def helper(node):
             # given a node,
@@ -61,12 +61,9 @@ class Solution(object):
             # return min if everything is attended
             # return min if everything and the node is attended
             if node is None:
-            	return 0, 0, 0
+                return 0, 0, 0
             if node.left is None and node.right is None:
-            	return 0, 1, 1
+                return 0, 1, 1
             if node.left is None:
-            	min_l1, min_l2 = helper(node.right)
-            	return min(min_l1, min_l2), 
-
-
-
+                min_l1, min_l2 = helper(node.right)
+                return (min(min_l1, min_l2),)

@@ -9,6 +9,7 @@ class Solution(object):
             return str1
         if str2.find(str1) >= 0:
             return str2
+
         def produce_common(s1, s2):
             # s1..s2
             overlap = min(len(s1), len(s2)) - 1
@@ -17,6 +18,7 @@ class Solution(object):
                     return s1 + s2[overlap:]
                 overlap -= 1
             return s1 + s2
+
         res1 = produce_common(str1, str2)
         res2 = produce_common(str2, str1)
         if len(res1) <= len(res2):
@@ -33,7 +35,7 @@ class Solution(object):
             return res1
         else:
             return res2
-    
+
     def find_(self, st1, st2):
         start = -1
         len_ = -1
@@ -52,24 +54,27 @@ class Solution(object):
         res = st1
         if start > 0:
             res = st2[:start] + res
-        res += st2[start+len_:]
+        res += st2[start + len_ :]
         return res
-        
+
     def solve3(self, str1, str2):
         # longest common
         n1 = len(str1)
         n2 = len(str2)
         result = []
-        for i in range(n1+1):
-            result.append([[0, ""] for _ in range(n2+1)])
+        for i in range(n1 + 1):
+            result.append([[0, ""] for _ in range(n2 + 1)])
         for i in range(n1):
             for j in range(n2):
                 if str1[i] == str2[j]:
-                    result[i+1][j+1] = [result[i][j][0] + 1, result[i][j][1]+str1[i]]
-                elif result[i][j+1][0] >= result[i+1][j][0]:
-                    result[i+1][j+1] = [item for item in result[i][j+1]]
+                    result[i + 1][j + 1] = [
+                        result[i][j][0] + 1,
+                        result[i][j][1] + str1[i],
+                    ]
+                elif result[i][j + 1][0] >= result[i + 1][j][0]:
+                    result[i + 1][j + 1] = [item for item in result[i][j + 1]]
                 else:
-                    result[i+1][j+1] = [item for item in result[i+1][j]]
+                    result[i + 1][j + 1] = [item for item in result[i + 1][j]]
         # print(result[-1][-1])
         longest = result[n1][n2][1]
         n3 = len(longest)
@@ -93,6 +98,7 @@ class Solution(object):
             i += 1
             j += 1
         return res
+
 
 if __name__ == "__main__":
     a = Solution()

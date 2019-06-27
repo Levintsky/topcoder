@@ -29,6 +29,7 @@ Note:
 a != b, b != c, c != a
 """
 
+
 class Solution(object):
     def numMovesStones(self, a, b, c):
         """
@@ -37,20 +38,20 @@ class Solution(object):
         :type c: int
         :rtype: List[int]
         """
-        x = min(a,b,c)
-        z = max(a,b,c)
-        y = a+b+c-x-z
-        if y-x == 1 and z-y == 1:
-        	return [0, 0]
-        if y-x <= 2 or z-y <= 2:
-        	min_ = 1
+        x = min(a, b, c)
+        z = max(a, b, c)
+        y = a + b + c - x - z
+        if y - x == 1 and z - y == 1:
+            return [0, 0]
+        if y - x <= 2 or z - y <= 2:
+            min_ = 1
         else:
-        	min_ = 2
-        max_ = (y-x-1) + (z-y-1)
+            min_ = 2
+        max_ = (y - x - 1) + (z - y - 1)
         return [min_, max_]
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.numMovesStones(1,2,5))
-	print(a.numMovesStones(4,3,2))
+    a = Solution()
+    print(a.numMovesStones(1, 2, 5))
+    print(a.numMovesStones(4, 3, 2))

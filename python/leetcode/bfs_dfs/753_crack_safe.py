@@ -51,6 +51,7 @@ cross circular, like 11, 1111, 1212,
 cross rotating repetition like 1211, since we have 1112
 """
 
+
 class Solution(object):
     def crackSafe(self, n, k):
         """
@@ -59,37 +60,45 @@ class Solution(object):
         :rtype: str
         """
         result = []
+
         def sub_gen(n_, k):
             if n_ == 1:
                 result = [str(i) for i in range(k)]
                 return result
             else:
-                result = sub_gen(n_-1, k)
+                result = sub_gen(n_ - 1, k)
                 new_result = []
                 for i in range(k):
-                    tmp_result = [str(i)+item for item in result]
+                    tmp_result = [str(i) + item for item in result]
                     new_result += tmp_result
                 return new_result
 
         def generate(n, k):
             # n-digit, k-choice
-            if n == 1: len_ = [1]
-            elif n == 2: len_ = [1, 2]
-            elif n == 3: len_ = [1, 3]
-            else: len_ = [1, 2, 4]
-        
+            if n == 1:
+                len_ = [1]
+            elif n == 2:
+                len_ = [1, 2]
+            elif n == 3:
+                len_ = [1, 3]
+            else:
+                len_ = [1, 2, 4]
+
             for i in range(k):
                 # 1st digit
                 s = str(i)
                 result.append(s)
-                if n == 1: continue
+                if n == 1:
+                    continue
                 for j in range(k):
-                    s = str(i)+str(j)
+                    s = str(i) + str(j)
                     result.append(s)
-                    if n != 4: continue
+                    if n != 4:
+                        continue
                     for ii in range(k):
                         for jj in range(k):
-                            result.append(s+str(ii)+str(jj))
+                            result.append(s + str(ii) + str(jj))
+
         generate(n, k)
         print(result)
 
@@ -105,7 +114,7 @@ class Solution(object):
             if len(curr) == k ** n + n - 1:
                 self.result = curr
                 return True
-            tmp = curr[-(n-1):]
+            tmp = curr[-(n - 1) :]
             for i in range(k):
                 full = tmp + str(i)
                 if full not in self.memo:
@@ -116,6 +125,7 @@ class Solution(object):
                     curr = curr[:-1]
                     self.memo.remove(full)
             return False
+
         dfs(curr)
         return self.result
 

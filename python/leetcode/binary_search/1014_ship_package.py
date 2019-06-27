@@ -52,6 +52,7 @@ x smaller, f(x) larger
 can query f(x)
 """
 
+
 class Solution(object):
     def shipWithinDays(self, weights, D):
         """

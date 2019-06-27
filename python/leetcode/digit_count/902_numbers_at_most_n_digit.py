@@ -31,6 +31,7 @@ D is a subset of digits '1'-'9' in sorted order.
 1 <= N <= 10^9
 """
 
+
 class Solution(object):
     def atMostNGivenDigitSet(self, D, N):
         """

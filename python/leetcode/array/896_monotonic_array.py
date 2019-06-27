@@ -37,6 +37,7 @@ Note:
 -100000 <= A[i] <= 100000
 """
 
+
 class Solution(object):
     def isMonotonic(self, A):
         """
@@ -47,7 +48,7 @@ class Solution(object):
         i = 1
         # check increasing
         while i < n:
-            if A[i] < A[i-1]:
+            if A[i] < A[i - 1]:
                 break
             i += 1
         if i == n:
@@ -55,7 +56,7 @@ class Solution(object):
         i = 1
         # check decreasing
         while i < n:
-            if A[i] > A[i-1]:
+            if A[i] > A[i - 1]:
                 return False
             i += 1
         return True
@@ -63,8 +64,8 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.isMonotonic([1,2,2,3]))
-    print(a.isMonotonic([6,5,4,4]))
-    print(a.isMonotonic([1,3,2]))
-    print(a.isMonotonic([1,2,4,5]))
-    print(a.isMonotonic([1,1,1]))
+    print(a.isMonotonic([1, 2, 2, 3]))
+    print(a.isMonotonic([6, 5, 4, 4]))
+    print(a.isMonotonic([1, 3, 2]))
+    print(a.isMonotonic([1, 2, 4, 5]))
+    print(a.isMonotonic([1, 1, 1]))

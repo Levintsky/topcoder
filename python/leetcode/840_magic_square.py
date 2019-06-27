@@ -30,6 +30,7 @@ Note:
 0 <= grid[i][j] <= 15
 """
 
+
 class Solution(object):
     def numMagicSquaresInside(self, grid):
         """
@@ -42,29 +43,31 @@ class Solution(object):
         def check_magic(i, j):
             # check distinct
             set_ = set()
-            for ii in range(i, i+3):
-                for jj in range(j, j+3):
+            for ii in range(i, i + 3):
+                for jj in range(j, j + 3):
                     set_.add(grid[ii][jj])
             if not len(set_) == 9 or min(set_) != 1 or max(set_) != 9:
                 return False
             # check sum
-            for ii in range(i, i+3):
-                sum_ = sum(grid[ii][j:j+3])
-                if sum_ != 15: return False
-            for jj in range(j, j+3):
-                sum_ = sum([grid[ii][jj] for ii in range(i, i+3)])
-                if sum_ != 15: return False
+            for ii in range(i, i + 3):
+                sum_ = sum(grid[ii][j : j + 3])
+                if sum_ != 15:
+                    return False
+            for jj in range(j, j + 3):
+                sum_ = sum([grid[ii][jj] for ii in range(i, i + 3)])
+                if sum_ != 15:
+                    return False
             return True
 
         result = 0
-        for i in range(m-2):
-        	for j in range(n-2):
-        		if check_magic(i, j):
-        			print(i,j)
-        			result += 1
+        for i in range(m - 2):
+            for j in range(n - 2):
+                if check_magic(i, j):
+                    print(i, j)
+                    result += 1
         return result
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.numMagicSquaresInside([[4,3,8,4],[9,5,1,9],[2,7,6,2]]))
+    a = Solution()
+    print(a.numMagicSquaresInside([[4, 3, 8, 4], [9, 5, 1, 9], [2, 7, 6, 2]]))

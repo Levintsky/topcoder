@@ -37,6 +37,7 @@ The given list has length in the range [0, 10000].
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
     # def nextLargerNodes(self, head: ListNode) -> List[int]:
     def nextLargerNodes(self, array):
@@ -52,8 +53,8 @@ class Solution:
             n = n.next
         """
         stack = []
-        result = []            
-        # step 2: 
+        result = []
+        # step 2:
         stack.append((0, array[0]))
         result = [0] * len(array)
         for idx in range(1, len(array)):
@@ -70,5 +71,5 @@ class Solution:
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.nextLargerNodes([1,7,5,1,9,2,5,1]))
+    print(a.nextLargerNodes([1, 7, 5, 1, 9, 2, 5, 1]))
     # print(a.nextLargerNodes([2,1,5]))

@@ -23,7 +23,6 @@ import heapq
 
 
 class KthLargest(object):
-
     def __init__(self, k, nums):
         """
         :type k: int
@@ -57,5 +56,4 @@ class KthLargest(object):
 # param_1 = obj.add(val)
 
 if __name__ == "__main__":
-    a = KthLargest(3, [4,5,8,2])
-
+    a = KthLargest(3, [4, 5, 8, 2])

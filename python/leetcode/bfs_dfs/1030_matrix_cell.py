@@ -35,6 +35,7 @@ Note:
 0 <= c0 < C
 """
 
+
 class Solution(object):
     def allCellsDistOrder(self, R, C, r0, c0):
         """
@@ -55,18 +56,19 @@ class Solution(object):
                 if (r, c) not in visited:
                     visited.add((r, c))
                     result.append([r, c])
-                if r+1 < R and (r+1, c) not in visited:
-                    new_active.add((r+1, c))
-                if r-1 >= 0 and (r-1, c) not in visited:
-                    new_active.add((r-1, c))
-                if c+1 < C and (r, c+1) not in visited:
-                    new_active.add((r, c+1))
-                if c-1 >= 0 and (r, c-1) not in visited:
-                    new_active.add((r, c-1))
+                if r + 1 < R and (r + 1, c) not in visited:
+                    new_active.add((r + 1, c))
+                if r - 1 >= 0 and (r - 1, c) not in visited:
+                    new_active.add((r - 1, c))
+                if c + 1 < C and (r, c + 1) not in visited:
+                    new_active.add((r, c + 1))
+                if c - 1 >= 0 and (r, c - 1) not in visited:
+                    new_active.add((r, c - 1))
             # print(active, new_active)
             print(len(result))
             active, new_active = new_active, []
         return result
+
 
 if __name__ == "__main__":
     a = Solution()

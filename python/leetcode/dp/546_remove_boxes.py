@@ -1,4 +1,4 @@
-'''
+"""
 546. Remove Boxes (Hard)
 
 Given several boxes with different colors represented by different positive numbers. 
@@ -18,7 +18,7 @@ Explanation:
 ----> [1, 1] (3*3=9 points) 
 ----> [] (2*2=4 points)
 Note: The number of boxes n would not exceed 100.
-'''
+"""
 
 """
 Since the input is an array, let's begin with the usual approach by breaking it down with the original problem applied to each of the subarrays.
@@ -116,77 +116,83 @@ Side notes: In case you are curious, for the problem "leetcode 312. Burst Balloo
 
 
 class Solution(object):
-  def removeBoxes(self, boxes):
-    """
+    def removeBoxes(self, boxes):
+        """
     :type boxes: List[int]
     :rtype: int
     """
 
-  def solution2(self, boxes):
-    n = len(boxes)
-    # create n * n * n box
-    dp = []
-    for i in range(n):
-      tmp1 = []
-      for j in range(n):
-        tmp2 = [0] * n
-        tmp1.append(tmp2)
-      dp.append(tmp1)
-    result = self.dp_td(boxes, dp, 0, n-1, 0)
+    def solution2(self, boxes):
+        n = len(boxes)
+        # create n * n * n box
+        dp = []
+        for i in range(n):
+            tmp1 = []
+            for j in range(n):
+                tmp2 = [0] * n
+                tmp1.append(tmp2)
+            dp.append(tmp1)
+        result = self.dp_td(boxes, dp, 0, n - 1, 0)
 
-    return result
+        return result
 
-  def dp_td(self, boxes, dp, i, j, k):
-    # top-down dp
-    if i > j: return 0
-    if dp[k][i][j] > 0:
+    def dp_td(self, boxes, dp, i, j, k):
+        # top-down dp
+        if i > j:
+            return 0
+        if dp[k][i][j] > 0:
+            return dp[k][i][j]
+
+        while j > i and boxes[i + 1] == boxes[i]:
+            i += 1
+            k += 1
+
+        dp[k][i][j] = self.dp_td(boxes, dp, i + 1, j, 0) + (k + 1) * (k + 1)
+
+        for m in range(i + 1, j + 1):
+            if boxes[i] == boxes[m]:
+                dp[k][i][j] = max(
+                    dp[k][i][j],
+                    self.dp_td(boxes, dp, i + 1, m - 1, 0)
+                    + self.dp_td(boxes, dp, m, j, k + 1),
+                )
         return dp[k][i][j]
 
-    while j > i and boxes[i+1] == boxes[i]:
-        i += 1
-        k += 1
+    def solution3(self, boxes):
+        n = len(boxes)
+        # create n * n * n box of zeros
+        dp = []
+        for i in range(n):
+            tmp1 = []
+            for j in range(n):
+                tmp2 = [0] * n
+                tmp1.append(tmp2)
+            dp.append(tmp1)
+        # set diagonal
+        for i in range(n):
+            for k in range(j + 1):
+                dp[k][i][i] = (k + 1) ** 2
+        result = self.dp_bu(boxes, dp, 0, n - 1, 0)
 
-    dp[k][i][j] = self.dp_td(boxes, dp, i+1, j,0) + (k+1)*(k+1)
+        return result
 
-    for m in range(i+1, j+1):
-      if boxes[i] == boxes[m]:
-        dp[k][i][j] = max(dp[k][i][j], self.dp_td(boxes, dp, i+1, m-1,0) + self.dp_td(boxes, dp, m, j, k+1))
-    return dp[k][i][j]
+    def dp_bu(self, boxes, dp, i, j, k):
+        # bottom-up dp
+        n = len(boxes)
+        for l in range(1, n):
+            for j in range(l, n):
+                i = j - l
+                for k in range(i + 1):
+                    res = (k + 1) ** 2 + dp[0][i + 1][j]
+                    for m in range(i + 1, j + 1):
+                        if boxes[m] == boxes[i]:
+                            res = max(res, dp[0][i + 1][m - 1] + dp[k + 1][m][j])
+                    dp[k][i][j] = res
+        if n > 0:
+            return dp[0][0][n - 1]
+        else:
+            return 0
 
-  def solution3(self, boxes):
-    n = len(boxes)
-    # create n * n * n box of zeros
-    dp = []
-    for i in range(n):
-      tmp1 = []
-      for j in range(n):
-        tmp2 = [0] * n
-        tmp1.append(tmp2)
-      dp.append(tmp1)
-    # set diagonal
-    for i in range(n):
-      for k in range(j+1):
-        dp[k][i][i] = (k+1) ** 2
-    result = self.dp_bu(boxes, dp, 0, n-1, 0)
-
-    return result
-
-  def dp_bu(self, boxes, dp, i, j, k):
-    # bottom-up dp
-    n = len(boxes)
-    for l in range(1, n):
-      for j in range(l, n):
-        i = j - l
-        for k in range(i+1):
-          res = (k+1) ** 2 + dp[0][i+1][j]
-          for m in range(i+1, j+1):
-            if boxes[m] == boxes[i]:
-              res = max(res, dp[0][i+1][m-1] + dp[k+1][m][j])
-          dp[k][i][j] = res
-    if n > 0:
-      return dp[0][0][n-1]
-    else:
-      return 0
 
 """
 my own explanation:
@@ -195,12 +201,12 @@ my own explanation:
 2. dp matrix serves as a memoized dp; (if computed, just use)
 """
 
-if __name__ == '__main__':
-  a = Solution()
-  """
+if __name__ == "__main__":
+    a = Solution()
+    """
   array = [36,46,75,36,30,81,82,22,78,6,48,37,25,33,49,97,18,18,53,87,54,37,33,52,37,79,59,53,77,39,66,1,56,1,83,51,65,67,47,21,9,48,55,19,62,37,58,85,36,33,39,19,55,61,99,41,84,76,85,65,78,69,49,46,73,47,80,14,55,43,87,88,51,81,65,86,45,100,31,100,5,7,16,59,95,51,26,91,17,26,17,43,36,5,17,43,27,17,37,19]
   """
-  # print(a.solution3([1, 3, 2, 2, 2, 3, 4, 3, 1]))
-  # print a.removeBoxes([2, 2, 3, 3, 3, 2, 2, 3, 3, 1])
-  # print a.solution2([2, 2, 3, 3, 3, 2, 2, 3, 3, 1])
-  print(a.solution2([1, 2, 1]))
+    # print(a.solution3([1, 3, 2, 2, 2, 3, 4, 3, 1]))
+    # print a.removeBoxes([2, 2, 3, 3, 3, 2, 2, 3, 3, 1])
+    # print a.solution2([2, 2, 3, 3, 3, 2, 2, 3, 3, 1])
+    print(a.solution2([1, 2, 1]))

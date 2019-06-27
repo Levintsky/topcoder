@@ -33,6 +33,7 @@ All local and domain names are non-empty.
 Local names do not start with a '+' character.
 """
 
+
 class Solution(object):
     def numUniqueEmails(self, emails):
         """
@@ -41,22 +42,30 @@ class Solution(object):
         """
         email_set = set()
         for email in emails:
-        	lr = email.split("@")
-        	l = lr[0]
-        	tmp = ""
-        	for c in l:
-        		if c == "+":
-        			break
-        		elif c == ".":
-        			continue
-        		else:
-        			tmp += c
-        	lr[0] = tmp
-        	email = "@".join(lr)
-        	email_set.add(email)
+            lr = email.split("@")
+            l = lr[0]
+            tmp = ""
+            for c in l:
+                if c == "+":
+                    break
+                elif c == ".":
+                    continue
+                else:
+                    tmp += c
+            lr[0] = tmp
+            email = "@".join(lr)
+            email_set.add(email)
         return len(email_set)
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.numUniqueEmails(["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]))
+    a = Solution()
+    print(
+        a.numUniqueEmails(
+            [
+                "test.email+alex@leetcode.com",
+                "test.e.mail+bob.cathy@leetcode.com",
+                "testemail+david@lee.tcode.com",
+            ]
+        )
+    )

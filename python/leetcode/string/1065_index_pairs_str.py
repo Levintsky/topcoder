@@ -23,10 +23,12 @@ It's guaranteed that all strings in words are different.
 Return the pairs [i,j] in sorted order (i.e. sort them by their first coordinate in case of ties sort them by their second coordinate).
 """
 
+
 class TrieNode(object):
     def __init__(self):
-    	self.next = [None] * 26
-    	self.is_word = False
+        self.next = [None] * 26
+        self.is_word = False
+
 
 class Solution(object):
     def indexPairs(self, text, words):
@@ -40,29 +42,28 @@ class Solution(object):
         for word in words:
             n = root
             for idx, c in enumerate(word):
-                char_idx = ord(c) - ord('a')
+                char_idx = ord(c) - ord("a")
                 if n.next[char_idx] is None:
                     n.next[char_idx] = TrieNode()
                 n = n.next[char_idx]
                 if idx == len(word) - 1:
                     n.is_word = True
         result = []
-        for i in range(len(text)): # start i
+        for i in range(len(text)):  # start i
             n = root
             for j in range(i, len(text)):
                 c = text[j]
-                cid = ord(c) - ord('a')
+                cid = ord(c) - ord("a")
                 if n.next[cid] is None:
                     break
                 else:
                     n = n.next[cid]
                     if n.is_word:
-                    	result.append([i, j])
+                        result.append([i, j])
         return result
 
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.indexPairs("thestoryofleetcodeandme", ["story","fleet","leetcode"]))
-    print(a.indexPairs("ababa", ["aba","ab"]))
-
+    print(a.indexPairs("thestoryofleetcodeandme", ["story", "fleet", "leetcode"]))
+    print(a.indexPairs("ababa", ["aba", "ab"]))
