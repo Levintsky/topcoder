@@ -13,6 +13,8 @@
 - LC-357: number with unique digits (Specific case of 1012)
 - LC-788: rotate digit (digits in set([0, 1, 8, 2, 5, 6, 9]))
 - LC-902: Numbers At Most N Given Digit Set
+- LC-1088: Confusing Number II
+- LC-660: Remove 9
 
 ## Count a Specific Digit
 - LC-233: Same as 1067, Count 1;
@@ -33,7 +35,7 @@
 		```python
 		(n // 100) * 10 + min(max(n % 1000 - 100 + 1, 0), 100)
 		```
-- Problem-1067: between Low and High, how many times a specific digit appears;
+- LC-1067: between Low and High, how many times a specific digit appears;
 	- For digit [1..9] same as Problem-233
 	- For digit 0
 		- Case 1: last digit such as xxx0 (not influenced)

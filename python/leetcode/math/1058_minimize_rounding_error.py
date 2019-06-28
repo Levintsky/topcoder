@@ -38,27 +38,27 @@ class Solution(object):
         res = sum([abs(round(item) - item) for item in prices])
         if t_round == target:
             # just round
-            return res
+            return str("%.3f" % res)
         elif t_round < target:
             # should round up
             tmp = [item - round(item) for item in prices if round(item) < item]
             diff = target - t_round
             if diff > len(tmp):
-                return -1
+                return "-1"
             tmp.sort(reverse=True)
             tmp = tmp[:diff]
             res2 = sum([1.0 - 2 * item for item in tmp])
-            return res + res2
+            return str("%.3f" % (res + res2))
         else:  # t_round > target
             # should round down
             tmp = [round(item) - item for item in prices if round(item) > item]
             diff = t_round - target
             if diff > len(tmp):
-                return -1
+                return "-1"
             tmp.sort(reverse=True)
             tmp = tmp[:diff]
             res2 = sum([1.0 - 2 * item for item in tmp])
-            return res + res2
+            return str("%.3f" % (res + res2))
 
 
 if __name__ == "__main__":

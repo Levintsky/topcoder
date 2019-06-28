@@ -1,5 +1,5 @@
 """
-479. Largest Palindrome Product (Easy)
+479. Largest Palindrome Product (Hard)
 
 Find the largest palindrome made from the product of two n-digit numbers.
 
@@ -16,6 +16,15 @@ Explanation: 99 x 91 = 9009, 9009 % 1337 = 987
 Note:
 
 The range of n is [1,8].
+"""
+
+"""
+Fastest Solution:
+public int largestPalindrome(int n) {
+    int[] x = { 9, 99, 993, 9999, 99979, 999999, 9998017, 99999999 };
+    int[] y = { 1, 91, 913, 9901, 99681, 999001, 9997647, 99990001 };
+    return ((x[n - 1] % 1337) * (y[n - 1] % 1337)) % 1337;
+  }
 """
 
 class Solution(object):

@@ -2,6 +2,7 @@
 
 ## Subarray Sum
 - Typical questions:
+	- 523. Continuous Subarray Sum (continuous subarray of size at least 2 that sums up to a multiple of k)
 	- LC-363: Max Sum of Rectangle No Larger Than K
 	- LC-862: Shortest Subarray with Sum at Least K
 	- LC-1074: Number of Submatrices That Sum to Target
@@ -78,3 +79,8 @@ for i in range(row):
 
 ## Others
 - LC-330: Patching Array
+- Self in-place manipulation to avoid extra-space (notice array item range):
+	- LC-442. Find All Duplicates in an Array
+
+## Stack
+- LC-456. 132 Pattern

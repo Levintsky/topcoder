@@ -30,6 +30,104 @@ The number of balls in your hand won't exceed 5, and the string represents these
 Both input strings will be non-empty and only contain characters 'R','Y','B','G','W'.
 """
 
+"""
+class Solution(object):
+    def findMinStep(self, board, hand):
+        # 哈希表记录手中各种颜色球的个数
+        handH = dict(W=0, R=0, Y=0, B=0, G=0)
+        for color in hand:
+            handH[color] += 1
+        return self.dfs(board, handH)
+
+    def dfs(self, board, handH):
+        n = len(board)
+        if n == 0:
+            return 0
+        cnt = sys.maxint
+        i = 0
+        j = 0
+        while i < n:
+            while j < n and board[j] == board[i]:
+                j += 1
+            color = board[i]
+            need = 3 - (j - i)
+            # dfs
+            if handH[color] >= need:
+                nb = self.shrink(board[0:i] + board[j:])
+                handH[color] -= need
+                cur = self.dfs(nb, handH)
+                if cur >= 0:
+                    cnt = min(cnt, cur + need)
+                handH[color] += need
+            i = j
+        return -1 if cnt == sys.maxint else cnt
+
+    # 球碰撞消除
+    @staticmethod
+    def shrink(board):
+        i = 0
+        while i < len(board):
+            j = i
+            while j < len(board) and board[i] == board[j]:
+                j += 1
+            if j - i >= 3:
+                board = board[0:i] + board[j:]
+                i = 0
+            else:
+                i = j
+        return board
+"""
+
+"""
+Solution 2:
+class Solution(object):
+    def findMinStep(self, board, hand):
+        def remove_sequences(board):    # recursively remove any sequences of length 3 or more
+            start, end = 0, 0
+            while end < len(board):
+                if board[start] == board[end]:
+                    end += 1
+                elif end - start >= 3:
+                    return remove_sequences(board[:start] + board[end:])
+                else:
+                    start = end
+            if end - start >= 3:
+                board = board[:start]
+            return board
+
+        def helper(board):
+            if not board:
+                return 0
+            if not hand:
+                return -1
+
+            min_balls = 6           # since len(hand) <= 5
+            start, end = 0, 0
+
+            while end < len(board) + 1:
+
+                if end == len(board) or board[start] != board[end]:
+                    need = 3 - (end - start)    # number needed in hand to make a sequence of 3
+                    colour = board[start]
+                    if hand[colour] >= need:
+
+                        hand[colour] -= need
+                        next_board = remove_sequences(board[:start] + board[end:])
+                        min_end = helper(next_board)
+                        if min_end != -1:
+                            min_balls = min(need + min_end, min_balls)
+                        hand[colour] += need  # put balls back
+
+                    start = end
+
+                end += 1
+
+            return -1 if min_balls == 6 else min_balls
+
+        hand = Counter(hand)
+        return helper(board)
+"""
+
 class Solution(object):
   def findMinStep(self, board, hand):
     """

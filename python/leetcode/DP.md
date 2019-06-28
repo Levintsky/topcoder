@@ -9,3 +9,16 @@
 ## Divide and Conquer Style
 - Typical questions:
 	- LC-375: Guess Number Higher or Lower II
+	- LC-464. Can I Win
+
+## Memoized DP
+- Typical questions:
+	- LC-464. Can I Win
+
+## Bottom-Up
+- Typical questions:
+     - LC-516: Longest Palindromic Subsequence
+
+## String
+- Typical questions:
+     - LC-583: Delete Operation for Two Strings

@@ -99,3 +99,16 @@ vector<int> kasai(string txt, vector<int> suffixArr)
 ## Palindrome
 - Typical questions:
     - LC-132: Palindrome Partitioning II
+    - LC-516: Longest Palindromic Subsequence
+
+## Minimum Edit
+- Typical questions:
+    - LC-420: Strong Password Checker
+
+## Substring
+- Typical questions:
+    - LC-583: Delete Operation for Two Strings
+
+## Misc
+- 459. Repeated Substring Pattern
+- 466. Count The Repetitions
