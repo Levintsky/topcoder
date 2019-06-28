@@ -131,3 +131,17 @@ class Solution(object):
         :type N: int
         :rtype: List[int]
         """
+        result = [1]
+        while len(result) < N:
+            odd = [item * 2 - 1 for item in result]
+            even = [item * 2 for item in result]
+            result = odd + even
+            print(result)
+        result = [item for item in result if item <= N]
+        return result
+
+
+if __name__ == "__main__":
+    a = Solution()
+    for i in range(1, 11):
+        print(i, a.beautifulArray(i))

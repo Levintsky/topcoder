@@ -95,3 +95,7 @@ vector<int> kasai(string txt, vector<int> suffixArr)
 	- lcp[3] = 0
 	- lcp[4] = 2, 'na', 'nana'
 	- lcp[5] = 0
+
+## Palindrome
+- Typical questions:
+    - LC-132: Palindrome Partitioning II

@@ -1,7 +1,26 @@
 # Binary Search Summary
 
+## Binary Search Library
+- bisect-left: return the first appearance, otherwise return the first one larger
+```python
+import bisect
+
+# case 1: existing items
+arr = [1, 1, 3, 5]
+bisect.bisect_left(arr, 1) # return 0
+bisect.bisect(arr, 1) # return 2
+
+# case 2: non-existing items
+# Both bisect and bisect_left returns the same
+bisect.bisect_left(arr, 0) # return 0
+bisect.bisect_left(arr, 4) # return 3
+bisect.bisect_left(arr, 100) # return 4
+
+```
+
 ## Find index, otherwise -1
-- problem 74, 704
+- Typical questions:
+    - problem 74, 704
 ```python
 left, right = 0, n-1
 while left <= right:

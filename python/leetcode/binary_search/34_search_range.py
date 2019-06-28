@@ -12,6 +12,8 @@ Given [5, 7, 7, 8, 8, 10] and target value 8,
 return [3, 4].
 '''
 
+import bisect
+
 class Solution(object):
     def solve2(self, nums, target):
         n = len(nums)
@@ -70,6 +72,13 @@ class Solution(object):
         end = min(i, j)
         if nums[end] == target: return [begin, end]
         else: return [begin, end-1]
+
+    def solve3(self, nums, tareget):
+        n = len(nums)
+        id1 = bisect.bisect_left(nums, target)
+        if id1 == n or nums[id1] != target: return [-1, -1]
+        id2 = bisect.bisect(nums, target)
+        return [id1, id2-1]
 
 
 if __name__ == "__main__":
