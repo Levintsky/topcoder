@@ -12,4 +12,4 @@
 ## BFS + Priority Queue
 - Typical questions:
 	- LC-407: Trapping Rain Water II
-	- 743. Network Delay Time
+	- LC-743: Network Delay Time

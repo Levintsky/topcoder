@@ -1,5 +1,5 @@
 """
-630. Course Schedule III (Medium)
+630. Course Schedule III (Hard)
 
 There are n different online courses numbered from 1 to n. Each course has some duration(course length) t and closed on dth day. A course should be taken continuously for t days and must be finished before or on the dth day. You will start at the 1st day.
 
@@ -20,7 +20,28 @@ Note:
 The integer 1 <= d, t, n <= 10,000.
 You can't take two courses simultaneously.
 """
+
+"""
+Solution:
+public class Solution {
+    public int scheduleCourse(int[][] courses) {
+        Arrays.sort(courses,(a,b)->a[1]-b[1]); //Sort the courses by their deadlines (Greedy! We have to deal with courses with early deadlines first)
+        PriorityQueue<Integer> pq=new PriorityQueue<>((a,b)->b-a);
+        int time=0;
+        for (int[] c:courses) 
+        {
+            time+=c[0]; // add current course to a priority queue
+            pq.add(c[0]);
+            if (time>c[1]) time-=pq.poll(); //If time exceeds, drop the previous course which costs the most time. (That must be the best choice!)
+        }        
+        return pq.size();
+    }
+}
+"""
+
 import Queue
+
+
 class Solution(object):
   def scheduleCourse(self, courses):
     """

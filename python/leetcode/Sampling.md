@@ -1,21 +1,25 @@
-# http://www.cnblogs.com/xbinworld/p/4266146.html
-
-# Reservoir Sampling
-get an old one (k times now)
-given a new one, accept and replace with probability 1/k+1
+## Random Sampling Shuffle
 
 # Random shuffling
-fisher-Yates shuffle: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+- LC-384: Shuffle an Array
+	- fisher-Yates shuffle: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 
-# MC
-sample a lot of x, to estimate E(f(x))
-E(f) = 1/N sum f(x_i)
+# Reservoir Sampling
+- get an old one (k times now), given a new one, accept and replace with probability 1/k+1
+- LC-398: Random Pick Index
 
-# MC integration
-to integrate f(x)
+## Sampling with Blacklist
+- LC-519: Random Flip Matrix
+- LC-710: Random Pick with Blacklist
 
-sample n samples from a distribution q(x)
-compute sum (f(x)/q(x)) * q(x)
+# http://www.cnblogs.com/xbinworld/p/4266146.html
+
+# Monte Carlo
+- sample a lot of x, to estimate E(f(x)), E(f) = 1/N sum f(x_i)
+- MC integration
+	- to integrate f(x)
+	- sample n samples from a distribution q(x)
+	- compute sum (f(x)/q(x)) * q(x)
 
 # Box-Muller
 

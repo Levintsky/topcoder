@@ -24,7 +24,149 @@ Input points have NO order. No order required for output.
 """
 
 """
-convex hull
+There are couple of ways to solve Convex Hull problem. https://en.wikipedia.org/wiki/Convex_hull_algorithms
+The following code implements Gift wrapping aka Jarvis march algorithm https://en.wikipedia.org/wiki/Gift_wrapping_algorithm and also added logic to handle case of multiple Points in a line because original Jarvis march algorithm assumes no three points are collinear.
+It also uses knowledge in this problem https://leetcode.com/problems/convex-polygon . Disscussion: https://discuss.leetcode.com/topic/70706/beyond-my-knowledge-java-solution-with-in-line-explanation
+
+public class Solution {
+    public List<Point> outerTrees(Point[] points) {
+        Set<Point> result = new HashSet<>();
+        
+        // Find the leftmost point
+        Point first = points[0];
+        int firstIndex = 0;
+        for (int i = 1; i < points.length; i++) {
+            if (points[i].x < first.x) {
+                first = points[i];
+                firstIndex = i;
+            }
+        }
+        result.add(first);
+        
+        Point cur = first;
+        int curIndex = firstIndex;
+        do {
+            Point next = points[0];
+            int nextIndex = 0;
+            for (int i = 1; i < points.length; i++) {
+                if (i == curIndex) continue;
+                int cross = crossProductLength(cur, points[i], next);
+                if (nextIndex == curIndex || cross > 0 ||
+                        // Handle collinear points
+                        (cross == 0 && distance(points[i], cur) > distance(next, cur))) {
+                    next = points[i];
+                    nextIndex = i;
+                }
+            }
+            // Handle collinear points
+            for (int i = 0; i < points.length; i++) {
+                if (i == curIndex) continue;
+                int cross = crossProductLength(cur, points[i], next);
+                if (cross == 0) {
+                    result.add(points[i]);
+                }
+            }
+
+            cur = next;
+            curIndex = nextIndex;
+            
+        } while (curIndex != firstIndex);
+        
+        return new ArrayList<Point>(result);
+    }
+    
+    private int crossProductLength(Point A, Point B, Point C) {
+        // Get the vectors' coordinates.
+        int BAx = A.x - B.x;
+        int BAy = A.y - B.y;
+        int BCx = C.x - B.x;
+        int BCy = C.y - B.y;
+    
+        // Calculate the Z coordinate of the cross product.
+        return (BAx * BCy - BAy * BCx);
+    }
+
+    private int distance(Point p1, Point p2) {
+        return (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
+    }
+}
+"""
+
+"""
+Solution 2: Graham Scan
+The trick is that once all points are sorted by polar angle with respect to the reference point:
+
+For collinear points in the begin positions, make sure they are sorted by distance to reference point in ascending order.
+For collinear points in the end positions, make sure they are sorted by distance to reference point in descending order.
+For example:
+(0, 0), (2, 0), (3, 0), (3, 1), (3, 2), (2, 2), (1, 2), (0, 2), (0, 1)
+These points are sorted by polar angle
+The reference point (bottom left point) is (0, 0)
+
+In the begin positions (0, 0) collinear with (2, 0), (3, 0) sorted by distance to reference point in ascending order.
+In the end positions (0, 0) collinear with (0, 2), (0, 1) sorted by distance to reference point in descending order.
+Now we can run the standard Graham scan to give us the desired result.
+
+public class Solution {
+
+    public List<Point> outerTrees(Point[] points) {
+        if (points.length <= 1)
+            return Arrays.asList(points);
+        sortByPolar(points, bottomLeft(points));
+        Stack<Point> stack = new Stack<>(); 
+        stack.push(points[0]);                      
+        stack.push(points[1]);                              
+        for (int i = 2; i < points.length; i++) {
+            Point top = stack.pop();                                
+            while (ccw(stack.peek(), top, points[i]) < 0)
+                top = stack.pop();
+            stack.push(top);
+            stack.push(points[i]);
+        }       
+        return new ArrayList<>(stack);
+    }                               
+
+    private static Point bottomLeft(Point[] points) {
+        Point bottomLeft = points[0];
+        for (Point p : points)          
+            if (p.y < bottomLeft.y || p.y == bottomLeft.y && p.x < bottomLeft.x)
+                bottomLeft = p;                 
+        return bottomLeft;                                                  
+    }
+
+    /**
+     * @return positive if counter-clockwise, negative if clockwise, 0 if collinear
+     */
+    private static int ccw(Point a, Point b, Point c) {
+        return a.x * b.y - a.y * b.x + b.x * c.y - b.y * c.x + c.x * a.y - c.y * a.x;       
+    }
+
+    /**
+     * @return distance square of |p - q|
+     */
+    private static int dist(Point p, Point q) {
+        return (p.x - q.x) * (p.x - q.x) + (p.y - q.y) * (p.y - q.y);
+    }
+                              
+    private static void sortByPolar(Point[] points, Point r) {
+        Arrays.sort(points, (p, q) -> {
+            int compPolar = ccw(p, r, q);
+            int compDist = dist(p, r) - dist(q, r); 
+            return compPolar == 0 ? compDist : compPolar;
+        });     
+        // find collinear points in the end positions
+        Point p = points[0], q = points[points.length - 1];
+        int i = points.length - 2;
+        while (i >= 0 && ccw(p, q, points[i]) == 0)
+            i--;    
+        // reverse sort order of collinear points in the end positions
+        for (int l = i + 1, h = points.length - 1; l < h; l++, h--) {
+            Point tmp = points[l];
+            points[l] = points[h];
+            points[h] = tmp;
+        }
+    }
+}
 """
 
 import math

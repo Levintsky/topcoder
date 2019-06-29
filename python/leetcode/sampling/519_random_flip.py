@@ -81,16 +81,34 @@ class Solution {
 }
 """
 
+import random
+
 class Solution:
 
     def __init__(self, n_rows: int, n_cols: int):
-
+        self.n_rows = n_rows
+        self.n_cols = n_cols
+        self.memo = {}
+        for i in range(n_rows * n_cols):
+            self.memo[i] = i
+        self.size = n_rows * n_cols
 
     def flip(self) -> List[int]:
-
+        n = random.randint(0, self.size-1)
+        self.size -= 1
+        if self.memo[n] == n:
+            self.memo[n] = self.size
+            i, j = n // self.n_cols, n % self.n_cols
+        else:
+            k = self.memo[n]
+            self.memo[n] = self.size
+            i, j = k // self.n_cols, k % self.n_cols
+        return [i, j]
 
     def reset(self) -> None:
-
+        for i in range(n_rows * n_cols):
+            self.memo[i] = i
+        self.size = n_rows * n_cols
 
 
 # Your Solution object will be instantiated and called as such:

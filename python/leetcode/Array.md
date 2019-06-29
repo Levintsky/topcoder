@@ -72,15 +72,26 @@ for i in range(row):
 - Typical questions:
 	- LC-755: Pour Water (If the droplet would eventually fall by moving left, then move left; Otherwise, if the droplet would eventually fall by moving right, then move right; Otherwise, rise at it's current position.)
 
+## 2D-Array, Matrix
+- LC-85: Maximal Rectangle
+- LC-221: Maximal Square
+
 ## Array Operation
 - Typical questions:
 	- LC-995: Minimum Number of K Consecutive Bit Flips
 	- LC-1072: Flip Columns For Maximum Number of Equal Rows
 
+## Inverse Pair Series
+- Typical questions:
+	- LC-629: K Inverse Pairs Array
+- Sorting-like:
+	- LC-315: Count of Smaller Numbers After Self
+	- LC-493: Reverse Pairs
+
+## Stack
+- LC-456. 132 Pattern
+
 ## Others
 - LC-330: Patching Array
 - Self in-place manipulation to avoid extra-space (notice array item range):
 	- LC-442. Find All Duplicates in an Array
-
-## Stack
-- LC-456. 132 Pattern

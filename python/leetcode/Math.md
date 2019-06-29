@@ -7,3 +7,6 @@
 
 ## Number Theory
 - LC-479. Largest Palindrome Product
+
+## Operators
+- LC-29: Divide Two Integers

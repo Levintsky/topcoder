@@ -15,7 +15,34 @@ bisect.bisect(arr, 1) # return 2
 bisect.bisect_left(arr, 0) # return 0
 bisect.bisect_left(arr, 4) # return 3
 bisect.bisect_left(arr, 100) # return 4
+```
+- Keep a list in sorted order:
+```python
+import bisect
+kls = nums[:k]
+kls.sort()
+def update(num1, num2):
+    # remove num1, add num2 to kls
+    id1 = bisect.bisect_left(kls, num1)
+    del kls[id1]
+    bisect.insort(kls, num2)
 
+    if k % 2 == 0:
+        return sum(kls[k/2-1:k/2+1]) / 2.
+    else:
+        return float(kls[k/2])
+```
+- Query:
+```python
+bisect.bisect_left(array, x)
+bisect.bisect_right(array, x)
+bisect.bisect(array, x) # same as bisect_right
+```
+- Insert:
+```python
+bisect.insort_left(array, x)
+bisect.insort_right(array, x)
+bisect.insort(array, x)
 ```
 
 ## Find index, otherwise -1
