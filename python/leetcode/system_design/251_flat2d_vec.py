@@ -62,12 +62,49 @@ class Vector2D(object):
         return False
 
 
+class Vector2D2(object):
+    def __init__(self, vec2d):
+        self.data = vec2d
+        self.total = 0
+        self.idx2d = None
+        for i in range(len(vec2d)):
+            self.total += len(vec2d[i])
+            if self.idx2d is None and len(vec2d[i]) > 0:
+                self.idx2d = (i, 0)
+        self.idx1d = 0
+
+    def next(self):
+        i, j = self.idx2d
+        item = self.data[i][j]
+        # go to next
+        if j != len(self.data[i]) - 1:
+            j += 1
+            self.idx2d = (i, j)
+        else:
+            for j in range(i+1, len(self.data)):
+                if len(self.data[j]) > 0:
+                    self.idx2d = (j, 0)
+                    break
+        self.idx1d += 1
+        return item
+
+    def hasNext(self):
+        print(self.idx1d, self.total)
+        return not self.idx1d == self.total
+
 if __name__ == "__main__":
-  vec = [[1,2], [3], [4,5,6]]
-  i, v = Vector2D(vec), []
-  while i.hasNext():
-    v.append(i.next())
-    print v
+    vec = [[1,2], [3], [4]]
+    iterator = Vector2D2(vec)
+    for i in range(3):
+        print(iterator.next())
+    print(iterator.hasNext())
+    print(iterator.next())
+    print(iterator.hasNext())
+    """
+    while i.hasNext():
+        v.append(i.next())
+        print(v)
+    """
 # Your Vector2D object will be instantiated and called as such:
 # i, v = Vector2D(vec2d), []
 # while i.hasNext(): v.append(i.next())

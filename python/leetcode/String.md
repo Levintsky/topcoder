@@ -98,6 +98,7 @@ vector<int> kasai(string txt, vector<int> suffixArr)
 
 ## Palindrome
 - Typical questions:
+    - LC-131: Palindrome Partitioning
     - LC-132: Palindrome Partitioning II
     - LC-214: Shortest Palindrome
     - LC-336: Palindrome Pairs
@@ -117,8 +118,12 @@ vector<int> kasai(string txt, vector<int> suffixArr)
 - LC-10: Regular Expression Matching (with . and \*)
 
 ## Parsing
-- Generally, stack is used!
+- Generally, stack is used! or solve recursively. Interal tree structure.
 - LC-224: Basic Calculator
+- LC-227: Basic Calculator II
+- LC-772: Basic Calculator III
+- LC-770: Basic Calculator IV
+- LC-1106: Parsing A Boolean Expression
 - State machine:
     - String to Integer (atoi)
 

@@ -88,6 +88,11 @@ for i in range(row):
 	- LC-315: Count of Smaller Numbers After Self
 	- LC-493: Reverse Pairs
 
+## Sorting, Median, ...
+- LC-324: Wiggle Sort II
+	- Solution 1: sorting based
+	- Solution 2: median based
+
 ## Stack
 - LC-456. 132 Pattern
 

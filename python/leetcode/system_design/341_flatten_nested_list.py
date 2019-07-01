@@ -81,6 +81,104 @@ class NestedIterator(object):
             return True
 
 
+class NestedInteger(object):
+    def __init__(self, data):
+        self.data = data
+
+    def isInteger(self):
+        return isinstance(self.data, int)
+
+    def getInteger(self):
+        return self.data
+
+    def getList(self):
+        data = []
+        for item in self.data:
+            data.append(NestedInteger(item))
+        return data
+
+    def __len__(self):
+        if self.isInteger():
+            return 1
+        else:
+            return len(self.data)
+
+    def __getitem__(self, index):
+        return NestedInteger(self.data[index])
+
+
+class NestedIterator2(object):
+
+    def __init__(self, nestedList):
+        self.stack = [[nestedList, 0]]
+
+    def next(self):
+        self.hasNext()
+        nestedList, i = self.stack[-1]
+        self.stack[-1][1] += 1
+        return nestedList[i].getInteger()
+            
+    def hasNext(self):
+        s = self.stack
+        while s:
+            nestedList, i = s[-1]
+            if i == len(nestedList):
+                s.pop()
+            else:
+                x = nestedList[i]
+                if x.isInteger():
+                    return True
+                s[-1][1] += 1
+                s.append([x.getList(), 0])
+        return False
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
 # while i.hasNext(): v.append(i.next())
+
+class NestedIterator4(object):
+
+    def __init__(self, nestedList):
+        """
+        Initialize your data structure here.
+        :type nestedList: List[NestedInteger]
+        """
+        from collections import deque
+        self.nestedList = deque(nestedList)
+        self.q = deque()
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        return self.q.popleft()
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        if self.q: return True
+        if not self.nestedList: return False
+        while self.nestedList and not self.q:
+            item = self.nestedList.popleft()
+            if item.isInteger():
+                self.q.append(item.getInteger())
+            else:
+                self.q.extend(self.flatten_list(item.getList()))
+        if self.q:
+            return True
+        return False
+    
+    def flatten_list(self, intOrList):
+        res = []
+        for item in intOrList:
+            if item.isInteger():
+                res.append(item.getInteger())
+            else:
+                res.extend(self.flatten_list(item.getList()))
+        return res
+
+if __name__ == "__main__":
+    data = NestedInteger([[1,1],2,[1,1]])
+    i = NestedIterator2(data)
+    while i.hasNext():
+        print(i.next())

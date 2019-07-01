@@ -87,3 +87,32 @@ class Solution(object):
         for item in p_list:
             if item in q_list:
                 return item
+
+    def solve2(self, root, p, q):
+        # step 1: traverse
+        self.memo = {root: None}
+        def traverse(root):
+            if root is None:
+                return
+            if root.left is not None:
+                self.memo[root.left] = root
+                traverse(root.left)
+            if root.right is not None:
+                self.memo[root.right] = root
+                traverse(root.right)
+        traverse(root)
+        def back(n):
+            tmplist = [n]
+            while n is not None:
+                n = self.memo[n]
+                tmplist.append(n)
+            tmplist = tmplist[:-1]
+            tmplist = tmplist[::-1]
+            return tmplist
+            
+        plist = back(p)
+        qlist = back(q)
+        for i in range(min(len(plist), len(qlist))):
+            if plist[i] is qlist[i]:
+                if i == len(plist)-1 or i == len(qlist)-1 or not plist[i+1] is qlist[i+1]:
+                    return plist[i]

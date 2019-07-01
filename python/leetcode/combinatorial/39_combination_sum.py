@@ -36,3 +36,31 @@ class Solution(object):
         :type target: int
         :rtype: List[List[int]]
         """
+        candidates.sort()
+        n = len(candidates)
+        res = {0: [[0]*n]}
+        for i in range(1, target+1):
+            new_res = set()
+            for idx, item in enumerate(candidates):
+                if i - item in res:
+                    for comb in res[i-item]:
+                        list2_ = [item for item in comb]
+                        list2_[idx] += 1
+                        new_res.add(tuple(list2_))
+            new_res = list(new_res)
+            res[i] = new_res
+        result = []
+        for list_ in res[target]:
+            tmp = []
+            for i in range(n):
+                if list_[i] > 0:
+                    tmp += [candidates[i]] * list_[i]
+            result.append(tmp)
+        return result
+
+
+if __name__ == "__main__":
+    a = Solution()
+    print(a.combinationSum([2,3,6,7], 7))
+    print(a.combinationSum([2,3,5], 8))
+

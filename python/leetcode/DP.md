@@ -17,6 +17,9 @@
 - LC-221: Maximal Square
 - LC-363: Max Sum of Rectangle No Larger Than K
 
+## Iterative
+- LC-1105: Filling Bookcase Shelves
+
 ## Knapsack
 - LC-416: Partition Equal Subset Sum
 - LC-474: Ones and Zeroes (0/1 Knapsack)
