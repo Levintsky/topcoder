@@ -247,13 +247,15 @@ For leetcode 327, applying the sequential recurrence relation (with j fixed) on 
 Anyway, hope these ideas can sharpen your skills for solving array-related problems.
 """
 
+import bisect
+
 
 class Solution(object):
     def reversePairs(self, nums):
         """
-    :type nums: List[int]
-    :rtype: int
-    """
+        :type nums: List[int]
+        :rtype: int
+        """
         self.cnt = 0
         self.mergesort(nums, 0, len(nums) - 1)
         return self.cnt
@@ -328,9 +330,51 @@ class Solution(object):
             insert(index(item))
         return res
 
+    def solve3(self, nums):
+        res = 0
+        tmp = []
+        for item in nums[::-1]:
+            idx = bisect.bisect(tmp, (item-1)//2)
+            res += idx
+            bisect.insort(tmp, item)
+        return res
+
+    class BIT:
+        def __init__(self, n):
+            self.n = n + 1
+            self.sums = [0] * self.n
+
+        def update(self, i, delta):
+            while i < self.n:
+                self.sums[i] += delta
+                i += i & (-i)
+
+        def query(self, i):
+            res = 0
+            while i > 0:
+                res += self.sums[i]
+                i -= i & (-i)
+            return res
+
+    def solve4(self, nums):
+        # BIT O(nlogn)
+        new_nums = nums + [x * 2 for x in nums]
+        sorted_set = sorted(list(set(new_nums)))
+        tree = self.BIT(len(sorted_set))
+        res = 0
+        ranks = {}
+        for i, n in enumerate(sorted_set):
+            ranks[n] = i + 1
+
+        for n in nums[::-1]:
+            res += tree.query(ranks[n] - 1)
+            tree.update(ranks[n * 2], 1)
+
+        return res
 
 if __name__ == "__main__":
     a = Solution()
     # print(a.reversePairs([1, 3, 2, 3, 1]))
     # print(a.reversePairs([2, 4, 3, 5, 1]))
     print(a.solution2([2, 4, 3, 5, 1]))
+    print(a.solve4([2, 4, 3, 5, 1]))

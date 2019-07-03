@@ -91,7 +91,11 @@ for i in range(row):
 		- Direct DP: O(nk^2), iterate dp[n][k] for k in [0..K]
 		- Reduce the complexity by deduction between dp[n][k-1] and dp[n][k]
 - Sorting-like:
-	- LC-315: Count of Smaller Numbers After Self
+	- **LC-315**: Count of Smaller Numbers After Self
+		- Solution 1: merge sort
+		- Solution 2: binary search from back
+	- LC-327: Count of Range Sum
+		- Same trick as 315, could be done by either merge-sort or binary search
 	- LC-493: Reverse Pairs
 
 ## Sorting, Median, ...

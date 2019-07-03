@@ -15,6 +15,7 @@
 
 ## Segment Tree/Binary Index Tree
 - LC-307: Range Sum Query - Mutable
+- LC-493: Reverse Pairs
 
 ## Invert Indexing
 - LC-432: All O(1) Data Structure
