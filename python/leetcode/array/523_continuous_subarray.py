@@ -24,29 +24,27 @@ class Solution(object):
         :rtype: bool
         """
         n = len(nums)
-        if k == 0:
+        if k == 0: 
             for i in range(n-1):
-                if nums[i]==0 and nums[i+1]==0:
+                if nums[i] == 0 and nums[i+1] == 0:
                     return True
             return False
-        if n <= 1: return False
-        k = max(k, -k)
-        record = set()
-        record.add((nums[0]+nums[1])%k)
-        if 0 in record: return True
-        last = nums[1]%k
+        if k == 1:
+            return n >= 2
+        self.memo = {0: [-1]}
+        curr = 0
+        for i, item in enumerate(nums):
+            curr = (curr + item) % k
+            if curr in self.memo:
+                if self.memo[curr][0] < i - 1:
+                    return True
+            if curr not in self.memo:
+                self.memo[curr] = [i]
+            else:
+                self.memo[curr].append(i)
+        return False
 
-        for i in range(2, n):
-          item = nums[i]
-          if (last+item)%k == 0: return True
-          if (k-item) in record: return True
-          record_ = set()
-          record_.add((last+item)%k)
-          for tmp in record:
-            record_.add( (item+tmp)%k )
-          record = record_
-          last = item
-        return 0 in record
+
 if __name__ == '__main__':
   a = Solution()
-  print a.checkSubarraySum([23,2,6,4,7], 6)
+  print(a.checkSubarraySum([23,2,6,4,7], 6))

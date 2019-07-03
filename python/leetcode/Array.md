@@ -1,11 +1,13 @@
 # Array
 
 ## Subarray Sum
-- Typical questions:
-	- 523. Continuous Subarray Sum (continuous subarray of size at least 2 that sums up to a multiple of k)
-	- LC-363: Max Sum of Rectangle No Larger Than K
-	- LC-862: Shortest Subarray with Sum at Least K
+- Find sum:
+	- LC-523: Continuous Subarray Sum: continuous subarray of size at least 2 that sums up to a multiple of k, return true/false
+		- 1-D integral image
+	- **LC-363**: Max Sum of Rectangle No Larger Than K
 	- LC-1074: Number of Submatrices That Sum to Target
+- Find array:
+	- **LC-862**: Shortest Subarray with Sum at Least K
 - Kadane's Algorithm to Maximum Sum Subarray Problem
 	- https://www.youtube.com/watch?v=86CQq3pKSUw
 	- 1-D case: O(n), brute-force O(n^2)
@@ -14,7 +16,7 @@
 	    max_cur = max_global = A[0]
 	    for i in range(1, len(A)-1):
 	        max_cur = max(A[i], A[i]+max_cur)
-	        max_blobal = max(max_global, max_cur)
+	        max_global = max(max_global, max_cur)
         return max_global
 	```
 	- 2-D case: O(n^3), brute-force O(n^4)
@@ -55,25 +57,27 @@ for i in range(row):
 	- LC-84: Largest Rectangle in Histogram (DP)
 	- LC-992: Subarrays with K Different Integers
 
-## Longest Array (DP)
+## Longest Subarray (DP)
 - Typical questions:
 	- LC-1027: Longest Arithmetic Sequence
 
 ## Array Permutation
 - Typical questions:
-	- 932: Beautiful Array (k with i < k < j such that A[k] * 2 = A[i] + A[j])
+	- **LC-932**: Beautiful Array (k with i < k < j such that A[k] * 2 = A[i] + A[j])
 		- Thinking from odd/even;
 
 ## Array Jump
 - Typical questions:
-	- LC-975: Odd Even Jump (from A[i], odd jumps: jump to A[j]>=A[i]; even jumps: jump to A[j]<=A[i])
+	- **LC-975**: Odd Even Jump (from A[i], odd jumps: jump to j with smallest A[j] s.t. A[j]>=A[i]; even jumps: jump to largest A[j] s.t. A[j]<=A[i])
+		- Related to Count of Smaller Numbers After Self
+		- DP with backup
 
 ## Array Move based on Height
 - Typical questions:
 	- LC-755: Pour Water (If the droplet would eventually fall by moving left, then move left; Otherwise, if the droplet would eventually fall by moving right, then move right; Otherwise, rise at it's current position.)
 
 ## 2D-Array, Matrix
-- LC-85: Maximal Rectangle
+- **LC-85**: Maximal Rectangle
 - LC-221: Maximal Square
 
 ## Array Operation
@@ -83,7 +87,9 @@ for i in range(row):
 
 ## Inverse Pair Series
 - Typical questions:
-	- LC-629: K Inverse Pairs Array
+	- **LC-629**: K Inverse Pairs Array
+		- Direct DP: O(nk^2), iterate dp[n][k] for k in [0..K]
+		- Reduce the complexity by deduction between dp[n][k-1] and dp[n][k]
 - Sorting-like:
 	- LC-315: Count of Smaller Numbers After Self
 	- LC-493: Reverse Pairs
@@ -92,6 +98,7 @@ for i in range(row):
 - LC-324: Wiggle Sort II
 	- Solution 1: sorting based
 	- Solution 2: median based
+- LC-1099: Two Sum Less Than K
 
 ## Stack
 - LC-456. 132 Pattern

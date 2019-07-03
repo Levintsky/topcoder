@@ -211,17 +211,23 @@ class Solution(object):
         return sum(odd_can)
 
     def solve2(self, A):
-    	n = len(A)
+        n = len(A)
         next_higher, next_lower = [0] * n, [0] * n
 
         stack = []
-        for a, i in sorted([a, i] for i, a in enumerate(A)):
+        tmpA = [(a, i) for i, a in enumerate(A)]
+        tmpA.sort()
+        # for a, i in sorted([a, i] for i, a in enumerate(A)):
+        for _, i in tmpA:
             while stack and stack[-1] < i:
                 next_higher[stack.pop()] = i
             stack.append(i)
 
         stack = []
-        for a, i in sorted([-a, i] for i, a in enumerate(A)):
+        tmpA = [(-a, i) for i, a in enumerate(A)]
+        tmpA.sort()
+        # for a, i in sorted([-a, i] for i, a in enumerate(A)):
+        for a, i in tmpA:
             while stack and stack[-1] < i:
                 next_lower[stack.pop()] = i
             stack.append(i)
@@ -235,6 +241,9 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
+    """
     print(a.oddEvenJumps([10,13,12,14,15]))
     print(a.oddEvenJumps([2,3,1,1,4]))
     print(a.oddEvenJumps([5,1,3,4,2]))
+    """
+    print(a.solve2([5,1,3,4,2]))
