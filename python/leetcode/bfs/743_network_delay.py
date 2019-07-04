@@ -77,14 +77,6 @@ class Solution(object):
                 visited.add(tgt)
                 q.append(tgt)
 
-            """
-            for tmp in self.visit[item]:
-                t, tgt = tmp
-                dist[tgt] = min(dist[item]+t, dist[tgt])
-                if tgt not in visited:
-                    q.append(tgt)
-                    visited.add(tgt)
-            """
         if max(dist) < float("inf"):
             return max(dist)
         else:
@@ -115,6 +107,28 @@ class Solution(object):
                     heapq.heappush(q, (time + w, v))
         return max(t.values()) if len(t) == N else -1
 
+    def solve4(self, times, N, K):
+        memo = {}
+        for i in range(1, N+1):
+            memo[i] = []
+        for time in times:
+            src, dst, t = time
+            memo[src].append([dst, t])
+        result = [-1] * N
+        result[K-1] = 0
+        q = []
+        heapq.heappush(q, (K, 0))
+        while len(q) > 0:
+            node, curr_t = heapq.heappop(q)
+            for n, t2 in memo[node]:
+                if result[n-1] == -1 or result[n-1] < curr_t + t2:
+                    result[n-1] = curr_t + t2
+                    heapq.heappush(q, (n, curr_t+t2))
+        if -1 in result:
+            return -1
+        else:
+            return max(result)
+
 
 if __name__ == "__main__":
     a = Solution()
@@ -122,4 +136,5 @@ if __name__ == "__main__":
     # print(a.networkDelayTime(array, 15, 2))
     # print(a.solve2([[2,1,1],[2,3,1],[3,4,1]], 4, 2))
     # print(a.networkDelayTime([[2,1,1],[2,3,1],[3,4,1]], 4, 2))
-    print(a.solve3([[2, 1, 1], [2, 3, 1], [3, 4, 1]], 4, 2))
+    # print(a.solve3([[2, 1, 1], [2, 3, 1], [3, 4, 1]], 4, 2))
+    print(a.solve4([[1,2,1],[2,1,3]], 2, 2))

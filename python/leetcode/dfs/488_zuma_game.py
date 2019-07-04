@@ -30,7 +30,7 @@ The number of balls in your hand won't exceed 5, and the string represents these
 Both input strings will be non-empty and only contain characters 'R','Y','B','G','W'.
 """
 
-"""
+
 class Solution(object):
     def findMinStep(self, board, hand):
         # 哈希表记录手中各种颜色球的个数
@@ -43,7 +43,7 @@ class Solution(object):
         n = len(board)
         if n == 0:
             return 0
-        cnt = sys.maxint
+        cnt = float("inf")
         i = 0
         j = 0
         while i < n:
@@ -60,7 +60,7 @@ class Solution(object):
                     cnt = min(cnt, cur + need)
                 handH[color] += need
             i = j
-        return -1 if cnt == sys.maxint else cnt
+        return -1 if cnt == float("inf") else cnt
 
     # 球碰撞消除
     @staticmethod
@@ -76,7 +76,6 @@ class Solution(object):
             else:
                 i = j
         return board
-"""
 
 """
 Solution 2:
@@ -128,13 +127,9 @@ class Solution(object):
         return helper(board)
 """
 
+"""
 class Solution(object):
   def findMinStep(self, board, hand):
-    """
-    :type board: str
-    :type hand: str
-    :rtype: int
-    """
     # change board to like [(a,3), (b,2), ...]
     board_ = []
     for i in range(len(board)):
@@ -195,14 +190,15 @@ def helper(board_, hand_):
         result = result_
       # print 'after', result_, result
   return result
+"""
 
 if __name__ == "__main__":
-  # print helper([('R', 1), ("B", 3), ("R",2),('B',1)], '')# "RBBBRRB", "")
-  # print helper([('R', 1), ("R",2),('B',1)], )# "RBBBRRB", "")
-  a = Solution()
-  # print a.findMinStep("G", "GGGGG")
-  # print a.findMinStep("B", "BB")
-  print a.findMinStep("WRRBBW", "RB")
-  print a.findMinStep("WWRRBBWW", "WRBRW")
-  print a.findMinStep("G", "GGGGG")
-  print a.findMinStep("RBYYBBRRB", "YRBGB")
+    # print helper([('R', 1), ("B", 3), ("R",2),('B',1)], '')# "RBBBRRB", "")
+    # print helper([('R', 1), ("R",2),('B',1)], )# "RBBBRRB", "")
+    a = Solution()
+    # print a.findMinStep("G", "GGGGG")
+    # print a.findMinStep("B", "BB")
+    print(a.findMinStep("WRRBBW", "RB"))
+    print(a.findMinStep("WWRRBBWW", "WRBRW"))
+    print(a.findMinStep("G", "GGGGG"))
+    print(a.findMinStep("RBYYBBRRB", "YRBGB"))

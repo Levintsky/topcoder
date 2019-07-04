@@ -64,58 +64,66 @@ While the set of active points is not empty:
             Add Q to the set of active points
 """
 
-import Queue
+import heapq
+
 
 class Solution(object):
-  def trapRainWater(self, heightMap):
-    """
-    :type heightMap: List[List[int]]
-    :rtype: int
-    """
-    m = len(heightMap)
-    if m == 0: return 0
-    n = len(heightMap[0])
-    if n == 0: return 0
-    q = Queue.PriorityQueue()
-    visited = []
-    for i in range(m):
-      tmpv = [False] * n
-      visited.append(tmpv)
+    def trapRainWater(self, heightMap):
+        """
+        :type heightMap: List[List[int]]
+        :rtype: int
+        """
+        m = len(heightMap)
+        if m == 0: return 0
+        n = len(heightMap[0])
+        if n == 0: return 0
+        q = []
+        visited = []
+        for i in range(m):
+            tmpv = [False] * n
+            visited.append(tmpv)
 
-    for i in range(n):
-      q.put((heightMap[0][i], 0, i))
-      q.put((heightMap[m-1][i], m-1, i))
-      visited[0][i] = True
-      visited[m-1][i] = True
+        for i in range(n):
+            heapq.heappush(q, (heightMap[0][i], 0, i))
+            heapq.heappush(q, (heightMap[m-1][i], m-1, i))
+            visited[0][i] = True
+            visited[m-1][i] = True
 
-    for i in range(m):
-      q.put((heightMap[i][0], i, 0))
-      q.put((heightMap[i][n-1], i, n-1))
-      visited[i][0] = True
-      visited[i][n-1] = True
+        for i in range(1, m-1):
+            heapq.heappush(q, (heightMap[i][0], i, 0))
+            heapq.heappush(q, (heightMap[i][n-1], i, n-1))
+            visited[i][0] = True
+            visited[i][n-1] = True
 
-    dirs = [(-1,0), (1,0), (0,-1), (0,1)]
-    result = 0
-    while not q.empty():
-      h, i, j = q.get()
-      print 'h', h, 'i', i, 'j', j,
-      for ii, jj in dirs:
-        tmpi = i + ii
-        tmpj = j + jj
-        if tmpi >= 0 and tmpi < m and tmpj >=0 and tmpj < n and not visited[tmpi][tmpj]:
-          visited[tmpi][tmpj] = True
-          result += max(0, h-heightMap[tmpi][tmpj])
-          q.put((max(h, heightMap[tmpi][tmpj]), tmpi, tmpj))
-      print 'result', result
-    return result
+        dirs = [[-1,0], [1,0], [0,-1], [0,1]]
+        result = 0
+        while len(q) > 0:
+            h, i, j = heapq.heappop(q)
+            # print('h', h, 'i', i, 'j', j,)
+            for ii, jj in dirs:
+                tmpi = i + ii
+                tmpj = j + jj
+                if tmpi >= 0 and tmpi < m and tmpj >=0 and tmpj < n and not visited[tmpi][tmpj]:
+                    visited[tmpi][tmpj] = True
+                    result += max(0, h-heightMap[tmpi][tmpj])
+                    heapq.heappush(q, (max(h, heightMap[tmpi][tmpj]), tmpi, tmpj))
+            # print('result', result)
+        return result
 
 
 if __name__ == "__main__":
-  a = Solution()
-  array = [[1,4,3,1,3,2],
-  [3,2,1,3,2,4],
-  [2,3,3,2,3,1]]
+    a = Solution()
+    """
+    array = [[1,4,3,1,3,2],
+    [3,2,1,3,2,4],
+    [2,3,3,2,3,1]]
+    """
+    array = [[3, 10, 8, 12, 2, 7, 9],
+        [7, 1, 11, 3, 8, 1, 10],
+        [9, 7, 3, 10, 2, 5, 6],
+        [7, 11, 1, 4, 6, 11, 9],
+        [4, 5, 8, 12, 3, 4, 2],
+        [12, 2, 12, 1, 5, 9, 6],
+        [6, 5, 8, 12, 4, 11, 10]]
 
-  print a.trapRainWater(array)
-
-
+    print(a.trapRainWater(array))

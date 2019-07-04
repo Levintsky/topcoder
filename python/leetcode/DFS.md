@@ -4,7 +4,9 @@
 - Typical questions:
 	- LC-22: Generate Parentheses
 	- LC-282: Expression Add Operators
-	- LC-301: Remove Invalid Parentheses
+	- **LC-301**: Remove Invalid Parentheses
+		- Faster than bfs
+		- Recursive solver
 
 ## Traversal
 - Typical questions:

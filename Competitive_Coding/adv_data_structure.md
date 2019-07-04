@@ -1,15 +1,5 @@
 # Advanced Data Structure
 
-## Binary Indexed Tree or Fenwick Tree
-- http://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/
-- Find Sum: O(log n)
-- Update Value: O(log n)
-- Segment Tree, requres less space and very easy to implement
-
-- Sum: index = index - (index & (-index))
--  go to parent
-- Update: index = index + (index & (-index))
-
 ## Segment Tree 
 - http://www.geeksforgeeks.org/segment-tree-set-1-range-minimum-query/
 - RMQ (Range Minimum Query)

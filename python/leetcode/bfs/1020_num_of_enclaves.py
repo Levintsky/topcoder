@@ -7,8 +7,6 @@ A move consists of walking from one land square 4-directionally to another land 
 
 Return the number of land squares in the grid for which we cannot walk off the boundary of the grid in any number of moves.
 
- 
-
 Example 1:
 
 Input: [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]

@@ -12,7 +12,7 @@ Examples:
 '''
 
 """
-Solution 1: DFS
+Solution 1: DFS (much faster)
 For a better view see here
 
 Key Points:
@@ -41,7 +41,7 @@ Keypoints:
 """
 
 """
-Solution 2: BFS
+Solution 2: BFS (much slower, easier to implement)
 
 The idea is straightforward, with the input string s, we generate all possible states by removing one ( or ), check if they are valid, if found valid ones on the current level, put them to the final result list and we are done, otherwise, add them to a queue and carry on to the next level.
 
@@ -122,78 +122,120 @@ public class Solution {
 """
 
 class Solution(object):
-  def solve2(self, s):
-    ans = []
-    self.remove(s, ans, 0, 0, ['(', ')'])
-    return ans
+    def solve2(self, s):
+        ans = []
+        self.remove(s, ans, 0, 0, ['(', ')'])
+        return ans
 
-  def remove(self, s, ans, last_i, last_j, par):
-    stack = 0
-    for i in range(last_i, len(s)):
-      if s[i] == par[0]: stack += 1
-      if s[i] == par[1]: stack -= 1
-      if stack >= 0: continue
-      for j in range(last_j, i+1):
-        if s[j] == par[1] and (j==last_j or s[j-1]!=par[1]):
-          self.remove(s[:j]+s[j+1:], ans, i, j, par)
-      return
-    s_rev = s[::-1]
-    if par[0] == '(': # finished left to right
-      self.remove(s_rev, ans, 0, 0, [')', '(']);
-    else:
-      ans.append(s_rev)
+    def remove(self, s, ans, last_i, last_j, par):
+        stack = 0
+        for i in range(last_i, len(s)):
+            if s[i] == par[0]: stack += 1
+            if s[i] == par[1]: stack -= 1
+            if stack >= 0: continue
+            for j in range(last_j, i+1):
+                if s[j] == par[1] and (j==last_j or s[j-1]!=par[1]):
+                    self.remove(s[:j]+s[j+1:], ans, i, j, par)
+            return
+        # until here
+        # if program terminates
+        # s will be all valid strings without extra ")"
+        s_rev = s[::-1]
+        if par[0] == '(': # finished left to right
+            self.remove(s_rev, ans, 0, 0, [')', '(']);
+        else:
+            ans.append(s_rev)
 
-  def removeInvalidParentheses(self, s):
-    """
-    :type s: str
-    :rtype: List[str]
-    """
-    result = [""]
-    n = len(s)
-    if n == 0: return result
-    stat = []
+    def solve3(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        def isValid(s):
+            cnt = 0
+            for c in s:
+                if c == "(":
+                    cnt += 1
+                elif c == ")":
+                    cnt -= 1
+                    if cnt < 0: return False
+            return cnt == 0
 
-    result = set()
-    result.add("")
-    i = 0
-    while i < n:
-      print i,
-      if i == 0:
-        if s[0] == '(': stat.append(1)
-        else: stat.append(-1)
-      else:
-        if s[i] == '(': stat.append(stat[-1]+1)
-        elif s[i] == ')': stat.append(stat[-1]-1)
-        else: stat.append(stat[-1])
-      
-      new_result = set()
-      for item in result:
-        new_result.add(item+s[i])
-      result = new_result
-      
-      print 'result before: ', result, len(result)
-      # case 1: -1
-      # remove any ) in result
-      if stat[-1] == -1:
-        new_result = set()
-        for str_ in result:
-          if str_ == "": new_result.add(str_)
-          else:
-            for j in range(len(str_)):
-              if str_[j] == ')':
-                print j
-                new_result.add(str_[:j]+str_[j+1:])
-        result = new_result
-        stat = stat[:-1]
-      print 'after: ', result, stat
-      # if i == 3: break
-      i += 1
-    return list(result)
+        cnt = 0
+        n = len(s)
+        result = []
+        qold = [s]
+        flag = False
+        while len(qold) > 0:
+            qnew = set()
+            while qold:
+                s2 = qold.pop()
+                if isValid(s2):
+                    flag = True
+                    result.append(s2)
+                if not flag:
+                    for i in range(n):
+                        if i == 0:
+                            s3 = s2[1:]
+                        else:
+                            s3 = s2[:i] + s2[i+1:]
+                        qnew.add(s3)
+            if flag:
+                break
+            qold = list(qnew)
+        return result
+    
+    def solve4(self, s):
+        # dfs: fastest
+        # iterative faster than recursive
+        def remove(s, last_removal, last_visit, left_ch, right_ch):
+            # last_removal is the index where the last removal happened. It is where the current removal might start
+            # last_visit is the index where the last "mismatch" occurs. The new search will start from this position
+            n = len(s)
+            stack = 0
+            res = []
+            for i in range(last_visit, n):
+                ch = s[i]
+                if ch == left_ch:
+                    stack += 1
+                elif ch == right_ch:
+                    if stack > 0:
+                        stack -= 1
+                    else:
+                        # Perform the removal operations
+                        prev_j = -2
+                        for j in range(last_removal, i + 1):
+                            if s[j] == right_ch:
+                                if j - prev_j >= 2:
+                                    res.append({'string': s[0:j] + s[j+1:], 'last_removal': j, 'last_visit': i})
+                                prev_j = j
+                        break
+            if len(res) == 0:
+                return [s]
+            out = []
+            for d in res:
+                out += remove(d['string'], d['last_removal'], d['last_visit'], left_ch, right_ch)
+            return out
+                
+        temp1 = remove(s, last_removal=0, last_visit=0, left_ch='(', right_ch=')')
+        res = []
+        for string in temp1:
+            temp2 = remove(string[::-1], last_removal=0, last_visit=0, left_ch=')', right_ch='(')
+            temp2 = [s_temp[::-1] for s_temp in temp2]
+            res += temp2
+        return res
+
  
 if __name__ == "__main__":
   a = Solution()
   # print a.removeInvalidParentheses("()())())")
-  # print a.removeInvalidParentheses("(a)())()")
-
+  # print a.removeInvalidParentheses("()())()")
   # print a.solve2("()(")
-  print a.solve2("()())())((")
+  print(a.solve2("()())())"))
+  """
+  print(a.solve2("()())())(("))
+  print(a.solve3("()())())(("))
+  print(a.solve2("()())())"))
+  print(a.solve3("()())())"))
+  print(a.solve3("(a)())()"))
+  """
