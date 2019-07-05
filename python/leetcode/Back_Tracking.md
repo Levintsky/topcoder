@@ -12,6 +12,7 @@
 - Typical questions:
 	- LC-489: Robot Room Cleaner
 	- **LC-488**: Zuma Game
+  - LC-980: Unique Paths III
 
 ## Subsets, Permutations, Combination Sum, Palindrome Partitioning
 - Subsets
@@ -52,128 +53,124 @@
       backtrack([], 0)
       return result
   ```
-- Permutation:
-	- LC-46: Permutations
-  ```java
-  public List<List<Integer>> permute(int[] nums) {
-     List<List<Integer>> list = new ArrayList<>();
-     // Arrays.sort(nums); // not necessary
-     backtrack(list, new ArrayList<>(), nums);
-     return list;
-  }
 
-  private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums){
-     if(tempList.size() == nums.length){
-        list.add(new ArrayList<>(tempList));
-     } else{
-        for(int i = 0; i < nums.length; i++){ 
-           if(tempList.contains(nums[i])) continue; // element already exists, skip
-           tempList.add(nums[i]);
-           backtrack(list, tempList, nums);
-           tempList.remove(tempList.size() - 1);
-        }
-     }
-  }
+- Permutation:
+	- LC-46: Permutations (**distinct**)
+  ```python
+  def permute(nums):
+      result = []
+      n = len(nums)
+
+      def backtrack(tmpList):
+          newList = [item for item in tmpList]
+          result.append(newList)
+
+          if len(tmpList) == n:
+              for i in range(n):
+                  if nums[i] in tmpList:
+                      continue
+                  else:
+                      tmpList.append(nums[i])
+                      backtrack(tmpList)
+                      _ = tmpList.pop()
+          return
+
+      backtrack([])
+      return result
   ```
 
-	- LC-47: Permutations II
-  ```java
-  public List<List<Integer>> permuteUnique(int[] nums) {
-      List<List<Integer>> list = new ArrayList<>();
-      Arrays.sort(nums);
-      backtrack(list, new ArrayList<>(), nums, new boolean[nums.length]);
-      return list;
-  }
+	- **LC-47**: Permutations II (with duplicates)
+  ```python
+  def permuteUnique(nums):
+      result = []
+      nums.sort()
+      n = len(nums)
+      used = [False] * n
 
-  private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, boolean [] used){
-      if(tempList.size() == nums.length){
-          list.add(new ArrayList<>(tempList));
-      } else{
-          for(int i = 0; i < nums.length; i++){
-              if(used[i] || i > 0 && nums[i] == nums[i-1] && !used[i - 1]) continue;
-              used[i] = true; 
-              tempList.add(nums[i]);
-              backtrack(list, tempList, nums, used);
-              used[i] = false; 
-              tempList.remove(tempList.size() - 1);
-          }
-      }
-  }
+      def backtrack(tmpList):
+          if len(tmpList) == n:
+              newList = [item for item in tmpList]
+              result.append(newList)
+          else:
+              for i in range(n):
+                  if used[i] or (i > 0 and nums[i] == nums[i-1] and not used[i-1]):
+                      continue
+                  used[i] = True
+                  tmpList.append(nums[i])
+                  backtrack(tmpList)
+                  _ = tmpList.pop()
+          return
+
+      backtrack([])
+      return result
   ```
 
 - Combination Sum:
 	- LC-39: Combination Sum
-  ```java
-  public List<List<Integer>> combinationSum(int[] nums, int target) {
-      List<List<Integer>> list = new ArrayList<>();
-      Arrays.sort(nums);
-      backtrack(list, new ArrayList<>(), nums, target, 0);
-      return list;
-  }
+  ```python
+  def combinationSum(nums, target):
+      result = []
+      nums.sort()
+      n = len(nums)
 
-  private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, int remain, int start){
-      if(remain < 0) return;
-      else if(remain == 0) list.add(new ArrayList<>(tempList));
-      else{ 
-          for(int i = start; i < nums.length; i++){
-              tempList.add(nums[i]);
-              backtrack(list, tempList, nums, remain - nums[i], i); // not i + 1 because we can reuse same elements
-              tempList.remove(tempList.size() - 1);
-          }
-      }
-  }
+      def backtrack(tmpList, remain, idx):
+          if remain < 0:
+              return
+          elif remain == 0:
+              newList = [item for item in tmpList]
+              result.append(newList)
+          else:
+              for i in range(idx, n):
+                  tmpList.append(nums[i])
+                  backtrack(tmpList, remain-nums[i], i)
+                  tmpList.pop()
+
+      backtrack([], target, 0)
+      return result
   ```
 
 	- LC-40: Combination Sum II
-  ```java
-  public List<List<Integer>> combinationSum2(int[] nums, int target) {
-      List<List<Integer>> list = new ArrayList<>();
-      Arrays.sort(nums);
-      backtrack(list, new ArrayList<>(), nums, target, 0);
-      return list;
-      
-  }
+  ```python
+    def combinationSum2(self, nums, target):
+        result = []
+        nums.sort()
+        n = len(nums)
 
-  private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, int remain, int start){
-      if(remain < 0) return;
-      else if(remain == 0) list.add(new ArrayList<>(tempList));
-      else{
-          for(int i = start; i < nums.length; i++){
-              if(i > start && nums[i] == nums[i-1]) continue; // skip duplicates
-              tempList.add(nums[i]);
-              backtrack(list, tempList, nums, remain - nums[i], i + 1);
-              tempList.remove(tempList.size() - 1); 
-          }
-      }
-  }
+        def backtrack(tmpList, remain, idx):
+            if remain == 0:
+                newList = [item for item in tmpList]
+                result.append(newList)
+            else:
+                for i in range(idx, n):
+                    if i != idx and nums[i] == nums[i-1]:
+                        continue
+                    if nums[i] > remain:
+                        return
+                    tmpList.append(nums[i])
+                    backtrack(tmpList, remain-nums[i], i+1)
+                    tmpList.pop()
+
+        backtrack([], target, 0)
+        return result
   ```
 
 - Palindrome:
 	- LC-131: Palindrome Partitioning
-  ```java
-  public List<List<String>> partition(String s) {
-     List<List<String>> list = new ArrayList<>();
-     backtrack(list, new ArrayList<>(), s, 0);
-     return list;
-  }
+  ```python
+    def partition(s):
+        result = []
+        n = len(s)
 
-  public void backtrack(List<List<String>> list, List<String> tempList, String s, int start){
-     if(start == s.length())
-        list.add(new ArrayList<>(tempList));
-     else{
-        for(int i = start; i < s.length(); i++){
-           if(isPalindrome(s, start, i)){
-              tempList.add(s.substring(start, i + 1));
-              backtrack(list, tempList, s, i + 1);
-              tempList.remove(tempList.size() - 1);
-           }
-        }
-     }
-  }
+        def backtrack(tmpList, start):
+            if start == n:
+                result.append([item for item in tmpList])
+            else:
+                for i in range(start, n):
+                    if isPalin(s, low, i):
+                        tmpList.append(s[low:i+1])
+                        backtrack(tmpList, i+1)
+                        _ = tmpList.pop()
 
-  public boolean isPalindrome(String s, int low, int high){
-     while(low < high)
-        if(s.charAt(low++) != s.charAt(high--)) return false;
-     return true;
-  } 
+        backtrack([], 0)
+        return result
   ```

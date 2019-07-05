@@ -58,6 +58,26 @@ class Solution(object):
             result.append(tmp)
         return result
 
+    def solve2(self, nums, target):
+        result = []
+        nums.sort()
+        n = len(nums)
+
+        def backtrack(tmpList, remain, idx):
+            if remain < 0:
+                return
+            elif remain == 0:
+                newList = [item for item in tmpList]
+                result.append(newList)
+            else:
+                for i in range(idx, n):
+                    tmpList.append(nums[i])
+                    backtrack(tmpList, remain-nums[i], i)
+                    tmpList.pop()
+
+        backtrack([], target, 0)
+        return result
+
 
 if __name__ == "__main__":
     a = Solution()

@@ -53,6 +53,9 @@
  	- LC-10: Regular Expression Matching
 - Substr such that...
 	- LC-516: Longest Palindromic Subsequence
+- Best slice:
+	- **LC-132**: Palindrome Partitioning II
+		- Naive bottom-up: correct, but O(n^3)
 
 ## Inverse Pair Series
 - Typical questions:

@@ -5,6 +5,34 @@
 	- LC-235: Lowest Common Ancestor of a Binary Search Tree
 	- LC-333: Largest BST Subtree
 
+## Traversal
+- Preorder:
+```python
+def preorder(self, root):
+    ret, q = [], root and [root]
+    while q:
+        node = q.pop()
+        ret.append(node.val)
+        q += [child for child in node.children[::-1] if child]
+    return ret
+```
+
+- Postorder:
+```python
+def postorder(self, root):
+	if not root:
+        return []
+    
+    stack, output = [root], []
+    while stack:
+        root = stack.pop()
+        if root:
+            output.append(root.val)
+            for c in root.children:
+                stack.append(c)
+    return output[::-1]
+```
+
 ## Binary Index Tree
 - http://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/
 - Compared to Segment Tree, requres less space and very easy to implement
