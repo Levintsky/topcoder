@@ -22,7 +22,7 @@
 
 ## Knapsack
 - LC-416: Partition Equal Subset Sum
-- LC-474: Ones and Zeroes (0/1 Knapsack)
+- **LC-474**: Ones and Zeroes (0/1 Knapsack)
 
 ## Traversal
 - LC-174: Dungeon Game
@@ -56,6 +56,7 @@
 - Best slice:
 	- **LC-132**: Palindrome Partitioning II
 		- Naive bottom-up: correct, but O(n^3)
+- **LC-1092**: Shortest Common Supersequence
 
 ## Inverse Pair Series
 - Typical questions:

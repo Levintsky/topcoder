@@ -22,6 +22,8 @@
 	- Longest palindrome;
 
 ## Suffix Array
+- Typical problems:
+    - **LC-1044**: Longest Duplicate Substring
 - https://www.geeksforgeeks.org/suffix-array-set-1-introduction/
 - Definition: sorted of all suffixes of a given string;
 - e.g. Banana, sorted suffixes:
@@ -126,6 +128,7 @@ vector<int> kasai(string txt, vector<int> suffixArr)
 - LC-1106: Parsing A Boolean Expression
 - State machine:
     - String to Integer (atoi)
+- LC-1111: Maximum Nesting Depth of Two Valid Parentheses Strings
 
 ## Misc
 - Sorting Alphabetical:
