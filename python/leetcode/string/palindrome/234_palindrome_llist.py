@@ -26,9 +26,9 @@ class ListNode(object):
 class Solution(object):
     def isPalindrome(self, head):
         """
-    :type head: ListNode
-    :rtype: bool
-    """
+        :type head: ListNode
+        :rtype: bool
+        """
         result = []
         while head is not None:
             result.append(head.val)

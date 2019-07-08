@@ -34,11 +34,11 @@ class Solution(object):
         rec[c] -= 1
         if rec[c] == 0: del rec[c]
         begin += 1
-      print begin, i, s[begin:i+1]
+      print(begin, i, s[begin:i+1])
       best = max(best, i-begin+1)
       i += 1
     return best
 
 if __name__ == "__main__":
   a = Solution()
-  print a.lengthOfLongestSubstringTwoDistinct("eceba")
+  print(a.lengthOfLongestSubstringTwoDistinct("eceba"))

@@ -4,7 +4,7 @@
 - Typical questions:
 	- LC-354: Russian Doll Envelopes
 		- Sort the array. Ascend on width and descend on height if width are same.
-		- Find the longest increasing subsequence based on height.
+		- (LC-300) Find the longest increasing subsequence based on height.
 	- LC-446: Arithmetic Slices II - Subsequence
 	- LC-1027: Longest Arithmetic Sequence
 - Operation:

@@ -16,7 +16,7 @@ class Solution(object):
     """
     i, j = 0, len(num) - 1
     while i <= j:
-      print i, j, num[i], num[j]
+      print(i, j, num[i], num[j])
       if num[i] == "6" and num[j] == "9":
         i, j = i + 1, j - 1
       elif num[i] == "9" and num[j] == "6":
@@ -28,7 +28,7 @@ class Solution(object):
       elif num[i] == "0" and num[j] == "0":
         i, j = i + 1, j - 1
       else:
-        print False, num[i], num[j]
+        print(False, num[i], num[j])
         return False
     return True
 

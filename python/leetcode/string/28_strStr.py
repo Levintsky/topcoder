@@ -28,3 +28,4 @@ class Solution(object):
         :type needle: str
         :rtype: int
         """
+        return haystack.find(needle)
