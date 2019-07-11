@@ -88,7 +88,23 @@ class Solution(object):
                     heapq.heappush(heap, (p + f[i][j], j, k - 1))
         return -1
 
+    def solve3(self, n, flights, src, dst, K):
+        q = [(src, 0, 0)]
+        adj = collections.defaultdict(list)
+        for u, v, w in flights:
+            adj[u].append((v, w))
+        dist = [float('inf')]*n
+        while q:
+            u, cost, k = heapq.heappop(q)
+            for v, w in adj[u]:
+                if dist[v] > cost+w:
+                    dist[v] = cost+w
+                    if k < K:
+                        heapq.heappush(q, (v, dist[v], k+1))
+        return dist[dst] if dist[dst] != float('inf') else -1
+
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.solve2(3, [[0, 1, 100], [1, 2, 100], [0, 2, 500]], 0, 2, 1))
+    # print(a.solve2(3, [[0, 1, 100], [1, 2, 100], [0, 2, 500]], 0, 2, 1))
+    print(a.solve3(5, [[0,1,5],[1,2,5],[0,3,2],[3,1,2],[1,4,1],[4,2,1]], 0, 2, 2))

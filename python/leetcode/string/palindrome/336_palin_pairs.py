@@ -376,13 +376,13 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-  a = Solution()
-  """
-  print(a.palindromePairs(["ba", "abc"]))
-  print(a.palindromePairs(["bat", "tab", "cat"]))
-  print(a.palindromePairs(["abcd", "dcba", "lls", "s", "sssll"]))
-  print(a.palindromePairs(["a", "", "aa"]))
-  print(a.palindromePairs(["a","b","c","ab","ac","aa"]))
-  print(a.palindromePairs(["a","ab","ac"]))
-  """
-  print(a.solve3(["aa", "aabb"]))
+    a = Solution()
+    """
+    print(a.palindromePairs(["ba", "abc"]))
+    print(a.palindromePairs(["bat", "tab", "cat"]))
+    print(a.palindromePairs(["abcd", "dcba", "lls", "s", "sssll"]))
+    print(a.palindromePairs(["a", "", "aa"]))
+    print(a.palindromePairs(["a","b","c","ab","ac","aa"]))
+    print(a.palindromePairs(["a","ab","ac"]))
+    """
+    print(a.solve2(["aa", "aabb"]))

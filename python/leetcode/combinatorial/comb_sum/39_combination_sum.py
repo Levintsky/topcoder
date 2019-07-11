@@ -67,20 +67,39 @@ class Solution(object):
             if remain < 0:
                 return
             elif remain == 0:
-                newList = [item for item in tmpList]
-                result.append(newList)
+                # newList = [item for item in tmpList]
+                # result.append(newList)
+                result.append(tmpList)
             else:
                 for i in range(idx, n):
-                    tmpList.append(nums[i])
-                    backtrack(tmpList, remain-nums[i], i)
-                    tmpList.pop()
+                    # tmpList.append(nums[i])
+                    backtrack(tmpList + [nums[i]], remain-nums[i], i)
+                    # tmpList.pop()
 
         backtrack([], target, 0)
         return result
 
+    def solve3(self, nums, target):
+        res=[]
+        nums.sort()
+        def dfs(remain,stack):
+            if remain==0:
+                res.append(stack)
+                
+            for item in nums:
+                if item > remain:
+                    break
+                if stack and item>stack[-1]:
+                    print('here', stack, item)
+                    continue
+                else:
+                    dfs(remain-item,stack+[item])
+        dfs(target,[])
+        return res
+
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.combinationSum([2,3,6,7], 7))
-    print(a.combinationSum([2,3,5], 8))
-
+    # print(a.combinationSum([2,3,6,7], 7))
+    # print(a.combinationSum([2,3,5], 8))
+    print(a.solve2([2,3,6,7], 7))

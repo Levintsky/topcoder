@@ -57,6 +57,10 @@ class Solution(object):
                 sum_ = sum([grid[ii][jj] for ii in range(i, i + 3)])
                 if sum_ != 15:
                     return False
+            if grid[i][j] + grid[i+1][j+1] + grid[i+2][j+2] != 15:
+                return False
+            if grid[i+2][j] + grid[i+1][j+1] + grid[i][j+2] != 15:
+                return False
             return True
 
         result = 0

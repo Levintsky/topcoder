@@ -158,11 +158,17 @@ def kasai(txt, suffixArr):
         lcp[invSuff[i]] = k
         if k > 0:
             k -= 1
-    return lcp
+    
+    max_len = max(lcp)
+    for i, item in lcp:
+        if lcp[i] == max_len:
+            start = suffixArr[i]
+            return txt[start:start+max_len]
+    # return lcp
 
 
 if __name__ == "__main__":
     s = "mississippi" # "banana"
     suffix = SuffixArrayInducedSort(s)
-    print(suffix.suf, suffix.lcp)
+    print(suffix.lcp)
     print(kasai(s, suffix.suf[1:]))

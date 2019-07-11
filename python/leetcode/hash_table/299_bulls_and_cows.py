@@ -21,29 +21,44 @@ import collections
 
 
 class Solution(object):
-  def getHint(self, secret, guess):
-    n = len(secret)
-    if n == 0:
-      return ''
+    def getHint(self, secret, guess):
+        n = len(secret)
+        if n == 0:
+            return ''
 
-    s1 = dict(collections.Counter(secret))
-    s2 = dict(collections.Counter(guess))
+        s1 = dict(collections.Counter(secret))
+        s2 = dict(collections.Counter(guess))
 
-    # count
-    cnt = 0
-    for k in s1:
-      if k in s2:
-        cnt += min(s1[k], s2[k])
+        # count
+        cnt = 0
+        for k in s1:
+            if k in s2:
+                cnt += min(s1[k], s2[k])
 
-    #
-    cnt2 = 0
-    for i in range(n):
-      if secret[i] == guess[i]:
-        cnt2 += 1
+        cnt2 = 0
+        for i in range(n):
+            if secret[i] == guess[i]:
+                cnt2 += 1
 
-    return str(cnt2)+'A'+str(cnt-cnt2)+'B'
+        return str(cnt2)+'A'+str(cnt-cnt2)+'B'
 
+    def solve2(self, secret, guess):
+        memo_s = {}
+        memo_g = {}
+        A, B = 0, 0
+        for i in range(len(secret)):
+            if secret[i] == guess[i]:
+                A += 1
+            else:
+                memo_s[secret[i]] = memo_s.get(secret[i], 0) + 1
+                memo_g[guess[i]] = memo_g.get(guess[i], 0) + 1
+        # check B
+        for k in memo_s.keys():
+            if k in memo_g:
+                B += min(memo_s[k], memo_g[k])
+        s = "%dA%dB" % (A, B)
+        return s
 
 if __name__ == '__main__':
   a = Solution()
-  print a.getHint('1123', '0111')
+  print(a.getHint('1123', '0111'))
