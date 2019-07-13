@@ -92,6 +92,26 @@ class Vector2D2(object):
         print(self.idx1d, self.total)
         return not self.idx1d == self.total
 
+    def reset(self):
+        self.idx2d = None
+        for i in range(len(self.data)):
+            if self.idx2d is None and len(self.data[i]) > 0:
+                self.idx2d = (i, 0)
+        self.idx1d = 0
+
+    def removeSelf(self):
+        i, j = self.idx2d
+        self.data[i].pop(j)
+        self.total -= 1
+        # already at the end, no need to check next valid
+        if self.total == self.idx1d:
+            return
+        if j == len(self.data[i]):
+            for ii in range(i+1, len(self.data)):
+                if len(self.data) > 0:
+                    self.idx2d = ii, 0
+                    break
+
 if __name__ == "__main__":
     vec = [[1,2], [3], [4]]
     iterator = Vector2D2(vec)
@@ -100,6 +120,14 @@ if __name__ == "__main__":
     print(iterator.hasNext())
     print(iterator.next())
     print(iterator.hasNext())
+    iterator.reset()
+    for i in range(4):
+        if i % 2 == 0:
+            iterator.removeSelf()
+        else:
+            _ = iterator.next()
+        print(iterator.data, iterator.idx2d, iterator.idx1d)
+    # print(iterator.data)
     """
     while i.hasNext():
         v.append(i.next())

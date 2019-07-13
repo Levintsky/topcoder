@@ -30,10 +30,8 @@ public:
 };
 
 int main() {
-	vector<string> strs;
-	strs.push_back(string("abc"));
-	strs.push_back(string("add"));
+	vector<string> strs = {"abc", "add"};
 	Solution a;
-	cout << a.longestCommonPrefix(strs);
+	cout << a.longestCommonPrefix(strs) << endl;
 	return 0;
 }

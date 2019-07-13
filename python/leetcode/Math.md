@@ -10,5 +10,8 @@
 - LC-29: Divide Two Integers
 
 ## Modeling the probelm
-- LC-799: Champagne Tower
-- LC-458. Poor Pigs
+- **LC-458**: Poor Pigs
+- **LC-799**: Champagne Tower
+- LC-1006: Clumsy Factorial
+- LC-1025: Divisor Game
+- LC-1040. Moving Stones Until Consecutive II

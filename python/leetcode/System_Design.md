@@ -10,6 +10,8 @@
 
 ## Iterator
 - LC-173: Binary Search Tree Iterator
+- LC-251: Flatten 2D Vector
+- LC-281: Zigzag Iterator
 - LC-284: Peeking Iterator
 - LC-341: Flatten Nested List Iterator
 

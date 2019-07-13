@@ -135,6 +135,38 @@ class NestedIterator2(object):
 # i, v = NestedIterator(nestedList), []
 # while i.hasNext(): v.append(i.next())
 
+class NestedIterator3(object):
+
+    def __init__(self, nestedList):
+        self.stack = [[nestedList, 0]]
+
+    def next(self):
+        # return the item
+        # move the stack ahead
+        item, n = self.stack[-1]
+        self.stack[-1][1] += 1
+        return item[n].getInteger()
+        
+    def hasNext(self):
+        # make the stack point to the next integer
+        s = self.stack
+        # print('stack: ', s)
+        while s:
+            # note that itemList is of type list
+            # read the problem carefully
+            itemList, i = s[-1]
+            if i == len(nestedList):
+                _ = s.pop()
+            else:
+                x = itemList[i]
+                if x.isInteger():
+                    return True
+                s[-1][1] += 1
+                s.append([x.getList(), 0])
+            # print('stack: ', s)
+        return False
+
+
 class NestedIterator4(object):
 
     def __init__(self, nestedList):
@@ -179,6 +211,6 @@ class NestedIterator4(object):
 
 if __name__ == "__main__":
     data = NestedInteger([[1,1],2,[1,1]])
-    i = NestedIterator2(data)
+    i = NestedIterator3(data)
     while i.hasNext():
         print(i.next())

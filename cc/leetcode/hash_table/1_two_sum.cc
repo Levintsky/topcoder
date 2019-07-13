@@ -26,10 +26,12 @@ public:
 
 int main() {
     Solution a;
-    vector<int> input({2, 7, 11, 15});
+    const int arr[] = {2, 7, 11, 15};
+    vector<int> input(arr, arr+4);
 
     vector<int> result = a.twoSum(input, 9);
 
     for (int i = 0; i < result.size(); ++i)
         cout << result[i] << endl;
+    return 0;
 }

@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int romanToInt(string s) {
+    /* int romanToInt(string s) {
         vector<vector<string>> rec;
 		rec.push_back(vector<string>({"M", "-", "-"}));
 		rec.push_back(vector<string>({"C", "D", "M"}));
@@ -64,12 +64,57 @@ public:
 		}
 		return true;
     }
+    */
+    int solve2(string s) 
+    {
+        int ret = 0;
+        int len = s.length();
+        int prev = r_map(s[0]);
+        
+        for(int i = 0; i < len; i++)
+        {            
+            int cur = r_map(s[i]);
+            if(cur > prev)
+            {
+                ret += cur - 2 * prev;             
+            }
+            else
+            {
+                ret += cur;
+            }
+            prev = cur;
+        }
+        return ret;
+    }
+
+    int r_map(char c)
+    {
+        switch(c)
+        {
+            case 'I': 
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+        }
+        return 0;
+    }
 };
 
 int main() {
 	string s("DCXXI");
 	Solution a;
-	cout << a.romanToInt(s);
+	// cout << a.romanToInt(s) << endl;
+	cout << a.solve2(s) << endl;
 	return 0;
 }
 

@@ -10,6 +10,7 @@
 		- 80xx - 86xx
 		- 870x - 875x
 		- 8760 - 8765
+- LC-1015: Numbers With 1 Repeated Digit
 - LC-357: number with unique digits (Specific case of 1012)
 - LC-788: rotate digit (digits in set([0, 1, 8, 2, 5, 6, 9]))
 - LC-902: Numbers At Most N Given Digit Set

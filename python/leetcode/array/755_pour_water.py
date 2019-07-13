@@ -146,9 +146,28 @@ class Solution(object):
             heights[curr] += 1
         return heights
 
+    def solve(self, heights, V, K):
+        for i in range(V):
+            # go left first
+            ind = K
+            while ind > 0 and heights[ind-1] <= heights[ind]:
+                ind -= 1
+            # go right
+            while ind < len(heights) - 1 and heights[ind+1] <= heights[ind]:
+                ind += 1
+            # go back left
+            while ind > K and heights[ind-1] <= heights[ind]:
+                ind -= 1
+            heights[ind] += 1
+            print('intermediate', heights)
+        return heights
+
 
 if __name__ == "__main__":
     a = Solution()
     print(a.pourWater([2, 1, 1, 2, 1, 2, 2], 4, 3))
+    print(a.solve([2, 1, 1, 2, 1, 2, 2], 4, 3))
     print(a.pourWater([1, 2, 3, 4], 2, 2))
+    print(a.solve([1, 2, 3, 4], 2, 2))
     print(a.pourWater([3, 1, 3], 5, 1))
+    print(a.solve([3, 1, 3], 5, 1))

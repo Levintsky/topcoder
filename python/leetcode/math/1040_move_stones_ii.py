@@ -11,8 +11,6 @@ The game ends when you cannot make any more moves, ie. the stones are in consecu
 
 When the game ends, what is the minimum and maximum number of moves that you could have made?  Return the answer as an length 2 array: answer = [minimum_moves, maximum_moves]
 
- 
-
 Example 1:
 
 Input: [7,4,9]
@@ -31,7 +29,6 @@ Example 3:
 
 Input: [100,101,104,102,103]
 Output: [0,0]
- 
 
 Note:
 
