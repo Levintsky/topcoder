@@ -40,9 +40,9 @@ class TreeNode(object):
 class Solution(object):
     def upsideDownBinaryTree(self, root):
         """
-    :type root: TreeNode
-    :rtype: TreeNode
-    """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
         if root is None:
             return None
 
@@ -65,19 +65,36 @@ class Solution(object):
             l.right = n
         return new_root
 
+    def solve2(self, root):
+        self.root = None
+        self.helper(root)
+        return self.root
+
+    def helper(self, node):
+        if node is None:
+            return None
+        if node.left is not None:
+            self.helper(node.left)
+            l, r = node.left, node.right
+            l.left, l.right = r, node
+            node.left, node.right = None, None
+        else:
+            self.root = node
+
 
 if __name__ == "__main__":
     n1 = TreeNode(1)
     n2 = TreeNode(2)
-    # n3 = TreeNode(3)
-    # n4 = TreeNode(4)
-    # n5 = TreeNode(5)
-    n1.left = n2
+    n3 = TreeNode(3)
+    n4 = TreeNode(4)
+    n5 = TreeNode(5)
 
-    # n1.left, n1.right = n2, n3
-    # n2.left, n2.right = n4, n5
+    n1.left, n1.right = n2, n3
+    n2.left, n2.right = n4, n5
 
     a = Solution()
-    n = a.upsideDownBinaryTree(n1)
+    # n = a.upsideDownBinaryTree(n1)
+    n = a.solve2(n1)
+
     # print n.val, n.left.val, n.right.val
     # print n.right.left.val, n.right.right.val

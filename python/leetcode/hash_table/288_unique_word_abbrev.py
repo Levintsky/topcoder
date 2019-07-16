@@ -1,7 +1,9 @@
 """
 288. Unique Word Abbreviation (Medium)
 
-An abbreviation of a word follows the form <first letter><number><last letter>. Below are some examples of word abbreviations:
+An abbreviation of a word follows the form 
+<first letter><number><last letter>. 
+Below are some examples of word abbreviations:
 
 a) it                      --> it    (no abbreviation)
 
@@ -15,7 +17,10 @@ c) i|nternationalizatio|n  --> i18n
               1
      1---5----0
 d) l|ocalizatio|n          --> l10n
-Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is unique if no other word from the dictionary has the same abbreviation.
+Assume you have a dictionary and given a word, 
+find whether its abbreviation is unique in the dictionary. 
+A word's abbreviation is unique if no other word from the dictionary 
+has the same abbreviation.
 
 Example: 
 Given dictionary = [ "deer", "door", "cake", "card" ]

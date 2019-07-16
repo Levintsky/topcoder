@@ -14,3 +14,10 @@
 
 ## Lines
 - LC-335: Self Crossing
+
+## Rectangles
+- LC-939: Minimum Rectangle
+
+## Point
+- LC-1131: Maximum of Absolute Value Expression
+	- Largest distance between points

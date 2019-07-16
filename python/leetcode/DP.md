@@ -24,10 +24,14 @@
 - LC-416: Partition Equal Subset Sum
 - **LC-474**: Ones and Zeroes (0/1 Knapsack)
 
+## DFS Style
+- **LC-638**: Shopping Offers
+- **LC-1125**: Smallest Sufficient Team
+
 ## Traversal
 - LC-174: Dungeon Game
 - Double DP:
-	- 741. Cherry Pickup
+	- **LC-741**: Cherry Pickup
 
 ## Divide and Conquer Style
 - Typical questions:
@@ -38,7 +42,7 @@
 
 ## Memoized DP
 - Typical questions:
-	- LC-464. Can I Win
+	- LC-464: Can I Win
 
 ## Bottom-Up
 - Typical questions:

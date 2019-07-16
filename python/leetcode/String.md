@@ -115,11 +115,11 @@
 
 ## Parsing
 - Generally, stack is used! or solve recursively. Interal tree structure.
-- LC-224: Basic Calculator
-- LC-227: Basic Calculator II
+- **LC-224**: Basic Calculator
+- **LC-227**: Basic Calculator II
 - LC-388: Longest Absolute File Path
-- LC-772: **Basic Calculator III**
-- LC-770: Basic Calculator IV
+- **LC-772**: **Basic Calculator III
+- **LC-770**: Basic Calculator IV
 - LC-1106: Parsing A Boolean Expression
 - State machine:
     - String to Integer (atoi)

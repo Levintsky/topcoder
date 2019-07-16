@@ -20,3 +20,6 @@
 		- when add a low point (i, j, h) having water, add (i, j, h_max) and add the result by h_max - h
 	- **LC-743**: Network Delay Time
 		- Dijkstra
+
+## BFS with all paths recorded
+- LC-126: Word Ladder II

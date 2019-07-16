@@ -21,8 +21,12 @@ addNum(3)
 findMedian() -> 2
 '''
 
+import bisect
+import heapq
+
+
 class MinHeap(object):
-  def __init__(self, cmp=cmp):
+  def __init__(self, cmp):
     self.nums = []
     self.cnt = 0
     self.cmp = cmp
@@ -104,13 +108,79 @@ class MedianFinder(object):
         if self.cnt % 2 == 1: return float(self.max_h.nums[0])
         else: return (float(self.max_h.nums[0])+float(self.min_h.nums[0]))/2.
 
+class Med2(object):
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.data = []
+
+    def addNum(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        bisect.insort(self.data, num)
+
+    def findMedian(self):
+        """
+        :rtype: float
+        """
+        n = len(self.data)
+        if n % 2 == 1:
+            return float(self.data[n // 2])
+        else:
+            return (self.data[n//2] + self.data[n//2-1])/2
+
+# Solution 3: two heaps (good b/c no need to remove items)
+class Med3:
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.left_q = [] # max-h
+        self.right_q = [] # min-h
+
+    def addNum(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        
+        if not self.left_q or num <= -self.left_q[0]:
+            heapq.heappush(self.left_q, -num)
+        else:
+            heapq.heappush(self.right_q, num)
+        if len(self.left_q) > len(self.right_q) + 1:
+            item = heapq.heappop(self.left_q)
+            heapq.heappush(self.right_q, -item)
+        if len(self.right_q) > len(self.left_q):
+            item = heapq.heappop(self.right_q)
+            heapq.heappush(self.left_q, -item)
+
+    def findMedian(self):
+        """
+        :rtype: float
+        """
+        n = len(self.left_q) + len(self.right_q)
+        if n % 2 == 1:
+            return -float(self.left_q[0])
+        else:
+            return (-self.left_q[0] + self.right_q[0])/2.
 
 if __name__ == '__main__':
-  obj = MedianFinder()
-  for i in range(10):
-    obj.addNum(i)
-    print obj.max_h.nums, obj.min_h.nums
-    print obj.findMedian()
+    """
+    obj = MedianFinder()
+    for i in range(10):
+        obj.addNum(i)
+        print(obj.max_h.nums, obj.min_h.nums)
+        print(obj.findMedian())
+    """
+    obj = Med3()
+    for i in range(5, 0, -1):
+        obj.addNum(i)
+        print(i, obj.findMedian())
+        print(obj.left_q, obj.right_q)
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
 # obj.addNum(num)

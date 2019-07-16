@@ -4,7 +4,8 @@
 - LC-564. Find the Closest Palindrome (Input: "123", Output: "121")
 
 ## Number Theory
-- LC-479. Largest Palindrome Product
+- LC-204: Count Primes
+- LC-479: Largest Palindrome Product
 
 ## Operators
 - LC-29: Divide Two Integers
@@ -14,4 +15,4 @@
 - **LC-799**: Champagne Tower
 - LC-1006: Clumsy Factorial
 - LC-1025: Divisor Game
-- LC-1040. Moving Stones Until Consecutive II
+- LC-1040: Moving Stones Until Consecutive II

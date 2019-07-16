@@ -1,61 +1,91 @@
+"""
 So far, we have encountered the following series of calculator problems:
 
 224. Basic Calculator
 227. Basic Calculator II
 772. Basic Calculator III
 770. Basic Calculator IV
-Though each of them may be solved using different methodologies, in this post I'd like to sort out the complexities and develop one "generic" solution to help us approach these problems.
+Though each of them may be solved using different methodologies, in this post I'd like to sort 
+out the complexities and develop one "generic" solution to help us approach these problems.
 
-Note that this post is NOT intended to deal with general calculator problems that involve complicated operands/operators. The analyses below are limited to the scope as specified by the problem descriptions of the above four problems.
+Note that this post is NOT intended to deal with general calculator problems that involve 
+complicated operands/operators. The analyses below are limited to the scope as specified 
+by the problem descriptions of the above four problems.
 
 I -- Definitions and terminology
 
 In this section I will spell out some definitions to facilitate the explanation.
 
-Expression: An expression is a string whose value is to be calculated. Every expression must be alternating between operands and operators.
+Expression: An expression is a string whose value is to be calculated. Every expression must 
+be alternating between operands and operators.
 
-Operand: An operand is a "generalized value" that can be the target of an operator. It must be one of the following three types -- number, variable, subexpression.
+Operand: An operand is a "generalized value" that can be the target of an operator. It must 
+be one of the following three types -- number, variable, subexpression.
 
-Number: A number consists of digits only. The value of an operand of this type is given by the literal value of the number.
+Number: A number consists of digits only. The value of an operand of this type is given by 
+the literal value of the number.
 
-Variable: A variable consists of lowercase letters only. It can be either a free variable whose value is unknown, or a bound variable whose value is mapped to some number (can be looked up). Here we define the value of an operand of free variable type is given by the variable itself, while that of bound variable type is given by the value of the number to which the variable is mapped.
+Variable: A variable consists of lowercase letters only. It can be either a free variable 
+whose value is unknown, or a bound variable whose value is mapped to some number (can be 
+looked up). Here we define the value of an operand of free variable type is given by the 
+variable itself, while that of bound variable type is given by the value of the number to 
+which the variable is mapped.
 
-Subexpression: A subexpression is a valid expression enclosed in parentheses (which implies a recursive definition back to Expression). The value of an operand of this type is given by the calculated value of the subexpression itself.
+Subexpression: A subexpression is a valid expression enclosed in parentheses (which implies 
+a recursive definition back to Expression). The value of an operand of this type is given 
+by the calculated value of the subexpression itself.
 
-Operator: An operator is some prescribed action to be taken on the target operands. It must be one of the following four types: +, -, *, /, corresponding to addition, subtraction, multiplication and integer division, respectively. Operators have precedences, where + and - have level one precedence, while * and / have level two precedence (the higher the level is, the higher the precedence is).
+Operator: An operator is some prescribed action to be taken on the target operands. It must 
+be one of the following four types: +, -, *, /, corresponding to addition, subtraction, 
+multiplication and integer division, respectively. Operators have precedences, where + and - 
+have level one precedence, while * and / have level two precedence (the higher the level is, 
+the higher the precedence is).
 
 II -- Rules for calculations
 
-In this section, I will specify the general rules for carrying out the actual evaluations of the expression.
+In this section, I will specify the general rules for carrying out the actual evaluations 
+of the expression.
 
 Separation rule:
 
-We separate the calculations into two different levels corresponding to the two precedence levels.
+We separate the calculations into two different levels corresponding to the two precedence 
+levels.
 
-For each level of calculation, we maintain two pieces of information: the partial result and the operator in effect.
+For each level of calculation, we maintain two pieces of information: the partial result 
+and the operator in effect.
 
-For level one, the partial result starts from 0 and the initial operator in effect is +; for level two, the partial result starts from 1 and the initial operator in effect is *.
+For level one, the partial result starts from 0 and the initial operator in effect is +; 
+for level two, the partial result starts from 1 and the initial operator in effect is *.
 
-We will use l1 and o1 to denote respectively the partial result and the operator in effect for level one; l2 and o2 for level two. The operators have the following mapping:
+We will use l1 and o1 to denote respectively the partial result and the operator in effect 
+for level one; l2 and o2 for level two. The operators have the following mapping:
 o1 == 1 means +; o1 == -1 means - ;
 o2 == 1 means *; o2 == -1 means /.
 By default we have l1 = 0, o1 = 1, and l2 = 1, o2 = 1.
 
 Precedence rule:
 
-Each operand in the expression will be associated with a precedence of level two by default, meaning they can only take part in calculations of precedence level two, not level one.
+Each operand in the expression will be associated with a precedence of level two by default, 
+meaning they can only take part in calculations of precedence level two, not level one.
 
-The operand can be any of the aforementioned types (number, variable or subexpression), and will be evaluated together with l2 under the action prescribed by o2.
+The operand can be any of the aforementioned types (number, variable or subexpression), 
+and will be evaluated together with l2 under the action prescribed by o2.
 
 Demotion rule:
 
-The partial result l2 of precedence level two can be demoted to level one. Upon demotion, l2 becomes the operand for precedence level one and will be evaluated together with l1 under the action prescribed by o1.
+The partial result l2 of precedence level two can be demoted to level one. Upon demotion, 
+l2 becomes the operand for precedence level one and will be evaluated together with l1 under 
+the action prescribed by o1.
 
-The demotion happens when either a level one operator (i.e., + or -) is hit or the end of the expression is reached. After demotion, l2 and o2 will be reset for following calculations.
+The demotion happens when either a level one operator (i.e., + or -) is hit or the end of 
+the expression is reached. After demotion, l2 and o2 will be reset for following calculations.
 
 III -- Algorithm implementations
 
-In this section, I will lay out the general structure of the algorithm using pseudo-codes. From section I, we know there are at most five different types of structs contained in the expression: number, variable, subexpression, level one operators, level two operators. We will check each of them and proceed accordingly.
+In this section, I will lay out the general structure of the algorithm using pseudo-codes. 
+From section I, we know there are at most five different types of structs contained in 
+the expression: number, variable, subexpression, level one operators, level two operators. 
+We will check each of them and proceed accordingly.
 
 public int calculate(String s) {
     int l1 = 0, o1 = 1; // Initialization of level one
@@ -394,3 +424,4 @@ public List<String> basicCalculatorIV(String expression, String[] evalvars, int[
         
     return format(calculate(expression, map));
 }
+"""

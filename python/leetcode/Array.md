@@ -54,39 +54,35 @@ for i in range(row):
 ```
 
 ## Subarray Satisfying...
-- Typical questions:
+- Continuous:
 	- LC-84: Largest Rectangle in Histogram (DP)
 	- LC-992: Subarrays with K Different Integers
+	- **LC-795**: Number of Subarrays with Bounded Maximum
+		- **Left/right preprocessing trick!**
+- Discontinuous:
+	- LC-1027: Longest Arithmetic Sequence (DP)
+- Continuous 2D:
+	- **LC-85**: Maximal Rectangle
+	- LC-221: Maximal Square
 
-## Longest Subarray (DP)
-- Typical questions:
-	- LC-1027: Longest Arithmetic Sequence
+## Array Permutation/Re-arrange
+- **LC-932**: Beautiful Array (k with i < k < j such that A[k] * 2 = A[i] + A[j])
+	- Thinking from odd/even;
 
-## Array Permutation
-- Typical questions:
-	- **LC-932**: Beautiful Array (k with i < k < j such that A[k] * 2 = A[i] + A[j])
-		- Thinking from odd/even;
-
-## Array Jump
-- Typical questions:
+## Move on Array
+- Jump:
 	- **LC-975**: Odd Even Jump (from A[i], odd jumps: jump to j with smallest A[j] s.t. A[j]>=A[i]; even jumps: jump to largest A[j] s.t. A[j]<=A[i])
 		- Related to Count of Smaller Numbers After Self
 		- DP with backup
-
-## Array Move based on Height
-- Typical questions:
+- Move:
 	- LC-755: Pour Water (If the droplet would eventually fall by moving left, then move left; Otherwise, if the droplet would eventually fall by moving right, then move right; Otherwise, rise at it's current position.)
 
-## 2D-Array, Matrix
-- **LC-85**: Maximal Rectangle
-- LC-221: Maximal Square
-
-## Array Operation
+## Array Manipulation
 - Typical questions:
 	- LC-995: Minimum Number of K Consecutive Bit Flips
-	- LC-1072: Flip Columns For Maximum Number of Equal Rows
+	- **LC-1072**: Flip Columns For Maximum Number of Equal Rows
 
-## Inverse Pair Series
+## Sorting/Median/Inverse Pair Series
 - Typical questions:
 	- **LC-629**: K Inverse Pairs Array
 		- Direct DP: O(nk^2), iterate dp[n][k] for k in [0..K]
@@ -98,17 +94,25 @@ for i in range(row):
 	- LC-327: Count of Range Sum
 		- Same trick as 315, could be done by either merge-sort or binary search
 	- LC-493: Reverse Pairs
-
-## Sorting, Median, ...
 - LC-324: Wiggle Sort II
 	- Solution 1: sorting based
 	- Solution 2: median based
 - LC-1099: Two Sum Less Than K
+	- Doable by sort/binary-search
 
 ## Stack
-- LC-456. 132 Pattern
+- **LC-456**: 132 Pattern
+	- Search from back, equivalent to 231 from begin...
+	- **Decreasing Stack**: saves the largest "3", while poping "2"
+	- If any new "1" < "2"
+- **LC-907**: Sum of Subarray Minimums
+	- **Increasing Stack**: saves (item, cnt)
+
+## Row and Column Stat
+- **LC-1001**: Grid Illumination
 
 ## Others
 - LC-330: Patching Array
 - Self in-place manipulation to avoid extra-space (notice array item range):
-	- LC-442. Find All Duplicates in an Array
+	- LC-442: Find All Duplicates in an Array
+- LC-448: Find All Numbers Disappeared in an Array
