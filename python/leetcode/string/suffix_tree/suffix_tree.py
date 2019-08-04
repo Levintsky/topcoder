@@ -203,5 +203,3 @@ class SuffixTree(object):
         
     def has_substring(self, substring):
         return self.find_substring(substring) != -1
-
-        

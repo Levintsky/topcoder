@@ -6,6 +6,7 @@
 ## Number Theory
 - LC-204: Count Primes
 - LC-479: Largest Palindrome Product
+- **LC-866**: Prime Palindrome
 
 ## Operators
 - LC-29: Divide Two Integers

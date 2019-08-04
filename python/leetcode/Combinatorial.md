@@ -14,3 +14,4 @@
 - Typical questions:
 	- LC-31: Next Permutation
 	- LC-402: Remove K Digits
+	- **LC-903**: Valid Permutations for DI Sequence

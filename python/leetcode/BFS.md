@@ -1,9 +1,12 @@
 # BFS
 
+## BFS with Variation
+- **LC-1129**: Shortest Path with Alternating Colors
+	- Could be implemented very fast
+
 ## Array: Generate All...
-- Typical questions:
-	- **LC-301**: Remove Invalid Parentheses
-		- BFS is much slower, but easier to implement
+- **LC-301**: Remove Invalid Parentheses
+	- BFS is much slower, but easier to implement
 
 ## Traversal
 - Typical questions:

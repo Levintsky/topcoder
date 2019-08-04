@@ -59,6 +59,8 @@ for i in range(row):
 	- LC-992: Subarrays with K Different Integers
 	- **LC-795**: Number of Subarrays with Bounded Maximum
 		- **Left/right preprocessing trick!**
+	- **LC-1124**: Longest Well-Performing Interval
+
 - Discontinuous:
 	- LC-1027: Longest Arithmetic Sequence (DP)
 - Continuous 2D:

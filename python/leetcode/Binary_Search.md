@@ -105,7 +105,7 @@ return letters[left]
 - 475 heaters
 
 ## Search with function
-- 275 (h-index)
+- **275** (h-index)
 ```python
 """
 find maximum ind in [0, n-1] s.t. A[ind] >= n-ind

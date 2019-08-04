@@ -21,6 +21,16 @@ public:
     }
 };
 
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        static int fast_io = []() { std::ios::sync_with_stdio(false); cin.tie(nullptr);
+                                    return 0; }();
+        auto res = lower_bound(nums.begin(), nums.end(), target);
+        return res - nums.begin();
+    }
+};
+
 int main() {
 	Solution a;
 	vector<int> v = {1,3,5,6};

@@ -19,5 +19,8 @@
 - LC-939: Minimum Rectangle
 
 ## Point
-- LC-1131: Maximum of Absolute Value Expression
-	- Largest distance between points
+- **LC-1131**: Maximum of Absolute Value Expression
+	- Largest Manhattan distance between points
+
+## Misc
+- **LC-790**: Domino and Tromino Tiling

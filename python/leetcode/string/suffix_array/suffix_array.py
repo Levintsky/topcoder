@@ -168,7 +168,9 @@ def kasai(txt, suffixArr):
 
 
 if __name__ == "__main__":
-    s = "mississippi" # "banana"
+    # s = "mississippi" # "banana"
+    s = "zrziy"
     suffix = SuffixArrayInducedSort(s)
-    print(suffix.lcp)
-    print(kasai(s, suffix.suf[1:]))
+    max_substr = suffix.suf[-1]
+    print(s[max_substr:])
+    # print(kasai(s, suffix.suf[1:]))

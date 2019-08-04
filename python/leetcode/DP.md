@@ -2,7 +2,7 @@
 
 ## Subarray
 - Typical questions:
-	- LC-354: Russian Doll Envelopes
+	- **LC-354**: Russian Doll Envelopes
 		- Sort the array. Ascend on width and descend on height if width are same.
 		- (LC-300) Find the longest increasing subsequence based on height.
 	- LC-446: Arithmetic Slices II - Subsequence
@@ -11,6 +11,8 @@
 	- LC-188: Best Time to Buy and Sell Stock IV
 	- LC-309: Best Time to Buy and Sell Stock with Cooldown
 	- LC-546: Remove Boxes
+- Combinatorial:
+	- **LC-903**: Valid Permutations for DI Sequence
 
 ## Matrix
 - LC-85: Maximal Rectangle
@@ -27,6 +29,7 @@
 ## DFS Style
 - **LC-638**: Shopping Offers
 - **LC-1125**: Smallest Sufficient Team
+	- Bit trick to encode key!
 
 ## Traversal
 - LC-174: Dungeon Game
@@ -65,3 +68,6 @@
 ## Inverse Pair Series
 - Typical questions:
 	- LC-629: K Inverse Pairs Array
+
+## Geometry
+- **LC-790**: Domino and Tromino Tiling

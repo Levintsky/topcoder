@@ -105,9 +105,11 @@
     - **LC-301**: Remove Invalid Parentheses (harder version of LC-32, DFS)
 
 ## Substring
-- Typical questions:
-    - LC-583: Delete Operation for Two Strings
-    - LC-516: Longest Palindromic Subsequence
+- LC-583: Delete Operation for Two Strings
+- LC-516: Longest Palindromic Subsequence
+- Continuous:
+    - **LC-1163**: Last Substring in Lexicographical Order
+        - Think naively, no need to always go with suffix array!
 
 ## Matching
 - LC-10: Regular Expression Matching (with . and \*)
