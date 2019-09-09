@@ -7,10 +7,13 @@
 		- (LC-300) Find the longest increasing subsequence based on height.
 	- LC-446: Arithmetic Slices II - Subsequence
 	- LC-1027: Longest Arithmetic Sequence
+	- **LC-1187**: Make Array Strictly Increasing
+		- Closely related to longest increasing sub-sequence!
 - Operation:
 	- LC-188: Best Time to Buy and Sell Stock IV
 	- LC-309: Best Time to Buy and Sell Stock with Cooldown
 	- LC-546: Remove Boxes
+	- **LC-1187**: Make Array Strictly Increasing
 - Combinatorial:
 	- **LC-903**: Valid Permutations for DI Sequence
 
