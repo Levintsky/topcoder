@@ -17,3 +17,6 @@
 - Typical questions:
 	- LC-464: Can I Win
 	- LC-473: Matchsticks to Square
+
+## Coverage
+- LC-1240: Tiling a Rectangle with the Fewest Squares
