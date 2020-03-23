@@ -1,5 +1,8 @@
 # Dynamic Programming
 
+## Unclassified
+- LC-1388: Pizza With 3n Slices (Hard)
+
 ## Subarray
 - Typical questions:
 	- **LC-354**: Russian Doll Envelopes

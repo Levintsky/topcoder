@@ -1,7 +1,8 @@
 # Binary Search Summary
 
 ## Binary Search Library
-- bisect-left: return the first appearance, otherwise return the first one larger
+- bisect-left: return the first appearance, otherwise return the first one larger;
+- bisect: always return the first one larger;
 ```python
 import bisect
 

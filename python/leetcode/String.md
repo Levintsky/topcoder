@@ -135,3 +135,5 @@
     - LC-440: K-th Smallest in Lexicographical Order
 - LC-459: Repeated Substring Pattern
 - LC-466: Count The Repetitions
+- **Rolling Hash**:
+    - LC-1392: Longest Happy Prefix;
