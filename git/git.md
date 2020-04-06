@@ -95,6 +95,8 @@ git pull [remote] [branch]
 git push [remote] [branch]
 git push [remote] --all
 ```
+
+## Reset
 - Recall a change
 ```
 git checkout [file]
@@ -107,4 +109,31 @@ git reset [commit]
 git reset --hard [commit]
 git stash
 git stash pop
+```
+- In case of a dirty merge;
+```
+git reset HEAD --hard
+git clean -fd
+```
+
+## Everytime Sync with Master
+- Option 1: merge;
+```
+git checkout your_branch
+git merge master
+```
+or
+```
+git merge your_branch master
+```
+- Option 2: rebase;
+	- Check out master and pull
+```
+git checkout master
+git pull
+```
+	- Rebase: replay all your modification
+```
+git checkout your_branch
+git rebase master
 ```

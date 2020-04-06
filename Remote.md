@@ -16,6 +16,17 @@ ssh -X -a username@server
 - 2. Code mount to local
 ```
 sshfs username@server:/path-on-server/ ~/path-to-mount-point
+sshfs zhuoyuan@172.30.232.131:/home/zhuoyuan/codes/na-3d-comp/atg/experimental/rnd/3d-composition /Users/zhuoyuan/codes/code-remote
+```
+	- In case of not responding, force kill:
+```
+pgrep -lf sshfs
+kill -9 <pid_of_sshfs_process>
+sudo umount -f <mounted_dir>
+```
+	- Or umount like following and remount;
+```
+sudo diskutil umount force /path/to/mount
 ```
 
 ## Remote Deskop
