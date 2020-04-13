@@ -137,3 +137,7 @@ git pull
 git checkout your_branch
 git rebase master
 ```
+	- Then the branch diverges, you have to use --force to push
+```
+git push --force
+```

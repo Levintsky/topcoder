@@ -16,7 +16,7 @@ ssh -X -a username@server
 - 2. Code mount to local
 ```
 sshfs username@server:/path-on-server/ ~/path-to-mount-point
-sshfs zhuoyuan@172.30.232.131:/home/zhuoyuan/codes/na-3d-comp/atg/experimental/rnd/3d-composition /Users/zhuoyuan/codes/code-remote
+sshfs zhuoyuan@172.30.232.131:/home/zhuoyuan/na/atg/experimental/rnd/3d-composition /Users/zhuoyuan/codes/code-remote
 ```
 	- In case of not responding, force kill:
 ```
