@@ -17,6 +17,7 @@ ssh -X -a username@server
 ```
 sshfs username@server:/path-on-server/ ~/path-to-mount-point
 sshfs zhuoyuan@172.30.232.131:/home/zhuoyuan/na/atg/experimental/rnd/3d-composition /Users/zhuoyuan/codes/code-remote
+sshfs zhuoyuan@172.30.232.131:/home/zhuoyuan/experiments/python-opengl-tutorial /Users/zhuoyuan/codes/opengl-remote
 ```
 	- In case of not responding, force kill:
 ```

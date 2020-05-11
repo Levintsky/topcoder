@@ -24,6 +24,7 @@ Could you solve it in linear time?
 """
 
 """
+Solution 1:
 We scan the array from 0 to n-1, keep "promising" elements in the deque. The algorithm is amortized O(n) as each element is put and polled once.
 
 At each i, we keep "promising" elements, which are potentially max number in window [i-(k-1),i] or any subsequent window. This means
