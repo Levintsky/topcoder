@@ -1,6 +1,10 @@
-6.824 2020 Lecture 10: Database logging, quorums, Amazon Aurora
+# Database
 
-Amazon Aurora, Verbitski et al., SIGMOD 2017.
+## Good Resources
+- https://zhuanlan.zhihu.com/p/30159571
+
+## 6.824 2020 Lecture 10: Database logging, quorums, Amazon Aurora
+- Amazon Aurora, Verbitski et al., SIGMOD 2017.
 
 Why are we reading the Aurora paper?
   successful recent cloud service, solves serious problems for customers

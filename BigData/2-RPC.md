@@ -1,5 +1,10 @@
 # RPC
 
+## Resources
+- https://www.zhihu.com/question/25536695/answer/54052580
+- https://zhuanlan.zhihu.com/p/61364466
+- RPC as a **micro-service**, better than http;
+
 ## 6.824 2020 Lecture 2: Infrastructure: RPC and threads
 - Today:
 	- Threads and RPC in Go, with an eye towards the labs

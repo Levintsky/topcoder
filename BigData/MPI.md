@@ -1,5 +1,8 @@
 # Communication
 
+## MPI for Deep learning
+- Mu Li: https://www.zhihu.com/question/55119470
+
 ## MPI
 - A standardized and portable message-passing **standard**;
 - Resources:

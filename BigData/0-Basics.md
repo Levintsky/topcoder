@@ -1,5 +1,8 @@
 # Basics of Big Data, Distributed System
 
+## Resources
+- https://www.zhihu.com/question/29597104/answer/880513931
+
 ## MIT 6.824
 - https://pdos.csail.mit.edu/6.824/schedule.html
 - Assignments:

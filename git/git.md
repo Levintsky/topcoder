@@ -211,7 +211,7 @@ git config --global push.default simple
 	```
 
 ## Tag
-- tag on a specific commit
+- tag on a specific commit **locally**
 ```
 git tag v1.0
 git tag # will show all, e.g., v0.9, v1.0 ...
@@ -220,10 +220,19 @@ git tag # will show all, e.g., v0.9, v1.0 ...
 ```
 git show v0.9 # commit id and details
 ```
+- Remove tag
+```
+git tag -d v0.1
+```
+- Tag to remote
+```
+git push origin :refs/tags/<tagName>
+git push origin v1.0 # push new tag v1.0
+git push origin --tags # push all tags
+```
 - Misc
 ```
 git tag [v1.0] [commit]
-git push origin :refs/tags/[tagName]
 ```
 
 ## Misc
