@@ -168,15 +168,65 @@ git config --global push.default simple
 	git log # will show more commits
 	```
 	- Suggestions: master seldom changed; everyone checkout own branch from dev and merge to dev;
+- **Stash** (for bug fix?)
+	- Have unstaged changes (not ready, not supposed to submit), have to change branch to work
+	```
+	git stash # save changes somewhere
+	```
+	- Change branch, work on something else;
+	```
+	git checkout master
+	git commit -m "fix bug 101" # 4c805e2
+	```
+	- Switch back
+	```
+	git switch dev
+	git status # will be clean
+	git stash list # show stashed contents
+	git stash apply # apply the changes (unstaged changes back!)
+	git stash drop # remove stash
+	git stash pop # pop = apply + drop
+	git stash list # will be empty now
+	```
+	- Apply the bug fix on current branch
+	```
+	git cherry-pick 4c805e2 # on dev
+	```
+- Remote collaboration:
+	```
+	git remote -v
+	git push origin branch-name
+	git checkout -b branch-name origin/branch-name
+	git branch --set-upstream branch-name origin/branch-name
+	git pull
+	```
+- Rebase: don't want multi-line.
+	- Someone pushed, we can do
+	```
+	git pull
+	[... # fix potential conflicts, git add]
+	git stats 
+	git log # 2 lines
+	git rebase # single line
+	```
 
-## Misc
-- tag
+## Tag
+- tag on a specific commit
 ```
-git tag
-git tag [tag]
-git tag [tag] [commit]
+git tag v1.0
+git tag # will show all, e.g., v0.9, v1.0 ...
+```
+- Show
+```
+git show v0.9 # commit id and details
+```
+- Misc
+```
+git tag [v1.0] [commit]
 git push origin :refs/tags/[tagName]
 ```
+
+## Misc
 - check info
 ```
 git status
