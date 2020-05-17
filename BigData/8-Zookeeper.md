@@ -2,11 +2,32 @@
 
 ## Resources
 - https://www.zhihu.com/topic/19657747/hot
+- https://zhuanlan.zhihu.com/p/69114539
+- https://www.zhihu.com/question/65852003/answer/656091418
+- https://zhuanlan.zhihu.com/p/135918968
+- ZooKeeper in Tencent: https://zhuanlan.zhihu.com/p/134549250
 
 ## Basics
-- Coordination
-- Open-source version of Google Chubby
-- Important part of Hadoop
+- **Coordination** in distributed system;
+- Open-source version of **Google Chubby**;
+- Important part of Hadoop:
+	- With HBase: ZK used to select leader, trace usable server;
+	- With Kafka: ZK used to detect crash, 
+	- With Apache Solr: 
+- **Sequential Consistency**:
+	- All updates have kept orders;
+	- When update is not done, block service for consistency;
+	- ZooKeeper makes the update synchronization fast;
+- Satisfy CP not A in CAP;
+- Concepts:
+	- Node (Znode) organized as a tree like unix files
+	- Leader/Follower;
+- Zookeeper in Uber:
+	- https://code.int.uberatc.com/w/runbooks/datacenter/zookeeper/
+	- Services using ZK: Aurora, Mesos, hdfs, Messina;
+```
+service zookeeper-server start
+```
 
 ## 6.824 2020 Lecture 8: Zookeeper Case Study
 - Patrick Hunt, Mahadev Konar, Flavio P. Junqueira, Benjamin Reed. ZooKeeper: wait-free coordination for internet-scale systems. Proceedings of the 2010 USENIX Annual Technical Conference.
