@@ -52,6 +52,7 @@
 ## Memoized DP
 - Typical questions:
 	- LC-464: Can I Win
+- LC-1444;
 
 ## Bottom-Up
 - Typical questions:

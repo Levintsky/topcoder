@@ -17,3 +17,4 @@
 - LC-1006: Clumsy Factorial
 - LC-1025: Divisor Game
 - LC-1040: Moving Stones Until Consecutive II
+- LC-1419: Minimum number of Frogs

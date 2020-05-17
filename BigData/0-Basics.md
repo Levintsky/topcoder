@@ -1,0 +1,53 @@
+# Basics of Big Data, Distributed System
+
+## Resources
+- https://www.zhihu.com/question/29597104/answer/880513931
+
+## MIT 6.824
+- https://pdos.csail.mit.edu/6.824/schedule.html
+- Assignments:
+	- Lab 1: MapReduce
+	- Lab 2: replication for fault-tolerance using Raft
+	- Lab 3: fault-tolerant key/value store
+	- Lab 4: sharded key/value store
+- MAIN TOPICS: This is a course about infrastructure for applications.
+	- Storage.
+	- Communication.
+	- Computation.
+	- The big goal: abstractions that hide the complexity of distribution.
+		- A couple of topics will come up repeatedly in our search.
+- Topic: implementation
+	- RPC, threads, concurrency control.
+- Topic: **performance**;
+	- The goal: scalable throughput
+    	- Nx servers -> Nx total throughput via parallel CPU, disk, net.
+    	- So handling more load only requires buying more computers. Rather than re-design by expensive programmers.
+    	- Effective when you can divide work w/o much interaction.
+  	- Scaling gets harder as N grows:
+    	- Load im-balance, stragglers, slowest-of-N latency.
+    	- Non-parallelizable code: initialization, interaction.
+    	- Bottlenecks from shared resources, e.g. network.
+	- Some performance problems aren't easily solved by scaling
+    	- e.g. quick response time for a single user request
+    	- e.g. all users want to update the same data
+    	- often requires better design rather than just more computers
+- Topic: **fault tolerance**
+	- 1000s of servers, big network -> always something broken. We'd like to hide these failures from the application.
+	- We often want:
+    	- Availability: app can make progress despite failures;
+    	- Recoverability: app will come back to life when failures are repaired
+	- Big idea: **replicated servers**.
+    	- If one server crashes, can proceed using the other(s).
+- Topic: **consistency**
+	- General-purpose infrastructure needs well-defined behavior.
+    	- E.g. "Get(k) yields the value from the most recent Put(k,v)."
+	- Achieving good behavior is hard!
+    	- "Replica" servers are hard to keep identical.
+    	- Clients may crash midway through multi-step update.
+    	- Servers may crash, e.g. after executing but before replying.
+    	- Network partition may make live servers look dead; risk of "split brain".
+	- **Consistency and performance are enemies**.
+    	- Strong consistency requires communication, e.g. Get() must check for a recent Put().
+    	- Many designs provide only weak consistency, to gain speed. e.g. Get() does *not* yield the latest Put()!
+    	- Painful for application programmers but may be a good trade-off.
+	- Many design points are possible in the consistency/performance spectrum!

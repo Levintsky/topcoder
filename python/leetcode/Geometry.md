@@ -22,5 +22,8 @@
 - **LC-1131**: Maximum of Absolute Value Expression
 	- Largest Manhattan distance between points
 
+## Max-Cover
+- **LC-1453**: Maximum Number of Darts Inside of a Circular Dartboard
+
 ## Misc
 - **LC-790**: Domino and Tromino Tiling

@@ -17,6 +17,9 @@
 - LC-480: Sliding Window Median
 	- **Multiset**
 	- **No free method to update median, use an iterator**!
+- Moving Max: decreasing deque;
+	- Key insight: if i < j and A[i] < A[j], then A[i] will never be selected;
+	- LC-239: moving maximum;
 
 ## Iterator
 - LC-173: Binary Search Tree Iterator (level-order)

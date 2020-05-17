@@ -2,6 +2,7 @@
 
 ## Remote
 - 1. Connect VPN;
+	- About VPN: https://www.suibibk.com/blog/579412311547052032/550791275624792064/607344223041093632
 - 2. ssh;
 ```
 ssh username@server
@@ -17,6 +18,7 @@ ssh -X -a username@server
 ```
 sshfs username@server:/path-on-server/ ~/path-to-mount-point
 sshfs zhuoyuan@172.30.232.131:/home/zhuoyuan/na/atg/experimental/rnd/3d-composition /Users/zhuoyuan/codes/code-remote
+sshfs zhuoyuan@172.30.232.131:/home/zhuoyuan/na/atg/experimental/rnd /Users/zhuoyuan/codes/rnd-remote
 ```
 	- In case of not responding, force kill:
 ```
