@@ -30,3 +30,10 @@ class Solution(object):
         :type matrix: List[List[int]]
         :rtype: List[int]
         """
+        print(matrix)
+        return matrix and list(matrix.pop(0)) + self.spiralOrder(zip(*matrix)[::-1])
+
+
+if __name__ == "__main__":
+	a = Solution()
+	print(a.spiralOrder([[ 1, 2, 3 ],[ 4, 5, 6 ],[ 7, 8, 9 ]]))
