@@ -4,7 +4,6 @@
 - Standard Template Library (stl). It provides four components called algorithms, containers, functions, and iterators.
 - 13 headers
 ```cpp
-<algorithm>
 <functional>
 <iterator>
 <vector><list><map><deque><queue><set><stack>

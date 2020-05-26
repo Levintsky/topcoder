@@ -6,32 +6,6 @@ using namespace std::cin;
 using namespace std::string;
 ```
 
-## String
-```cpp
-string a;
-a.substr(i, n);
-```
-- Operator:
-```cpp
-os << s;
-is >> s;
-getline(is, s); // read a line
-s.empty()
-s.size()
-s[n]
-s1 + s2
-s1 = s2 // deep copy
-s1 == s2
-<, <=, >, >=
-```
-- Get input by lines: then run ./executable < textfile
-```cpp
-// read input a line at a time and discard blank lines 
-while (getline(cin, line))
-	if (!line.empty())
-		cout << line << endl;
-```
-
 ## Vector
 ```cpp
 vector<int> ivec(10, -1); // ten int elements, each initialized to -1

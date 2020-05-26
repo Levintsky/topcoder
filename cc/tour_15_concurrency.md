@@ -1,4 +1,15 @@
-# Threading
+# Concurrency (Chap 15 of a Tour of C++)
+
+## Overview
+- Introduction
+- Tasks and threads
+- Passing Arguments
+- Returning Results
+- Sharing Data
+- Waiting for Events
+- Communicating Tasks
+	- future and promise; packaged_task; async()
+- Advice
 
 ## Thread
 ```cpp
@@ -24,20 +35,17 @@ int main() {
   return 0;
 }
 ```
-
-## Execution
-- Execute only once, even if concurrently
+- Execution
+	- Execute only once, even if concurrently
 ```cpp
 std::call_once(flag, callable&& f, Args&&... args);
 ```
-
-## Lock
-- mutex: a mutex class is a synchronization primitive that can be used to protect shared data 
-from being simultaneously accessed by multiple threads.
+- Lock
+	- mutex: a mutex class is a synchronization primitive that can be used to protect shared data from being simultaneously accessed by multiple threads.
 ```cpp
 std::mutex mutex_;
 ```
-- lock_guard: have effect in visible scope; will disappear after function return;
+	- lock_guard: have effect in visible scope; will disappear after function return;
 ```cpp
 void some_func() {
   std::lock_guard<std::mutex> lock(mutex_);

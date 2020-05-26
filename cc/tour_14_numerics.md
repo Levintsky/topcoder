@@ -1,6 +1,18 @@
-# Random Number Generators
+# Numerics (Chap 13 of a Tour of C++)
 
-## mt19937
+## Overview
+- Introduction
+- Mathematical Functions
+- Numerical Algorithms
+- Parallel Numerical Algorithms
+- Complex Numbers
+- Random Numbers
+- Vector Arithmetic
+- Numeric Limits
+- Advice
+
+## Random Number generator
+- mt19937
 ```cpp
 #include <random>
 // random seed by Mersenne Twister algorithm
