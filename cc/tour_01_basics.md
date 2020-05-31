@@ -16,6 +16,55 @@
 	- Assignment; Initialization
 - Advice
 
+## 1.0 Static
+- static
+```cpp
+static int a;
+static int func(int a);
+```
+- static in class: one instance shared across class;
+```cpp
+class A {
+  static int x, y;
+};
+int A::x;
+int A::y;
+
+A::x++;
+```
+- static function:
+```cpp
+class A {
+    static void Print();
+};
+A::Print();
+```
+
+## Type Conversion
+- static_cast: mostly used for type conversion
+```cpp
+a = static_cast<int>(b);
+```
+- dynamic_cast: runtime cast, not recommended. E.g. in test:
+```cpp
+EXPECT_EQ(dynamic_cast<const std::nested_exception *>(&e), Null());
+```
+- const_cast: used to remove const attributes:
+```cpp
+int i = 3;                 // i is not declared const
+const int& rci = i; 
+const_cast<int&>(rci) = 4; // OK: modifies i
+
+const int j = 3; // j is declared const
+int* pj = const_cast<int*>(&j);
+// *pj = 4;      // undefined behavior
+```
+- reinterpret_cast
+```cpp
+type1 a;
+b = reinterpret_cast<type2>(a);
+```
+
 ## 1.4 Types
 ```cpp
 bool
@@ -31,9 +80,18 @@ float
 double
 long double
 ```
-- Unsigned for integers
+- More about integer:
+    - Unsigned for integers
 ```cpp
 unsigned int
+75 // int
+75u // unsigned int
+75l // long
+75ul // unsigned long
+
+int a = 3; // decimal
+int b = 0113; // octal
+int c = 0x4b; // hexa
 ```
 - Arithmetic
 ```cpp
@@ -120,7 +178,7 @@ const int k; // error
 // const left of *, const var
 // const right of *, cont pointer
 const int* a = &var; // pointer to constant var
-int const *a = &var; // a is a pointer to the constant variable
+int const* a = &var; // a is a pointer to the constant variable
 int* const a = &var; // a is a constant pointer to the (non-constant) variable
 const int* const a = &var; // a constant pointer to the constant variable
 
@@ -141,12 +199,13 @@ Rational a,b;
 Radional c;
 (a*b) = c;
 ```
-- usage 4: const in class
+- usage 4: const in class, not supposed to change member variable; unless **mutable**;
 ```cpp
 class test {
  public:
   // 
   static int const gVar;
+  mutable int b;
 
   // correct
   test(int size) : SIZE(size) {}
@@ -154,6 +213,7 @@ class test {
   // A "const function", denoted with the keyword const after a function declaration, makes it a compiler error for this class function to change a member variable of the class. However, reading of a class variables is ok inside of the function, but writing inside of this function will generate a compiler error.
   int getx() const {
   	x++; // wrong
+    b++; // ok
   	return x; // OK
   }
 

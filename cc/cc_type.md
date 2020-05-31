@@ -1,36 +1,5 @@
 # C++ Data Structures Study
 
-## Integers:
-```cpp
-75 // int
-75u // unsigned int
-75l // long
-75ul // unsigned long
-
-int a = 3; // decimal
-int b = 0113; // octal
-int c = 0x4b; // hexa
-```
-
-## Enumerate:
-```cpp
-enum class Color {kEmpty, kBlack, kWhite};
-```
-
-## Structure
-
-## Define Data types:
-```cpp
-typedef char C;
-```
-
-## Pairs
-- pair
-```cpp
-std::pair;
-std::make_pair;
-```
-
 ## String:
 - Basics
 ```cpp

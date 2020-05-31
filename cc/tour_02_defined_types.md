@@ -8,6 +8,11 @@
 - Enumerations
 - Advice
 
+## Define Alias
+```cpp
+typedef char C;
+```
+
 ## Structure and Unions
 - Struct
 ```cpp

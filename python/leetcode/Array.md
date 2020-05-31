@@ -7,8 +7,20 @@
 		- 1-D integral image
 	- **LC-363**: Max Sum of Rectangle No Larger Than K
 	- LC-1074: Number of Submatrices That Sum to Target
-- Find array:
-	- **LC-862**: Shortest Subarray with Sum at Least K
+
+## Sliding Window
+- LC-209: Minimum Size Subarray Sum
+	- Positive only;
+- **LC-862**: Shortest Subarray with Sum at Least K
+	- Hard b/c negative;
+- **992**: Subarrays with K Different Integers
+	- Smart idea: at most K - at most K-1
+- 904: Fruit Into Baskets
+- 930
+- 1004
+- 1234
+- 1248
+- 1358
 - Kadane's Algorithm to Maximum Sum Subarray Problem
 	- https://www.youtube.com/watch?v=86CQq3pKSUw
 	- 1-D case: O(n), brute-force O(n^2)
@@ -56,11 +68,9 @@ for i in range(row):
 ## Subarray Satisfying...
 - Continuous:
 	- LC-84: Largest Rectangle in Histogram (DP)
-	- LC-992: Subarrays with K Different Integers
 	- **LC-795**: Number of Subarrays with Bounded Maximum
 		- **Left/right preprocessing trick!**
 	- **LC-1124**: Longest Well-Performing Interval
-
 - Discontinuous:
 	- LC-1027: Longest Arithmetic Sequence (DP)
 - Continuous 2D:
@@ -69,10 +79,14 @@ for i in range(row):
 
 ## Array Permutation/Re-arrange
 - **LC-932**: Beautiful Array (k with i < k < j such that A[k] * 2 = A[i] + A[j])
+	- Divide and Conquer: think if we have already have a n<N result;
 	- Thinking from odd/even;
 
 ## Move on Array
 - Jump:
+	- 55: Jump Game; (return bool)
+	- 45: Jump Game II; (return minimum jump)
+	- 1306: Jump Game III;
 	- **LC-975**: Odd Even Jump (from A[i], odd jumps: jump to j with smallest A[j] s.t. A[j]>=A[i]; even jumps: jump to largest A[j] s.t. A[j]<=A[i])
 		- Related to Count of Smaller Numbers After Self
 		- DP with backup
