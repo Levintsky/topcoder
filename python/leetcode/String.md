@@ -2,6 +2,68 @@
 
 ## Pattern Searching
 - KMP
+    - 1. Preprocess pattern: find next if not matching:
+        - Method: for all S[0..i], find longest prefix/suffix match S[0..j] = S[j..i]
+            <img src="/python/images/kmp-1.png" alt="drawing" width="500"/>
+        - if we already have f(S[0..i])=j, for S[0..i+1]
+            - Case 1: if S[j+1]==S[i+1], f(S[0..i+1])=j+1
+            - Case 2: else, try j=f(S[0..j]), similar trick for both search and self-similarity;
+```python
+def computeLPSArray(pat):
+    M = len(pat)
+    lps = [0] * M
+    len_ = 0 # length of the previous longest prefix suffix
+    # lps[0] is always 0 
+    i = 1
+    while i < M: # the loop calculates lps[i] for i = 1 to M-1 
+        if pat[i]== pat[len_]: 
+            len_ += 1
+            lps[i] = len_
+            i += 1
+        else: 
+            # This is tricky. Consider the example. 
+            # AAACAAAA and i = 7. The idea is similar  
+            # to search step. 
+            if len_ != 0: 
+                len_ = lps[len_-1] 
+  
+                # Also, note that we do not increment i here 
+            else: 
+                lps[i] = 0
+                i += 1
+    return lps
+```
+    - KMP search phase:
+```python
+def KMPSearch(pat, txt): 
+    M = len(pat) 
+    N = len(txt) 
+  
+    # create lps[] that will hold the longest prefix suffix  
+    # values for pattern 
+    lps = [0]*M 
+    j = 0 # index for pat[] 
+  
+    # Preprocess the pattern (calculate lps[] array) 
+    lps = computeLPSArray(pat) 
+  
+    i = 0 # index for txt[] 
+    while i < N: 
+        if pat[j] == txt[i]: 
+            i += 1
+            j += 1
+        if j == M: 
+            print "Found pattern at index " + str(i-j) 
+            j = lps[j-1] 
+        # mismatch after j matches 
+        elif i < N and pat[j] != txt[i]: 
+            # Do not match lps[0..lps[j-1]] characters, 
+            # they will match anyway 
+            if j != 0: 
+                j = lps[j-1] 
+            else: 
+                i += 1
+```
 - Rain Karp
 - Finite Automata
 - Boyer Moore
@@ -20,7 +82,7 @@
 	- Find longest repeated substring; (1044)
 	- Find longest common substring: S1#S2 and check;
 	- Longest palindrome;
-- Ukkonen’s Suffix Tree Construction;
+- Ukkonen's Suffix Tree Construction;
     - Edge: string;
     - Node: active index;
 

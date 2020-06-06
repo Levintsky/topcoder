@@ -41,6 +41,10 @@ expression will have length in range [1, 250].
 evalvars, evalints will have equal lengths in range [0, 100].
 """
 
+import collections
+import re
+
+
 class Solution(object):
     def basicCalculatorIV(self, expression, evalvars, evalints):
         """
@@ -49,4 +53,32 @@ class Solution(object):
         :type evalints: List[int]
         :rtype: List[str]
         """
-        
+        class C(collections.Counter):
+            def __add__(self, other):
+                self.update(other)
+                return self
+            def __sub__(self, other):
+                self.subtract(other)
+                return self
+            def __mul__(self, other):
+                product = C()
+                for x in self:
+                    for y in other:
+                        xy = tuple(sorted(x + y))
+                        product[xy] += self[x] * other[y]
+                return product
+        vals = dict(zip(evalvars, evalints))
+        def f(s):
+            s = str(vals.get(s, s))
+            return C({(s,): 1}) if s.isalpha() else C({(): int(s)})
+        exp = re.sub('(\w+)', r'f("\1")', expression)
+        print(exp)
+        c = eval(exp)
+        return ['*'.join((str(c[x]),) + x)
+                for x in sorted(c, key=lambda x: (-len(x), x))
+                if c[x]]
+
+if __name__ == "__main__":
+    a = Solution()
+    print(a.basicCalculatorIV("e + 8 - a + 5", ["e"], [1]))
+    print(a.basicCalculatorIV("((a - b) * (b - c) + (c - a)) * ((a - b) + (b - c) * (c - a))", [], []))

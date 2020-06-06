@@ -156,6 +156,17 @@ hash_function()
 key_eq()
 ```
 
+## Stack
+```cpp
+bool empty() // Test whether container is empty (public member function )
+int size() // Return size (public member function )
+T top() // Access next element (public member function )
+void push(T& item) // Insert element (public member function )
+void emplace(T& item); // Construct and insert element (public member function )
+void pop(); // Remove top element (public member function )
+void swap(stack& x);
+```
+
 ## Overview
 ```cpp
 vector<T> // A variable-size vector (§11.2)

@@ -23,6 +23,10 @@ Input: "2*3-4*5"
 Output: [-34, -14, -10, -10, 10]
 '''
 
+import re
+import operator
+
+
 class Solution(object):
   def helper(self, op_list):
     if len(op_list) == 1:
@@ -66,7 +70,23 @@ class Solution(object):
     print op_list
     return self.helper(op_list)
 
+  def solve2(self, input):
+   tokens = re.split('(\D)', input)
+   print(tokens)
+   nums = map(int, tokens[::2])
+   ops = map({'+': operator.add, '-': operator.sub, '*': operator.mul}.get, tokens[1::2])
+   def build(lo, hi):
+       if lo == hi:
+           return [nums[lo]]
+       return [ops[i](a, b)
+               for i in xrange(lo, hi)
+               for a in build(lo, i)
+               for b in build(i + 1, hi)]
+   return build(0, len(nums) - 1)
 
 if __name__ == '__main__':
   a = Solution()
-  print a.diffWaysToCompute('2-1-1')
+  # print a.diffWaysToCompute('2-1-1')
+  print(a.solve2('2-1-1'))
+  print(a.solve2("2*3-4*5"))
+

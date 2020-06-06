@@ -6,6 +6,24 @@ int __stdcall function(int a,int b);
 int __cdecl function(int a,int b);
 ```
 
+## Function Pointer
+```cpp
+void HelloWorld(int a) {
+	std::cout << "Hello World" << a << std::endl;
+}
+auto f = HelloWorld; // correct
+void(*f)(int) = HelloWorld; // correct
+
+typedef void(*func)(int); // correct
+func f = HelloWorld;
+f(3);
+```
+- std::function
+```cpp
+std::function<void(int)> f_display = print_num;
+f_display(-9);
+```
+
 ## Overloading:
 ```cpp
 int operate(int a, int b);

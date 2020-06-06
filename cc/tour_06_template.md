@@ -9,8 +9,39 @@
 - Template Mechanisms
 	- Variable Templates; Aliases; Compile-Time if
 - Advice
+  - Suggest not split declaration and implementation into .h and .cc;
 
-- Suggest not split declaration and implementation into .h and .cc;
+## 6.1 Implementation
+- Declaration and definition all in header file (recommended)
+- Separate in .cpp file? explicit
+  - .h declaration only
+```cpp
+// foobar.h
+template <typename T>
+class foobar {
+public:
+    foobar() : data() {
+        data = new T;
+    }
+    ~foobar() {
+        delete data;
+    }
+    T* get();
+private:
+    T* data;
+};
+```
+  - .cpp file
+```cpp
+// foobar.cpp
+#include "foobar.h"
+
+template<typename T>
+T* foobar<T>::get() {
+    return this->data;
+}
+template class foobar<int>;
+```
 
 ## 6.2 Parametrized Types
 ```cpp
@@ -106,6 +137,46 @@ void f(const Vector<int>& vec, const list<string>& lst, int x, const string& s) 
 }
 ```
 
+## Specialization
+- Full:
+```cpp
+template <>
+class A<int, double>{
+    int data1;
+    double data2;
+};
+template <>
+int max(const int lhs, const int rhs){   
+    return lhs > rhs ? lhs : rhs;
+}
+```
+- Ambiguity, specify;
+```cpp
+template <class T>
+void f(){ T d; }
+
+template <>
+void f(){ int d; } // could be wrong (ambiguity)
+
+template <>
+void f<int>(){ int d; } // correct
+```
+- Partial: only allowed in classes, not in functions!!!
+```cpp
+template <class T2>
+class A<int, T2>{
+    ...
+};
+```
+  - In functions, wrong!
+```cpp
+template <class T1, class T2>
+void f(){}
+
+template <class T2>
+void f<int, T2>(){}
+```
+
 ## Template Mechanism
 - Language support required:
 	- Values dependent on a type: variable templates (§6.4.1).
@@ -136,13 +207,13 @@ void update(T& target) {
 }
 ```
 
-## template class
-- default template
+## Examples
+- template class
+  - default template
 ```cpp
 template <class T, class F=less<T>>
 ```
-
-## template function in a template class
+- template function in a template class
 ```cpp
 template <T>
 class A {
@@ -154,8 +225,7 @@ A<T> *b;
 a.template func(xxx);
 b->template func(xxx);
 ```
-
-## template in template
+- template in template
 ```cpp
 template<template<class> class T, class S>
 void f(T<S> value); // template in template function

@@ -17,6 +17,9 @@
 	- iterator_traits; Type Predicates; enable_if
 - Advice
 
+## Smart Pointer
+- added benefit over using raw pointers is automatic memory management of dynamically allocated resources, so that you don't have to make explicit calls to delete.
+
 ## unique pointer
 - Use a unique_ptr when an object claims ownership of a resource. That is, the object is responsible for managing the memory of the resource, deleting it when it's own destructor is called. Also, note that the assignment operator of a unique_ptr only accepts rvalues, which should be provided by std::move semantics.
 ```cpp
