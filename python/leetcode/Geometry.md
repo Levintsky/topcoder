@@ -17,6 +17,8 @@
 
 ## Rectangles
 - LC-939: Minimum Rectangle
+- **LC-963**: Minimum Area Rectangle II
+- **LC-850**: Rectangle Area II
 
 ## Point
 - **LC-1131**: Maximum of Absolute Value Expression

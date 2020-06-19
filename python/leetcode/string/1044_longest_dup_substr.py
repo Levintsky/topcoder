@@ -232,6 +232,44 @@ class Solution(object):
         bestsuf = sa.suf[besti]
         return S[bestsuf : bestsuf + bestlen]
 
+    def solve6(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        nums = [ord(c)-ord('a') for c in S]
+        l, r = 0, len(S)-1
+        MOD = 10**9+7
+        
+        def check_valid(len_):
+            key = 0
+            n = len(nums)
+            for item in nums[:len_]:
+                key = (key * 26 + item) % MOD
+            memo[key] = 1
+            print(key)
+            aL = (26 ** (len_ - 1)) % MOD
+            for i in range(len_, n):
+                key = key - nums[i-len_] * aL
+                key = (key * 26 + nums[i]) % MOD
+                if key in memo:
+                    # print(key)
+                    return True
+                memo[key] = 1
+            return False
+        
+        while l < r:
+            memo = {} # hash key to set
+            
+            mid = (l+r) // 2
+            
+            if check_valid(mid):
+                l = mid +1
+            else:
+                r = mid - 1
+            print(mid, l, r)
+        return l
+
 
 class SuffixArrayInducedSort:
     def __init__(self, s):
@@ -377,9 +415,11 @@ if __name__ == "__main__":
     print(lcp)
     """
     a = Solution()
-    print(a.solve2("banana"))
-    print(a.solve3("banana"))
+    # print(a.solve2("banana"))
+    # print(a.solve3("banana"))
     # sa = SuffixArrayInducedSort("banana")
     # sa = SuffixArrayInducedSort("mississippi")
     # print(sa.lcp)
     # print(kasai("mississippi", [10, 7, 4, 1, 0, 9, 8, 6, 5, 3, 2]))
+    print(a.solve6("banana"))
+    # print(a.solve6("mississippi"))
