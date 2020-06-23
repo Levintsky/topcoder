@@ -110,8 +110,8 @@ class Solution(object):
         result = [0]
         root = TreeNode(nums[0])
         for i in range(1, len(nums)):
-          tmp = self.find(root, nums[i], 0)
-          result.append(tmp)
+            tmp = self.find(root, nums[i], 0)
+            result.append(tmp)
         result = result[::-1]
         print(root.val, root.cnt, root.dup)
         return result
@@ -138,28 +138,28 @@ class Solution(object):
                 return cnt
 
     def solve2(self, nums):
-      n = len(nums)
-      if n == 0: return []
-      nums_ = zip(range(n), nums)
-      def sort_(enums_):
-          if len(enums_) < 2:
-              return enums_
-          half = len(enums_)/2
-          left, right = sort_(enums_[:half]), sort_(enums_[half:])
-          i, j = 0, 0
-          m, n = len(left), len(right)
-          while i < m or j < n:
-              if j == n or (i < m and left[i][1] <= right[j][1]):
-                  enums_[i+j] = left[i]
-                  smaller[left[i][0]] += j
-                  i += 1
-              else:
-                  enums_[i+j] = right[j]
-                  j += 1
-          return enums_
-      smaller = [0] * n
-      sort_(nums_)
-      return smaller
+        n = len(nums)
+        if n == 0: return []
+        nums_ = zip(range(n), nums)
+        def sort_(enums_):
+            if len(enums_) < 2:
+                return enums_
+            half = len(enums_)/2
+            left, right = sort_(enums_[:half]), sort_(enums_[half:])
+            i, j = 0, 0
+            m, n = len(left), len(right)
+            while i < m or j < n:
+                if j == n or (i < m and left[i][1] <= right[j][1]):
+                    enums_[i+j] = left[i]
+                    smaller[left[i][0]] += j
+                    i += 1
+                else:
+                    enums_[i+j] = right[j]
+                    j += 1
+            return enums_
+        smaller = [0] * n
+        sort_(nums_)
+        return smaller
 
     def solve3(self, nums):
         result = []
@@ -172,10 +172,47 @@ class Solution(object):
             bisect.insort(tmp, item)
         return result[::-1]
 
+    def solve4(self, nums):
+        s = list(set(nums))
+        s.sort()
+        # put in rank
+        rank = {}
+        for i, item in enumerate(s):
+            rank[item] = i
+        res = []
+        tree = BIT(len(s))
+        for item in nums[::-1]:
+            r = rank[item]
+            res.append(tree.query(r))
+            tree.update(r+1, 1)
+        return res[::-1]
+
+
+class BIT(object):
+    def __init__(self, n):
+        self.n = n
+        self.array = [0] * (n+1)
+
+    def update(self, i, delta):
+        while i <= self.n:
+            self.array[i] += delta
+            i += i & (-i)
+
+    def query(self, i):
+        res = 0
+        while i > 0:
+            res += self.array[i]
+            i -= i & (-i)
+        return res
+
 
 if __name__ == "__main__":
     a = Solution()
     # print(a.countSmaller([6,0,3,2,2,6,1]))
-    # print(a.solve2([3,2,2,6,1]))
     print(a.solve3([5,2,6,1]))
     print(a.solve3([6,0,3,2,2,6,1]))
+    print(a.solve3([3,2,2,6,1]))
+
+    print(a.solve4([5,2,6,1]))
+    print(a.solve4([6,0,3,2,2,6,1]))
+    print(a.solve4([3,2,2,6,1]))
