@@ -1,5 +1,13 @@
 # Python Package and Environment
 
+## Summaries and Popular Tools
+- conda
+- pip
+- pipenv
+- setuptools
+- virtualenv
+- wheel
+
 ## conda
 - conda self
 ```bash
@@ -60,7 +68,6 @@ conda remove -n snakes --all
 rm -rf ~/miniconda 
 ```
 
-
 ## pip
 - Look for packges: https://pypi.org/pypi/
 - Install and update self
@@ -86,3 +93,21 @@ pip list
 pip install -U pkg
 pip uninstall pkg
 ```
+
+## Setuptools
+- Sources: https://setuptools.readthedocs.io/en/latest/userguide/index.html
+```sh
+pip install --upgrade setuptools
+```
+- In case of on macbook with error "cstddef not found":
+```sh
+CFLAGS='-stdlib=libc++' python setup.py build
+```
+- Install
+```sh
+python setup.py build
+python setup.py install
+```
+- Potential problems on Mac:
+	- The folder in your build with .so file might not be copied automatically (only the .egg file is moved)
+	- You have to copy them yourself;
