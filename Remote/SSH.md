@@ -118,18 +118,6 @@ scp -r dir lab:
 scp -r lab:dir/ .
 ```
 
-## Keep Program Running
-- tmux: sudo apt-get install tmux;
-```sh
-tmux
-tmux attach
-```
-- screen for Session Management
-```sh
-screen
-screen -r
-```
-
 ## Jump Machine
 - E.g. 1: jumpbox
 ```sh
