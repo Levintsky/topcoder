@@ -7,6 +7,16 @@
 - Concepts:
 	- Workspace (your folder);
 	- Stage, also index (temporary, added not commited)
+- LFS
+```sh
+# step 1
+git lfs install
+# step 2
+git lfs track "*.pth"
+git add .gitattributes
+# step 3
+git add xxx.pth
+```
 
 ## One-time Setup
 - Account setup: --global will make all git on your machine use this setup;
